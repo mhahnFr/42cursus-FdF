@@ -8,7 +8,7 @@ CFLAGS	=	-Wall -Werror -Wextra
 OBJ		=	$(patsubst %.c,%.o,$(SRC))
 
 # The source files.
-SRC		=	main.c
+SRC		=	./main.c ./delegate/app_delegate.c ./view/init.h ./model/generate.c
 
 # The flags to link with.
 LFLAGS	=	-framework OpenGL -framework AppKit -lz -L$(MLX_D) -lmlx
