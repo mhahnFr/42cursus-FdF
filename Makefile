@@ -8,7 +8,8 @@ CFLAGS	=	-Wall -Werror -Wextra
 OBJ		=	$(patsubst %.c,%.o,$(SRC))
 
 # The source files.
-SRC		=	./main.c ./delegate/app_delegate.c ./view/init.h ./model/generate.c
+SRC		=	./main.c ./delegate/app_delegate.c ./view/init.c ./model/generate.c \
+			./CLI/cli.c
 
 # The path to the home made libft.
 LFT_D	=	./libft
@@ -41,7 +42,7 @@ $(NAME): $(MLX_P) $(LFT_A) $(OBJ)
 
 # Compiles each file individually.
 %.o: %.c
-	$(CC) $(CFLAGS) -I$(MLX_D) -c -o $@ $<
+	$(CC) $(CFLAGS) -I$(MLX_D) -I$(LFT_D) -c -o $@ $<
 
 .phony: $(LFT_A)
 $(LFT_A):
