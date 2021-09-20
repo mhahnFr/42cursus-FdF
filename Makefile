@@ -65,7 +65,7 @@ $(NAME): $(MLX_P) $(LFT_A) $(FT_PF_P) $(GNL_P) $(OBJ)
 
 # Compiles each file individually.
 %.o: %.c
-	$(CC) $(CFLAGS) -I$(MLX_D) -I$(LFT_D) -I$(FT_PF_D) -I. -c -o $@ $<
+	$(CC) $(CFLAGS) -I$(MLX_D) -I$(LFT_D) -I$(FT_PF_D) -I$(GNL_D) -I. -c -o $@ $<
 
 # Makes whatever is needed for the get_next_line library.
 .phony: $(GNL_P)
