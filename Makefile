@@ -9,7 +9,7 @@ OBJ		=	$(patsubst %.c,%.o,$(SRC))
 
 # The source files.
 SRC		=	./main.c ./delegate/app_delegate.c ./view/init.c ./model/generate.c \
-			./CLI/cli.c
+			./CLI/cli.c ./model/model.c ./model/vertex.c
 
 # The path to the home made libft.
 LFT_D	=	./libft
