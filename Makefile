@@ -29,9 +29,18 @@ MLX_A	=	libmlx.a
 # The full path to the minilibx library.
 MLX_P	=	$(MLX_D)/$(MLX_A)
 
+# The name of the get_next_line library.
+GNL_A	=	gnl.a
+
+# The directory of the get_next_line library.
+GNL_D	=	./gnl
+
+# The full path to the get_next_line library.
+GNL_P	=	$(GNL_D)/$(GNL_A)
+
 # The flags to link with.
 LFLAGS	=	-framework OpenGL -framework AppKit -lz -L$(MLX_D) -lmlx -L$(LFT_D) \
-			-lft -L$(FT_PF_D) -lftprintf
+			-lft -L$(FT_PF_D) -lftprintf -L$(GNL_D) -lgnl
 
 # The flags to use for compiling the minilibx.
 MLX_F	=	$(CFLAGS) -O2 -D GL_SILENCE_DEPRECATION -Wno-unused-parameter \
@@ -51,12 +60,17 @@ FT_PF_P	=	$(FT_PF_D)/$(FT_PF_A)
 all: $(NAME)
 
 # Links the object files and the minilbx library.
-$(NAME): $(MLX_P) $(LFT_A) $(FT_PF_P) $(OBJ)
+$(NAME): $(MLX_P) $(LFT_A) $(FT_PF_P) $(GNL_P) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) -o $(NAME)
 
 # Compiles each file individually.
 %.o: %.c
 	$(CC) $(CFLAGS) -I$(MLX_D) -I$(LFT_D) -I$(FT_PF_D) -I. -c -o $@ $<
+
+# Makes whatever is needed for the get_next_line library.
+.phony: $(GNL_P)
+$(GNL_P):
+	make -C $(GNL_D) $(GNL_A)
 
 # Makes whatever is needed for the ft_printf library.
 .phony: $(FT_PF_P)
