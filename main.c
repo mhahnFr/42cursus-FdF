@@ -1,9 +1,9 @@
 #include "mlx.h"
 
-#include "./delegate/app_delegate.h"
-#include "./view/init.h"
-#include "./model/generate.h"
-#include "./CLI/cli.h"
+#include "delegate/app_delegate.h"
+#include "view/init.h"
+#include "model/generate.h"
+#include "CLI/cli.h"
 
 int	main(int argc, char **argv)
 {

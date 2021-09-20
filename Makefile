@@ -30,23 +30,38 @@ MLX_A	=	libmlx.a
 MLX_P	=	$(MLX_D)/$(MLX_A)
 
 # The flags to link with.
-LFLAGS	=	-framework OpenGL -framework AppKit -lz -L$(MLX_D) -lmlx -L$(LFT_D) -lft
+LFLAGS	=	-framework OpenGL -framework AppKit -lz -L$(MLX_D) -lmlx -L$(LFT_D) \
+			-lft -L$(FT_PF_D) -lftprintf
 
 # The flags to use for compiling the minilibx.
 MLX_F	=	$(CFLAGS) -O2 -D GL_SILENCE_DEPRECATION -Wno-unused-parameter \
 			-Wno-unused-variable
+
+# The path to the ft_printf library.
+FT_PF_D	=	./ft_printf
+
+# The name of the ft_printf library.
+FT_PF_A	=	libftprintf.a
+
+# The full path of the ft_printf library.
+FT_PF_P	=	$(FT_PF_D)/$(FT_PF_A)
 
 
 # Makes whatever is needed.
 all: $(NAME)
 
 # Links the object files and the minilbx library.
-$(NAME): $(MLX_P) $(LFT_A) $(OBJ)
+$(NAME): $(MLX_P) $(LFT_A) $(FT_PF_P) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) -o $(NAME)
 
 # Compiles each file individually.
 %.o: %.c
-	$(CC) $(CFLAGS) -I$(MLX_D) -I$(LFT_D) -c -o $@ $<
+	$(CC) $(CFLAGS) -I$(MLX_D) -I$(LFT_D) -I$(FT_PF_D) -I. -c -o $@ $<
+
+# Makes whatever is needed for the ft_printf library.
+.phony: $(FT_PF_P)
+$(FT_PF_P):
+	make -C $(FT_PF_D) $(FT_PF_A)
 
 # Makes what is necessary for the libft.
 .phony: $(LFT_A)
