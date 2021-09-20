@@ -32,6 +32,10 @@ MLX_P	=	$(MLX_D)/$(MLX_A)
 # The flags to link with.
 LFLAGS	=	-framework OpenGL -framework AppKit -lz -L$(MLX_D) -lmlx -L$(LFT_D) -lft
 
+# The flags to use for compiling the minilibx.
+MLX_F	=	$(CFLAGS) -O2 -D GL_SILENCE_DEPRECATION -Wno-unused-parameter \
+			-Wno-unused-variable
+
 
 # Makes whatever is needed.
 all: $(NAME)
@@ -44,14 +48,15 @@ $(NAME): $(MLX_P) $(LFT_A) $(OBJ)
 %.o: %.c
 	$(CC) $(CFLAGS) -I$(MLX_D) -I$(LFT_D) -c -o $@ $<
 
+# Makes what is necessary for the libft.
 .phony: $(LFT_A)
 $(LFT_A):
 	make -C $(LFT_D) $(LFT_A)
 
 # Creates the minilibx library if needed.
-.phony: $(MLX_A)
+.phony: $(MLX_P)
 $(MLX_P):
-	make -C $(MLX_D) $(MLX_A)
+	make -C $(MLX_D) $(MLX_A) CFLAGS='$(MLX_F)'
 
 # Removes all unnecessary files created by this makefile.
 .phony: clean
@@ -64,7 +69,6 @@ clean:
 .phony: fclean
 fclean: clean
 	- $(RM) $(NAME)
-	- make -C $(MLX_D) fclean
 	- make -C $(LFT_D) fclean
 
 # Recompiles the project.
