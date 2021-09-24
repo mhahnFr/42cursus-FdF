@@ -30,7 +30,7 @@ MLX_A	=	libmlx.a
 MLX_P	=	$(MLX_D)/$(MLX_A)
 
 # The name of the get_next_line library.
-GNL_A	=	gnl.a
+GNL_A	=	libgnl.a
 
 # The directory of the get_next_line library.
 GNL_D	=	./gnl
@@ -61,7 +61,7 @@ FT_PF_P	=	$(FT_PF_D)/$(FT_PF_A)
 all: $(NAME)
 
 # Links the object files and the minilbx library.
-$(NAME): $(MLX_P) $(LFT_A) $(FT_PF_P) $(GNL_P) $(OBJ)
+$(NAME): $(MLX_P) $(LFT_P) $(FT_PF_P) $(GNL_P) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) -o $(NAME)
 
 # Compiles each file individually.
@@ -79,8 +79,8 @@ $(FT_PF_P):
 	make -C $(FT_PF_D) $(FT_PF_A)
 
 # Makes what is necessary for the libft.
-.phony: $(LFT_A)
-$(LFT_A):
+.phony: $(LFT_P)
+$(LFT_P):
 	make -C $(LFT_D) $(LFT_A)
 
 # Creates the minilibx library if needed.
@@ -94,12 +94,14 @@ clean:
 	- $(RM) $(OBJ)
 	- make -C $(MLX_D) clean
 	- make -C $(LFT_D) clean
+	- make -C $(GNL_D) clean
 
 # Removes everything created by this makefile.
 .phony: fclean
 fclean: clean
 	- $(RM) $(NAME)
 	- make -C $(LFT_D) fclean
+	- make -C $(GNL_D) fclean
 
 # Recompiles the project.
 .phony: re

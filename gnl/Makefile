@@ -1,5 +1,5 @@
 # The name of the library to create.
-NAME		=	gnl.a
+NAME		=	libgnl.a
 
 # The source files needed for the library.
 SRC			=	./get_next_line.c \
