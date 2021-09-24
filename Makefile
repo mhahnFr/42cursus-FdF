@@ -57,6 +57,7 @@ FT_PF_P	=	$(FT_PF_D)/$(FT_PF_A)
 
 
 # Makes whatever is needed.
+.phony: all
 all: $(NAME)
 
 # Links the object files and the minilbx library.
