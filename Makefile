@@ -102,4 +102,5 @@ fclean: clean
 	- make -C $(LFT_D) fclean
 
 # Recompiles the project.
+.phony: re
 re: fclean all
