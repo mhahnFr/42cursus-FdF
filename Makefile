@@ -8,8 +8,9 @@ CFLAGS	=	-Wall -Werror -Wextra
 OBJ		=	$(patsubst %.c,%.o,$(SRC))
 
 # The source files.
-SRC		=	./main.c ./delegate/app_delegate.c ./view/init.c ./model/generate.c \
-			./CLI/cli.c ./model/model.c ./model/vertex.c
+SRC		=	./delegate/app_delegate.c ./view/init.c ./model/generate.c \
+			./CLI/cli.c ./model/model.c ./model/vertex.c ./utils/arraylist.c \
+			./main.c
 
 # The path to the home made libft.
 LFT_D	=	./libft
@@ -64,8 +65,8 @@ all: $(NAME)
 $(NAME): $(MLX_P) $(LFT_P) $(FT_PF_P) $(GNL_P) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) -o $(NAME)
 
-# Compiles each file individually.
-%.o: %.c
+# Compiles each file that has an accompanying header file individually.
+%.o: %.c %.h
 	$(CC) $(CFLAGS) -I$(MLX_D) -I$(LFT_D) -I$(FT_PF_D) -I$(GNL_D) -I. -c -o $@ $<
 
 # Makes whatever is needed for the get_next_line library.
