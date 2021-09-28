@@ -1,8 +1,8 @@
 #ifndef GET_NEXT_LINE_UTILS_H
-#define GET_NEXT_LINE_UTILS_H
+# define GET_NEXT_LINE_UTILS_H
 
-#include <stdlib.h>
-#include <stdbool.h>
+# include <stdlib.h>
+# include <stdbool.h>
 
 /*
  * A string builder part. It includes the actual string part of the size of
@@ -13,25 +13,10 @@
  * to the next part.
  */
 typedef struct s_string_builder {
-	/*
-	 * A pointer to the newline character in the part, or null if no newline
-	 * character is present.
-	 */
 	char					*new_line;
-
-	/* The file descriptor that was used to read this part. */
 	size_t					start_offset;
-
-	/* The offset at which to start using the string part. */
 	size_t					string_length;
-
-	/*
-	 * The length of the string part. It is less than the buffer size, if these
-	 * are the last characters in the file.
-	 */
 	struct s_string_builder	*next;
-
-	/* The string which makes part of the builder. */
 	char					part[];
 }	t_string_builder;
 
@@ -41,7 +26,7 @@ typedef struct s_string_builder {
  * occurance of the given character, or null, if the given buffer does not
  * contain the given character within the given length.
  */
-void				*ft_memchr(const void *s, int c, size_t n);
+void				*gnl_memchr(const void *s, int c, size_t n);
 
 /*
  * Copies the given amount of bytes from the given source to
@@ -49,7 +34,7 @@ void				*ft_memchr(const void *s, int c, size_t n);
  * overlays. Use ft_memmove if an overlay of the memory could
  * be possible. Returns the given destination.
  */
-void				*ft_memcpy(void *dst, const void *src, size_t n);
+void				*gnl_memcpy(void *dst, const void *src, size_t n);
 
 /*
  * Reads one line from the file determined by the given file descriptor into
