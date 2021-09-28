@@ -16,9 +16,8 @@ t_vertex3D	*vertex3D_new(double x, double y, double z)
 	return (n);
 }
 
-void		vertex3D_delete(t_vertex3D *this)
+void	vertex3D_delete(t_vertex3D *this)
 {
 	if (this != NULL)
 		free(this);
 }
-

@@ -9,7 +9,7 @@ typedef struct s_vertex3D
 	double	x;
 	double	y;
 	double	z;
-} t_vertex3D;
+}	t_vertex3D;
 
 /*
  * Allocates a new vertex with the given coordinates. Returns the newly
@@ -23,4 +23,3 @@ t_vertex3D	*vertex3D_new(double x, double y, double z);
 void		vertex3D_delete(t_vertex3D *this);
 
 #endif
-
