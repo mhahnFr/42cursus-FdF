@@ -2,7 +2,7 @@
 
 #include "arraylist.h"
 
-void			**arraylist_to_array(t_arraylist *this)
+void	**arraylist_to_array(t_arraylist *this)
 {
 	void	**array;
 	size_t	counter;

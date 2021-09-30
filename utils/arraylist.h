@@ -59,7 +59,9 @@ void			arraylist_append(t_arraylist **this, t_arraylist *appendix);
  * wrong in case the index of the last element has been manipulated. It does
  * not crash because of this.
  */
-void			arraylist_append_unsafe(t_arraylist **this, t_arraylist *appendix);
+void			arraylist_append_unsafe(
+					t_arraylist **this,
+					t_arraylist *appendix);
 
 /*
  * Converts the given arraylist to a simple array. Note that any changes made
