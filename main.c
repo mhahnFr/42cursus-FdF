@@ -13,7 +13,7 @@ int	main(int argc, char **argv)
 	t_model3D	*model;
 
 	cli(argc, argv);
-	model = parse_arguments(argc, argv);
+	model = generate_parse_arguments(argc, argv);
 	mlx = init_mlx();
 	return (onApplicationFinishedLaunching(model, mlx));
 }

@@ -2,12 +2,29 @@
 # define GENERATE_H
 
 # include "model.h"
+# include "utils/arraylist.h"
 
 /*
  * Reads the arguments that were given to this application. Creates a model
  * based on this data. Takes the arguments and their count as parameters.
  * Returns a pointer to the model that has been created.
  */
-t_model3D	*parse_arguments(int argc, char **argv);
+t_model3D	*generate_parse_arguments(int argc, char **argv);
+
+/*
+ * Reads the file and splits it by its spaces. Returns an arraylist object
+ * consisting of all lines read from the given file, splitted by the space.
+ */
+t_arraylist	*generate_read_file(char *file_name);
+
+/*
+ * Converts the given arraylist containing the raw vertex data read from the
+ * file to a newly allocated arraylist consisting of vertex objects. Returns
+ * the new arraylist or null, when either the allocation failed or no arraylist
+ * is given.
+ *
+ * Hint: probably use an array, as that won't change!
+ */
+t_arraylist	*generate_convert_vertices(t_arraylist *raw_vertices);
 
 #endif
