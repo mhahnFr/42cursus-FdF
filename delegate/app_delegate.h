@@ -21,4 +21,12 @@ t_window	*delegate_get_new_window(
 				int height,
 				char *title);
 
+/*
+ */
+int			delegate_key_touched(void *window);
+
+/*
+ */
+void		delegate_exit(t_window *window);
+
 #endif
