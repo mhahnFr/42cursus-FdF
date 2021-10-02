@@ -25,6 +25,6 @@ t_window	*window_new(void *mlx_ptr, int width, int height, char *title);
 /*
  * Deletes the given window. If no window is given, this method does nothing.
  */
-void	window_dispose(t_window *this);
+void		window_delete(t_window *this);
 
 #endif
