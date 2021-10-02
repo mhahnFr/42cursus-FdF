@@ -65,6 +65,11 @@ INCL	=	-I$(MLX_D) -I$(LFT_D) -I$(FT_PF_D) -I$(GNL_D) -I.
 .phony: all
 all: $(NAME)
 
+# Runs a test file.
+.phony: run
+run: $(NAME)
+	./$(NAME) tester/files/42.fdf
+
 # Links the object files and the minilbx library.
 $(NAME): $(MLX_P) $(LFT_P) $(FT_PF_P) $(GNL_P) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) -o $(NAME)
