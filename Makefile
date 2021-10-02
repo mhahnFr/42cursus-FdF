@@ -10,7 +10,8 @@ OBJ		=	$(patsubst %.c,%.o,$(SRC))
 # The source files.
 SRC		=	./delegate/app_delegate.c ./view/init.c ./model/generate.c \
 			./CLI/cli.c ./model/model.c ./model/vertex.c ./utils/arraylist.c \
-			./main.c ./utils/arraylist_remove.c ./utils/arraylist_array.c
+			./main.c ./utils/arraylist_remove.c ./utils/arraylist_array.c \
+			./view/window.c
 
 # The path to the home made libft.
 LFT_D	=	./libft
@@ -56,6 +57,9 @@ FT_PF_A	=	libftprintf.a
 # The full path of the ft_printf library.
 FT_PF_P	=	$(FT_PF_D)/$(FT_PF_A)
 
+# The includes for all files.
+INCL	=	-I$(MLX_D) -I$(LFT_D) -I$(FT_PF_D) -I$(GNL_D) -I.
+
 
 # Makes whatever is needed.
 .phony: all
@@ -65,9 +69,9 @@ all: $(NAME)
 $(NAME): $(MLX_P) $(LFT_P) $(FT_PF_P) $(GNL_P) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) -o $(NAME)
 
-# Compiles each file that has an accompanying header file individually.
+# Compiles each file individually.
 %.o: %.c
-	$(CC) $(CFLAGS) -I$(MLX_D) -I$(LFT_D) -I$(FT_PF_D) -I$(GNL_D) -I. -c -o $@ $<
+	$(CC) $(CFLAGS) $(INCL) -c -o $@ $<
 
 # Makes whatever is needed for the get_next_line library.
 .phony: $(GNL_P)
