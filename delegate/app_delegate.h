@@ -4,6 +4,12 @@
 # include "model/model.h"
 # include "view/window.h"
 
+typedef struct s_delegate {
+	t_window	*windows;
+	void		*mlx_ptr;
+	t_model3D	*model;
+}	t_delegate;
+
 /*
  * The starting point of the delegate. It controls whatever happens in this
  * application. Takes a pointer to the model and a pointer to the view of the
@@ -36,8 +42,21 @@ int			delegate_key_touched(int key, void *window);
 void		delegate_main_window_key_touched(t_key_event *event);
 
 /*
- * Closes the application. Removes all used memory. (WIP)
+ * Creates a new delegate object with the given MiniLibX connection pointer and
+ * the model. Returns the newly allocated object, or null if either the
+ * allocation failed or at least one parameter is missing.
  */
-void		delegate_exit(void);
+t_delegate	*delegate_new(void *mlx_ptr, t_model3D *model);
+
+/*
+ * Deletes the given delegate object. Also removes all of its contents. Does
+ * nothing if no object is given.
+ */
+void		delegate_delete(t_delegate *this);
+
+/*
+ * Closes the application.
+ */
+void		delegate_exit(t_delegate *this);
 
 #endif
