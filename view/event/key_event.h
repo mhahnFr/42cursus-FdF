@@ -2,6 +2,7 @@
 # define KEY_EVENT_H
 
 # include "window_event.h"
+# include "key_codes.h"
 
 /*
  * Represents a key event. Key events happen when the user presses a key.
@@ -9,7 +10,7 @@
  */
 typedef struct s_key_event
 {
-	int	key;
+	t_key_codes	key;
 }	t_key_event;
 
 /*
