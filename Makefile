@@ -102,6 +102,7 @@ $(MLX_P):
 .phony: clean
 clean:
 	- $(RM) $(OBJ)
+	- $(RM) *~
 	- make -C $(MLX_D) clean
 	- make -C $(LFT_D) clean
 	- make -C $(GNL_D) clean
