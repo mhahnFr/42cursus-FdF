@@ -10,7 +10,7 @@
  * application. Returns the exit status of the program. Therefore, this
  * function should return control to the caller once the user quits the app.
  */
-int		onApplicationFinishedLaunching(t_model3D *model, void *view);
+int			onApplicationFinishedLaunching(t_model3D *model, void *view);
 
 /*
  * Creates and returns a new window with the given size and the given title.

@@ -2,7 +2,7 @@
 
 #include "key_listener.h"
 
-t_key_listener	*key_listener_new(key_pressed func)
+t_key_listener	*key_listener_new(t_key_pressed func)
 {
 	t_key_listener	*ret;
 

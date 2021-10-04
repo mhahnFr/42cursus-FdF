@@ -36,7 +36,7 @@ t_arraylist	*generate_read_file(char *file_name)
 	{
 		tmp = arraylist_new((void *) ft_split(line, ' '));
 		if (tmp == NULL || tmp->content == NULL)
-			ft_printf("Error 1"); // throw new NullPointerException("malloc error!");
+			ft_printf("Error 1");
 		arraylist_append_unsafe(&ret, tmp);
 		line = get_next_line(fd);
 	}
@@ -53,10 +53,15 @@ t_arraylist	*generate_convert_vertices(t_arraylist *raw_vertices)
 		i = 0;
 		while (((void **) raw_vertices->content)[i] != NULL)
 		{
-			arraylist_append_unsafe(&ret, arraylist_new(vertex3D_new(i, raw_vertices->index, ft_atoi(((char **) raw_vertices->content)[i]))));
+			arraylist_append_unsafe(
+				&ret,
+				arraylist_new(
+					vertex3D_new(
+						i,
+						raw_vertices->index,
+						ft_atoi(((char **) raw_vertices->content)[i]))));
 			i++;
 		}
-		// TODO malloc protection!!!
 		raw_vertices = raw_vertices->next;
 	}
 	return (ret);

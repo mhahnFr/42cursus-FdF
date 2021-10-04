@@ -25,19 +25,19 @@ t_window	*window_new(void *mlx_ptr, int width, int height, char *title)
 	return (ret);
 }
 
-void		window_set_key_listener(t_window *this, t_key_listener *listener)
+void	window_set_key_listener(t_window *this, t_key_listener *listener)
 {
 	if (this != NULL)
 		this->key_listener = listener;
 }
 
-void		window_pump_key_event(t_window *this, t_key_event *event)
+void	window_pump_key_event(t_window *this, t_key_event *event)
 {
 	if (this != NULL && this->key_listener != NULL && event != NULL)
 		this->key_listener->window_key_pressed(event);
 }
 
-void		window_pump_event(t_window_event *event)
+void	window_pump_event(t_window_event *event)
 {
 	if (event != NULL)
 	{
@@ -46,7 +46,7 @@ void		window_pump_event(t_window_event *event)
 	}
 }
 
-void		window_delete(t_window *this)
+void	window_delete(t_window *this)
 {
 	if (this != NULL)
 	{

@@ -17,7 +17,7 @@ t_window_event	*window_event_new(
 	return (ret);
 }
 
-void			window_event_delete(t_window_event *this)
+void	window_event_delete(t_window_event *this)
 {
 	if (this != NULL)
 		free(this);

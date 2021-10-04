@@ -6,20 +6,21 @@
 
 #include "app_delegate.h"
 
-int		onApplicationFinishedLaunching(t_model3D *model, void *view)
+int	onApplicationFinishedLaunching(t_model3D *model, void *view)
 {
 	t_window	*main_window;
 
 	main_window = delegate_get_new_window(view, 200, 50, "FdF");
 	mlx_pixel_put(view, main_window->mlx_window, 1, 1, 0xFFFFFFFF);
 	mlx_key_hook(main_window->mlx_window, delegate_key_touched, main_window);
-	window_set_key_listener(main_window, key_listener_new(delegate_main_window_key_touched));
+	window_set_key_listener(
+		main_window, key_listener_new(delegate_main_window_key_touched));
 	mlx_loop(view);
 	model3D_delete(model);
 	return (0);
 }
 
-void		delegate_main_window_key_touched(t_key_event *event)
+void	delegate_main_window_key_touched(t_key_event *event)
 {
 	if (event->key == 53)
 		delegate_exit();
@@ -36,7 +37,7 @@ t_window	*delegate_get_new_window(
 	return (window_new(mlx_ptr, width, height, title));
 }
 
-int			delegate_key_touched(int key, void *window)
+int	delegate_key_touched(int key, void *window)
 {
 	t_window_event	*event;
 
@@ -46,7 +47,7 @@ int			delegate_key_touched(int key, void *window)
 	return (0);
 }
 
-void		delegate_exit(void)
+void	delegate_exit(void)
 {
 	exit(0);
 }

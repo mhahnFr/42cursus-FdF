@@ -3,7 +3,7 @@
 
 # include "window_event_type.h"
 
-typedef struct s_window t_window;
+typedef struct s_window	t_window;
 
 /*
  * Represents a window event. Consists of the affected window, the type of the
@@ -11,9 +11,9 @@ typedef struct s_window t_window;
  */
 typedef struct s_window_event
 {
-	t_window					*window;
+	t_window			*window;
 	t_window_event_type	type;
-	void						*nested;
+	void				*nested;
 }	t_window_event;
 
 /*

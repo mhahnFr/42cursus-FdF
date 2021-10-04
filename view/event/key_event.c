@@ -22,13 +22,13 @@ t_window_event	*key_event_new(int key, t_window *window)
 	return (event);
 }
 
-void		key_event_delete(t_key_event *this)
+void	key_event_delete(t_key_event *this)
 {
 	if (this != NULL)
 		free(this);
 }
 
-void		key_event_destroy(t_window_event *event)
+void	key_event_destroy(t_window_event *event)
 {
 	if (event != NULL)
 	{

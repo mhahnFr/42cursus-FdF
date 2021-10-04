@@ -3,7 +3,7 @@
 
 # include "key_event.h"
 
-typedef void (*key_pressed)(t_key_event *);
+typedef void	(*t_key_pressed)(t_key_event *);
 
 /*
  * Represents a key listener. The function can be called whenever an key event
@@ -11,7 +11,7 @@ typedef void (*key_pressed)(t_key_event *);
  */
 typedef struct s_key_listener
 {
-	key_pressed	window_key_pressed;
+	t_key_pressed	window_key_pressed;
 }	t_key_listener;
 
 /*
@@ -19,7 +19,7 @@ typedef struct s_key_listener
  * Returns the newly allocated listener or null, if either the allocation
  * failed or no function is given.
  */
-t_key_listener	*key_listener_new(key_pressed func);
+t_key_listener	*key_listener_new(t_key_pressed func);
 
 /*
  * Deletes the given key listener. Does nothing if no listener is given.
