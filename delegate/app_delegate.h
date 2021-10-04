@@ -22,11 +22,16 @@ t_window	*delegate_get_new_window(
 				char *title);
 
 /*
+ * Delegates the event 
  */
-int			delegate_key_touched(void *window);
+int			delegate_key_touched(int key, void *window);
 
 /*
  */
-void		delegate_exit(t_window *window);
+void		delegate_main_window_key_touched(t_key_event *event);
+
+/*
+ */
+void		delegate_exit(void);
 
 #endif

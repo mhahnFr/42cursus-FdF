@@ -11,7 +11,8 @@ OBJ		=	$(patsubst %.c,%.o,$(SRC))
 SRC		=	./delegate/app_delegate.c ./view/init.c ./model/generate.c \
 			./CLI/cli.c ./model/model.c ./model/vertex.c ./utils/arraylist.c \
 			./main.c ./utils/arraylist_remove.c ./utils/arraylist_array.c \
-			./view/window.c
+			./view/window.c ./view/event/key_listener.c \
+			./view/event/window_event.c ./view/event/key_event.c
 
 # The path to the home made libft.
 LFT_D	=	./libft
@@ -72,7 +73,7 @@ run: $(NAME)
 
 # Links the object files and the minilbx library.
 $(NAME): $(MLX_P) $(LFT_P) $(FT_PF_P) $(GNL_P) $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) -o $(NAME)
+	$(CC) $(OBJ) $(LFLAGS) -o $(NAME)
 
 # Compiles each file individually.
 %.o: %.c
