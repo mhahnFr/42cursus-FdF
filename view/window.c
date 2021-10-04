@@ -41,7 +41,7 @@ void		window_pump_event(t_window_event *event)
 {
 	if (event != NULL)
 	{
-		if (event->type == key_event)
+		if (event->type == KEY_EVENT)
 			window_pump_key_event(event->window, (t_key_event *) event->nested);
 	}
 }

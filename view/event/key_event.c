@@ -10,7 +10,7 @@ t_window_event	*key_event_new(int key, t_window *window)
 	event = NULL;
 	if (window != NULL)
 	{
-		event = window_event_new(window, key_event);
+		event = window_event_new(window, KEY_EVENT);
 		if (event == NULL)
 			return (NULL);
 		ret = malloc(sizeof(struct s_key_event));

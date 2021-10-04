@@ -1,9 +1,7 @@
-#ifndef KEY_EVENT
-# define KEY_EVENT
+#ifndef KEY_EVENT_H
+# define KEY_EVENT_H
 
 # include "window_event.h"
-
-typedef struct s_window t_window;
 
 /*
  * Represents a key event. Key events happen when the user presses a key.
