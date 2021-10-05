@@ -1,5 +1,5 @@
 #include <fcntl.h>
-#include <stddef.h>
+#include <stdlib.h>
 
 #include "libft.h"
 #include "get_next_line.h"
@@ -17,8 +17,15 @@ t_model3D	*generate_parse_arguments(t_cli *cli_obj)
 
 	vertices_raw = generate_read_file(cli_obj->file);
 	vertices = generate_convert_vertices(vertices_raw);
+	arraylist_delete(&vertices_raw, free);
 	model = model3D_new(vertices);
+	arraylist_delete(&vertices, generate_vertex3D_delete);
 	return (model);
+}
+
+void	generate_vertex3D_delete(void *vertex)
+{
+	vertex3D_delete((t_vertex3D *) vertex);
 }
 
 t_arraylist	*generate_read_file(char *file_name)
