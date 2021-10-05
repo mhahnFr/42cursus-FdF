@@ -17,11 +17,14 @@ int	onApplicationFinishedLaunching(t_model3D *model, void *view, t_cli *cli_obj)
 				cli_obj->height, "FdF");
 	else
 		this->windows = delegate_get_new_window(view, 200, 50, "FdF");
-	mlx_string_put(this->mlx_ptr, this->windows->mlx_window, 1, 1, 0x00FFFFFF,
-		"Hello World!");
 	mlx_key_hook(this->windows->mlx_window, delegate_key_touched, this);
 	window_set_key_listener(
 		this->windows, key_listener_new(delegate_main_window_key_touched));
+	this->renderer = renderer_new();
+	if (this->renderer == NULL)
+		delegate_exit(this);
+	mlx_expose_hook(this->windows->mlx_window, delegate_pre_render, this);
+	mlx_loop_hook(view, delegate_render_frame, this);
 	mlx_loop(view);
 	return (0);
 }

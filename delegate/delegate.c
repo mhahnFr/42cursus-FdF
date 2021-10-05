@@ -25,6 +25,7 @@ void	delegate_delete(t_delegate *this)
 		window_delete(this->windows);
 		model3D_delete(this->model);
 		cli_delete(this->cli_obj);
+		renderer_delete(this->renderer);
 		free(this);
 	}
 }
