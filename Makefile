@@ -75,7 +75,7 @@ run: $(NAME)
 # Runs the norm checker on each registered source file.
 .phony: nor
 nor:
-	norminette $(SRC) | grep :
+	norminette $(SRC) $(patsubst %.c,%.h,$(SRC)) | grep :
 
 # Links the object files and the minilbx library.
 $(NAME): $(MLX_P) $(LFT_P) $(FT_PF_P) $(GNL_P) $(OBJ)
