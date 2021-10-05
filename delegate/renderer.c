@@ -9,6 +9,8 @@ int		delegate_render_frame(void *this)
 {
 	if (this == NULL)
 		return (-1);
+	mlx_clear_window(((t_delegate *) this)->mlx_ptr,
+		((t_delegate *) this)->windows->mlx_window);
 	return (0);
 }
 
@@ -16,6 +18,8 @@ int		delegate_pre_render(void *this)
 {
 	if (this == NULL)
 		return (-1);
+	mlx_clear_window(((t_delegate *) this)->mlx_ptr,
+		((t_delegate *) this)->windows->mlx_window);
 	return (0);
 }
 
