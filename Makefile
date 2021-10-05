@@ -72,6 +72,11 @@ all: $(NAME)
 run: $(NAME)
 	./$(NAME) tester/files/42.fdf
 
+# Runs the norm checker on each registered source file.
+.phony: nor
+nor:
+	norminette $(SRC) | grep :
+
 # Links the object files and the minilbx library.
 $(NAME): $(MLX_P) $(LFT_P) $(FT_PF_P) $(GNL_P) $(OBJ)
 	$(CC) $(OBJ) $(LFLAGS) -o $(NAME)

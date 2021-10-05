@@ -22,7 +22,7 @@ t_arraylist	*generate_read_file(char *file_name);
  * Calls the vertex3D_delete function. Used as delete function for the
  * arraylist, which requires a void pointer as parameter.
  */
-void	generate_vertex3D_delete(void *vertex);
+void		generate_vertex3D_delete(void *vertex);
 
 /*
  * Converts the given arraylist containing the raw vertex data read from the

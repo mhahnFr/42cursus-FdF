@@ -14,7 +14,7 @@ int	onApplicationFinishedLaunching(t_model3D *model, void *view, t_cli *cli_obj)
 	this = delegate_new(view, model, cli_obj);
 	if (cli_obj->size_set)
 		this->windows = delegate_get_new_window(view, cli_obj->width,
-			cli_obj->height, "FdF");
+				cli_obj->height, "FdF");
 	else
 		this->windows = delegate_get_new_window(view, 200, 50, "FdF");
 	mlx_string_put(this->mlx_ptr, this->windows->mlx_window, 1, 1, 0x00FFFFFF,
