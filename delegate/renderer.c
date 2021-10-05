@@ -5,7 +5,7 @@
 #include "app_delegate.h"
 #include "renderer.h"
 
-int		delegate_render_frame(void *this)
+int	delegate_render_frame(void *this)
 {
 	if (this == NULL)
 		return (-1);
@@ -14,7 +14,7 @@ int		delegate_render_frame(void *this)
 	return (0);
 }
 
-int		delegate_pre_render(void *this)
+int	delegate_pre_render(void *this)
 {
 	if (this == NULL)
 		return (-1);
@@ -23,7 +23,7 @@ int		delegate_pre_render(void *this)
 	return (0);
 }
 
-t_renderer	*renderer_new()
+t_renderer	*renderer_new(void)
 {
 	t_renderer	*ret;
 
@@ -31,7 +31,7 @@ t_renderer	*renderer_new()
 	return (ret);
 }
 
-void		renderer_delete(t_renderer *this)
+void	renderer_delete(t_renderer *this)
 {
 	if (this != NULL)
 		free(this);

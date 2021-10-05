@@ -79,7 +79,7 @@ void		delegate_exit(t_delegate *this);
  * a delegate as a void pointer. If no object is given, it will do nothing
  * and returns -1. Otherwise, it will render everything and returns zero.
  */
-int		delegate_render_frame(void *this);
+int			delegate_render_frame(void *this);
 
 /*
  * Settles up all prerequisities to be able to start rendering. This method
@@ -88,6 +88,6 @@ int		delegate_render_frame(void *this);
  * be returned and nothing else happens. Otherwise, zero will be returned and
  * the render process is prepared.
  */
-int		delegate_pre_render(void *this);
+int			delegate_pre_render(void *this);
 
 #endif
