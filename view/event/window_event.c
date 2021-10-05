@@ -4,7 +4,8 @@
 
 t_window_event	*window_event_new(
 					t_window *window,
-					t_window_event_type type)
+					t_window_event_type type,
+					void *pay_load)
 {
 	t_window_event	*ret;
 
@@ -13,6 +14,8 @@ t_window_event	*window_event_new(
 	{
 		ret->window = window;
 		ret->type = type;
+		ret->nested = NULL;
+		ret->pay_load = pay_load;
 	}
 	return (ret);
 }

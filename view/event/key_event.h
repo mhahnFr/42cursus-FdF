@@ -19,7 +19,7 @@ typedef struct s_key_event
  * including a newly allocated nested key event. Returns null if either the
  * allocation failed or no window is given.
  */
-t_window_event	*key_event_new(int key, t_window *window);
+t_window_event	*key_event_new(int key, t_window *window, void *pay_load);
 
 /*
  * Deletes the given key event. Does nothing if no event is given.

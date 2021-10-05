@@ -38,7 +38,9 @@ void		window_set_key_listener(t_window *this, t_key_listener *listener);
  * window. If neither a window nor an event is given or there is no listener
  * registered on the given window, this method does nothing.
  */
-void		window_pump_key_event(t_window *this, t_key_event *event);
+void		window_pump_key_event(
+				t_window_event *main_event,
+				t_key_event *event);
 
 /*
  * Pumps the given event to the appopriate method.

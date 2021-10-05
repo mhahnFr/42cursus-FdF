@@ -3,7 +3,7 @@
 
 # include "key_event.h"
 
-typedef void	(*t_key_pressed)(t_key_event *);
+typedef void	(*t_key_pressed)(t_window_event *, t_key_event *);
 
 /*
  * Represents a key listener. The function can be called whenever an key event

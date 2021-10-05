@@ -13,6 +13,7 @@ typedef struct s_delegate {
 	t_window	*windows;
 	void		*mlx_ptr;
 	t_model3D	*model;
+	t_cli		*cli_obj;
 }	t_delegate;
 
 /*
@@ -24,7 +25,7 @@ typedef struct s_delegate {
 int			onApplicationFinishedLaunching(
 				t_model3D *model,
 				void *view,
-				t_cli *cli);
+				t_cli *cli_obj);
 
 /*
  * Creates and returns a new window with the given size and the given title.
@@ -47,14 +48,16 @@ int			delegate_key_touched(int key, void *window);
  * Handles the key events for the main window. Takes as parameter the
  * informations of the event.
  */
-void		delegate_main_window_key_touched(t_key_event *event);
+void		delegate_main_window_key_touched(
+				t_window_event *w_event,
+				t_key_event *k_event);
 
 /*
  * Creates a new delegate object with the given MiniLibX connection pointer and
  * the model. Returns the newly allocated object, or null if either the
  * allocation failed or at least one parameter is missing.
  */
-t_delegate	*delegate_new(void *mlx_ptr, t_model3D *model);
+t_delegate	*delegate_new(void *mlx_ptr, t_model3D *model, t_cli *cli_obj);
 
 /*
  * Deletes the given delegate object. Also removes all of its contents. Does

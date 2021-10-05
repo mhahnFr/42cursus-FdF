@@ -31,10 +31,13 @@ void	window_set_key_listener(t_window *this, t_key_listener *listener)
 		this->key_listener = listener;
 }
 
-void	window_pump_key_event(t_window *this, t_key_event *event)
+void	window_pump_key_event(t_window_event *main_event, t_key_event *event)
 {
-	if (this != NULL && this->key_listener != NULL && event != NULL)
-		this->key_listener->window_key_pressed(event);
+	if (main_event != NULL
+		&& main_event->window->key_listener != NULL
+		&& event != NULL)
+		main_event->window->key_listener->window_key_pressed(
+			main_event, event);
 }
 
 void	window_pump_event(t_window_event *event)
@@ -42,7 +45,7 @@ void	window_pump_event(t_window_event *event)
 	if (event != NULL)
 	{
 		if (event->type == KEY_EVENT)
-			window_pump_key_event(event->window, (t_key_event *) event->nested);
+			window_pump_key_event(event, (t_key_event *) event->nested);
 	}
 }
 

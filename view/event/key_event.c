@@ -2,7 +2,7 @@
 
 #include "key_event.h"
 
-t_window_event	*key_event_new(int key, t_window *window)
+t_window_event	*key_event_new(int key, t_window *window, void *pay_load)
 {
 	t_window_event	*event;
 	t_key_event		*ret;
@@ -10,7 +10,7 @@ t_window_event	*key_event_new(int key, t_window *window)
 	event = NULL;
 	if (window != NULL)
 	{
-		event = window_event_new(window, KEY_EVENT);
+		event = window_event_new(window, KEY_EVENT, pay_load);
 		if (event == NULL)
 			return (NULL);
 		ret = malloc(sizeof(struct s_key_event));

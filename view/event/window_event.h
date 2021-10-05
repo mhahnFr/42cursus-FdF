@@ -14,6 +14,7 @@ typedef struct s_window_event
 	t_window			*window;
 	t_window_event_type	type;
 	void				*nested;
+	void				*pay_load;
 }	t_window_event;
 
 /*
@@ -23,7 +24,8 @@ typedef struct s_window_event
  */
 t_window_event	*window_event_new(
 					t_window *window,
-					t_window_event_type type);
+					t_window_event_type type,
+					void *pay_load);
 
 void			window_event_delete(t_window_event *this);
 
