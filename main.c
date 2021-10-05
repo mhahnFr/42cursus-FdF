@@ -11,9 +11,10 @@ int	main(int argc, char **argv)
 {
 	void		*mlx;
 	t_model3D	*model;
+	t_cli		*cli_obj;
 
-	cli(argc, argv);
-	model = generate_parse_arguments(argc, argv);
+	cli_obj = cli(argc, argv);
+	model = generate_parse_arguments(cli_obj);
 	mlx = init_mlx();
-	return (onApplicationFinishedLaunching(model, mlx));
+	return (onApplicationFinishedLaunching(model, mlx, cli_obj));
 }

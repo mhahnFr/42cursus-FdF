@@ -5,13 +5,18 @@
 #include "ft_printf.h"
 
 #include "app_delegate.h"
+#include "view/event/key_codes.h"
 
-int	onApplicationFinishedLaunching(t_model3D *model, void *view)
+int	onApplicationFinishedLaunching(t_model3D *model, void *view, t_cli *cli)
 {
 	t_delegate	*this;
 
 	this = delegate_new(view, model);
-	this->windows = delegate_get_new_window(view, 200, 50, "FdF");
+	if (cli->size_set)
+		this->windows = delegate_get_new_window(view, cli->width, cli->height,
+			"FdF");
+	else
+		this->windows = delegate_get_new_window(view, 200, 50, "FdF");
 	mlx_string_put(this->mlx_ptr, this->windows->mlx_window, 1, 1, 0x00FFFFFF,
 		"Hello World!");
 	mlx_key_hook(this->windows->mlx_window, delegate_key_touched, this);
@@ -23,8 +28,8 @@ int	onApplicationFinishedLaunching(t_model3D *model, void *view)
 
 void	delegate_main_window_key_touched(t_key_event *event)
 {
-	if (event->key == 53)
-		delegate_exit(NULL);
+	if (event->key == ESC)
+		delegate_exit(NULL); // TODO callback !!!
 	else
 		ft_printf("Key pressed on main window: %d\n", event->key);
 }

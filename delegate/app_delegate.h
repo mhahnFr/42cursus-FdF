@@ -3,7 +3,12 @@
 
 # include "model/model.h"
 # include "view/window.h"
+# include "CLI/cli.h"
 
+/*
+ * Represents a delegate object. Consists of the window, the MLX connection and
+ * the model.
+ */
 typedef struct s_delegate {
 	t_window	*windows;
 	void		*mlx_ptr;
@@ -16,7 +21,10 @@ typedef struct s_delegate {
  * application. Returns the exit status of the program. Therefore, this
  * function should return control to the caller once the user quits the app.
  */
-int			onApplicationFinishedLaunching(t_model3D *model, void *view);
+int			onApplicationFinishedLaunching(
+				t_model3D *model,
+				void *view,
+				t_cli *cli);
 
 /*
  * Creates and returns a new window with the given size and the given title.

@@ -9,14 +9,13 @@
 #include "generate.h"
 #include "utils/arraylist.h"
 
-t_model3D	*generate_parse_arguments(int argc, char **argv)
+t_model3D	*generate_parse_arguments(t_cli *cli_obj)
 {
 	t_arraylist	*vertices_raw;
 	t_arraylist	*vertices;
 	t_model3D	*model;
 
-	argc = -1;
-	vertices_raw = generate_read_file(argv[1]);
+	vertices_raw = generate_read_file(cli_obj->file);
 	vertices = generate_convert_vertices(vertices_raw);
 	model = model3D_new(vertices);
 	return (model);

@@ -3,13 +3,14 @@
 
 # include "model.h"
 # include "utils/arraylist.h"
+# include "CLI/cli.h"
 
 /*
  * Reads the arguments that were given to this application. Creates a model
  * based on this data. Takes the arguments and their count as parameters.
  * Returns a pointer to the model that has been created.
  */
-t_model3D	*generate_parse_arguments(int argc, char **argv);
+t_model3D	*generate_parse_arguments(t_cli *cli_obj);
 
 /*
  * Reads the file and splits it by its spaces. Returns an arraylist object
