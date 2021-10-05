@@ -13,7 +13,7 @@ SRC		=	./delegate/app_delegate.c ./view/init.c ./model/generate.c \
 			./main.c ./utils/arraylist_remove.c ./utils/arraylist_array.c \
 			./view/window.c ./view/event/key_listener.c \
 			./view/event/window_event.c ./view/event/key_event.c \
-			./delegate/delegate.c
+			./delegate/delegate.c ./delegate/renderer.c
 
 # The path to the home made libft.
 LFT_D	=	./libft
@@ -105,21 +105,34 @@ $(LFT_P):
 $(MLX_P):
 	make -C $(MLX_D) $(MLX_A) CFLAGS='$(MLX_F)'
 
-# Removes all unnecessary files created by this makefile.
-.phony: clean
-clean:
+# Removes only the temporary files of the program, but not the library files.
+.phony: cleano
+cleano:
 	- $(RM) $(OBJ)
 	- $(RM) *~
+
+# Removes only the files of the program, also the executable, but not the
+# library files.
+.phony: fcleano
+fcleano: cleano
+	- $(RM) $(NAME)
+
+# Removes all unnecessary files created by this makefile.
+.phony: clean
+clean: cleano
 	- make -C $(MLX_D) clean
 	- make -C $(LFT_D) clean
 	- make -C $(GNL_D) clean
 
 # Removes everything created by this makefile.
 .phony: fclean
-fclean: clean
-	- $(RM) $(NAME)
+fclean: clean fcleano
 	- make -C $(LFT_D) fclean
 	- make -C $(GNL_D) fclean
+
+# Recompiles only the program files, not the librarys.
+.phony: reo
+reo: fcleano run
 
 # Recompiles the project.
 .phony: re
