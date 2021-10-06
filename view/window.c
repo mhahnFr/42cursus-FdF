@@ -25,6 +25,22 @@ t_window	*window_new(void *mlx_ptr, int width, int height, char *title)
 	return (ret);
 }
 
+t_window	window_create(void *mlx_ptr, int width, int height, char *title)
+{
+	t_window	ret;
+
+	ret = (t_window) {};
+	if (mlx_ptr != NULL && width >= 0 && height >= 0 && title != NULL)
+	{
+		ret.mlx_ptr = mlx_ptr;
+		ret.mlx_window = mlx_new_window(mlx_ptr, width, height, title);
+		ret.key_listener = NULL;
+		if (ret.mlx_window == NULL)
+			window_destroy(&ret);
+	}
+	return (ret);
+}
+
 void	window_set_key_listener(t_window *this, t_key_listener *listener)
 {
 	if (this != NULL)
@@ -46,6 +62,15 @@ void	window_pump_event(t_window_event *event)
 	{
 		if (event->type == KEY_EVENT)
 			window_pump_key_event(event, (t_key_event *) event->nested);
+	}
+}
+
+void	window_destroy(t_window *this)
+{
+	if (this != NULL)
+	{
+		mlx_destroy_window(this->mlx_ptr, this->mlx_window);
+		key_listener_destroy(this->key_listener);
 	}
 }
 

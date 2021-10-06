@@ -35,6 +35,10 @@ void	delegate_main_window_key_touched(
 {
 	if (k_event->key == ESC)
 		delegate_exit((t_delegate *) w_event->pay_load);
+	else if (k_event->key == H)
+		((t_delegate *) w_event->pay_load)->renderer->text = "Hello World!";
+	else if (k_event->key == FOUR || k_event->key == NUM_4)
+		((t_delegate *) w_event->pay_load)->renderer->text = "42 Heilbronn";
 	else
 		ft_printf("Key pressed on main window: %d\n", k_event->key);
 }
@@ -54,7 +58,7 @@ int	delegate_key_touched(int key, void *this)
 
 	event = key_event_new(key, ((t_delegate *) this)->windows, this);
 	window_pump_event(event);
-	key_event_destroy(event);
+	key_event_super_delete(event);
 	return (0);
 }
 

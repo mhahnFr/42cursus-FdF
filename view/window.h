@@ -28,6 +28,13 @@ typedef struct s_window
 t_window	*window_new(void *mlx_ptr, int width, int height, char *title);
 
 /*
+ * Creates a new window object on the stack with the given parameters. Returns
+ * the created window from the stack, if the parameters are invalid, null is
+ * returned.
+ */
+t_window	window_create(void *mlx_ptr, int width, int height, char *title);
+
+/*
  * Sets the key listener to the given one. If there was already one set on the
  * given window, it will be overwritten by the given one.
  */
@@ -46,6 +53,12 @@ void		window_pump_key_event(
  * Pumps the given event to the appopriate method.
  */
 void		window_pump_event(t_window_event *event);
+
+/*
+ * Destroys the content of the given window. If no window is given, this method
+ * does nothing.
+ */
+void		window_destroy(t_window *this);
 
 /*
  * Deletes the given window. If no window is given, this method does nothing.

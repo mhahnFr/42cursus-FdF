@@ -6,6 +6,7 @@
  */
 typedef struct s_renderer
 {
+	char	*text;
 }	t_renderer;
 
 /*

@@ -27,6 +27,24 @@ t_window_event	*window_event_new(
 					t_window_event_type type,
 					void *pay_load);
 
+/*
+ * Initializes the content of the given window event.
+ */
+void			window_event_create(
+					t_window_event *this,
+					t_window *window,
+					t_window_event_type type,
+					void *pay_load);
+
+/*
+ * Destroys the content of the given window event. Does not attempt to free the
+ * given object. Does nothing if no object is given.
+ */
+void			window_event_destroy(t_window_event *this);
+
+/*
+ * Deletes the given window event. Does nothing if no object is given.
+ */
 void			window_event_delete(t_window_event *this);
 
 #endif

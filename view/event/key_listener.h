@@ -22,6 +22,18 @@ typedef struct s_key_listener
 t_key_listener	*key_listener_new(t_key_pressed func);
 
 /*
+ * Initializes the given key listener with the given parameters. Does nothing
+ * if no object is given.
+ */
+void			key_listener_create(t_key_listener *this, t_key_pressed func);
+
+/*
+ * Destroys the content of the given key listener. Does nothing if no object is
+ * given.
+ */
+void			key_listener_destroy(t_key_listener *this);
+
+/*
  * Deletes the given key listener. Does nothing if no listener is given.
  */
 void			key_listener_delete(t_key_listener *this);
