@@ -60,6 +60,7 @@ int	delegate_key_touched(int key, void *this)
 
 void	delegate_exit(t_delegate *this)
 {
+	// Suggestion: Stop rendering before deleting stuff needed to render.
 	delegate_delete(this);
 	exit(0);
 }
