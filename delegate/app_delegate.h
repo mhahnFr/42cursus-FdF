@@ -56,10 +56,27 @@ void		delegate_main_window_key_touched(
 
 /*
  * Creates a new delegate object with the given MiniLibX connection pointer and
- * the model. Returns the newly allocated object, or null if either the
- * allocation failed or at least one parameter is missing.
+ * the model and the given command line interface. Returns the newly allocated
+ * object, or null if either the allocation failed or at least one parameter is
+ * missing.
  */
 t_delegate	*delegate_new(void *mlx_ptr, t_model3D *model, t_cli *cli_obj);
+
+/*
+ * Initializes the given delegate object using the given parameters. Does
+ * nothing if no object is given.
+ */
+void		delegate_create(
+				t_delegate *this,
+				void *mlx_ptr,
+				t_model3D *model,
+				t_cli *cli_obj);
+
+/*
+ * Destroys the content of the given delegate object. Does nothing if no object
+ * is given.
+ */
+void		delegate_destroy(t_delegate *this);
 
 /*
  * Deletes the given delegate object. Also removes all of its contents. Does

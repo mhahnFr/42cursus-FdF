@@ -16,6 +16,18 @@ typedef struct s_renderer
 t_renderer	*renderer_new(void);
 
 /*
+ * Initializes the content of the given renderer object. Does nothing if no
+ * object is given.
+ */
+void		renderer_create(t_renderer *this);
+
+/*
+ * Destroys the content of the given renderer object. Does nothing if no object
+ * is given.
+ */
+void		renderer_destroy(t_renderer *this);
+
+/*
  * Deletes the given renderer. Does nothing if no object is given.
  */
 void		renderer_delete(t_renderer *this);

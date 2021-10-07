@@ -31,22 +31,22 @@ t_cli	*cli_new(int argc, char **argv)
 
 	ret = malloc(sizeof(struct s_cli));
 	if (ret != NULL)
-	{
-		ret->name = argv[0];
-		ret->file = argv[1];
-		ret->size_set = false;
-		if (argc == 4)
-		{
-			ret->width = ft_atoi(argv[2]);
-			ret->height = ft_atoi(argv[3]);
-			ret->size_set = true;
-		}
-	}
+		cli_create(ret, argc, argv);
 	return (ret);
 }
 
-void	cli_delete(t_cli *this)
+void	cli_create(t_cli *this, int argc, char **argv)
 {
 	if (this != NULL)
-		free(this);
+	{
+		this->name = argv[0];
+		this->file = argv[1];
+		this->size_set = false;
+		if (argc == 4)
+		{
+			this->width = ft_atoi(argv[2]);
+			this->height = ft_atoi(argv[3]);
+			this->size_set = true;
+		}
+	}
 }

@@ -30,7 +30,7 @@ t_window_event	key_event_create(
 {
 	t_window_event	event;
 
-	event = (t_window_event) {};
+	event = (t_window_event) {0};
 	if (this != NULL && window != NULL)
 	{
 		window_event_create(&event, window, KEY_EVENT, pay_load);
@@ -38,33 +38,4 @@ t_window_event	key_event_create(
 		event.nested = this;
 	}
 	return (event);
-}
-
-void	key_event_destroy(t_key_event __attribute__((unused)) *this)
-{
-}
-
-void	key_event_delete(t_key_event *this)
-{
-	key_event_destroy(this);
-	if (this != NULL)
-		free(this);
-}
-
-void	key_event_super_delete(t_window_event *event)
-{
-	if (event != NULL)
-	{
-		key_event_delete((t_key_event *) event->nested);
-		window_event_delete(event);
-	}
-}
-
-void	key_event_super_destroy(t_window_event *event)
-{
-	if (event != NULL)
-	{
-		key_event_destroy((t_key_event *) event->nested);
-		window_event_destroy(event);
-	}
 }

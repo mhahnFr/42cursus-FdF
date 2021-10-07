@@ -36,6 +36,18 @@ t_cli	*cli(int argc, char **argv);
 t_cli	*cli_new(int argc, char **argv);
 
 /*
+ * Initializes the content of the given CLI object using the given parameters.
+ * Does nothing if no object is given.
+ */
+void	cli_create(t_cli *this, int argc, char **argv);
+
+/*
+ * Destroys the content of the given CLI object. Does nothing if no object is
+ * given.
+ */
+void	cli_destroy(t_cli *this);
+
+/*
  * Deletes the given CLI object. Does nothing if no object is given.
  */
 void	cli_delete(t_cli *this);

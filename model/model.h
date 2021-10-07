@@ -21,6 +21,19 @@ typedef struct s_model3D
 t_model3D	*model3D_new(t_arraylist *vertices);
 
 /*
+ * Initializes the content of the given model object using the given arraylist.
+ * Calls the to_array method on the given arraylist. Does nothing if either
+ * object is missing.
+ */
+void		model3D_create(t_model3D *this, t_arraylist *vertices);
+
+/*
+ * Destroys the content of the given model object. Frees the array containing
+ * the vertices. Does nothing if no object is given.
+ */
+void		model3D_destroy(t_model3D *this);
+
+/*
  * Frees the given three dimensional model.
  */
 void		model3D_delete(t_model3D *this);

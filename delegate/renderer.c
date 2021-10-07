@@ -31,12 +31,12 @@ t_renderer	*renderer_new(void)
 
 	ret = malloc(sizeof(struct s_renderer));
 	if (ret != NULL)
-		ret->text = NULL;
+		renderer_create(ret);
 	return (ret);
 }
 
-void	renderer_delete(t_renderer *this)
+void	renderer_create(t_renderer *this)
 {
 	if (this != NULL)
-		free(this);
+		this->text = NULL;
 }
