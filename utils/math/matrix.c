@@ -2,7 +2,7 @@
 
 #include "matrix.h"
 
-t_matrix	*matrix_new()
+t_matrix	*matrix_new(void)
 {
 	t_matrix	*ret;
 
@@ -12,7 +12,7 @@ t_matrix	*matrix_new()
 	return (ret);
 }
 
-void	matrix_create()
+void	matrix_create(t_matrix __attribute__((unused)) *this)
 {
 }
 

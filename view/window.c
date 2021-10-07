@@ -29,7 +29,8 @@ t_window	window_create(void *mlx_ptr, int width, int height, char *title)
 {
 	t_window	ret;
 
-	ret = (t_window) {0};
+	ret = (t_window){
+	};
 	if (mlx_ptr != NULL && width >= 0 && height >= 0 && title != NULL)
 	{
 		ret.mlx_ptr = mlx_ptr;

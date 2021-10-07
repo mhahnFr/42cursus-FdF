@@ -30,7 +30,8 @@ t_window_event	key_event_create(
 {
 	t_window_event	event;
 
-	event = (t_window_event) {0};
+	event = (t_window_event){
+	};
 	if (this != NULL && window != NULL)
 	{
 		window_event_create(&event, window, KEY_EVENT, pay_load);

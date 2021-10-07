@@ -5,14 +5,13 @@
  * Represents a mathematical matrix.
  */
 typedef struct s_matrix {
-
 }	t_matrix;
 
 /*
  * Creates a new matrix object. Returns the newly allocated matrix object, null
  * if the allocation failed.
  */
-t_matrix	*matrix_new();
+t_matrix	*matrix_new(void);
 
 /*
  * Initializes the given matrix object.
