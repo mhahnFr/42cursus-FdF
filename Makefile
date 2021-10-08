@@ -16,7 +16,7 @@ SRC		=	./delegate/app_delegate.c ./view/init.c ./model/generate.c \
 			./delegate/delegate.c ./delegate/renderer.c ./utils/math/matrix.c \
 			./CLI/cli_destroy.c ./view/window_destroy.c \
 			./view/event/key_event_destroy.c ./delegate/renderer_destroy.c \
-			./utils/math/matrix_new.c
+			./utils/math/matrix_new.c ./utils/math/matrix_calculations.c
 
 # The path to the home made libft.
 LFT_D	=	./libft

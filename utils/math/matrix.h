@@ -2,21 +2,49 @@
 # define MATRIX_H
 
 /*
- * Represents a mathematical matrix.
+ * Represents a mathematical matrix. Contains a two dimensional float array,
+ * which is the actual matrix, as well as the length of the two dimensions.
  */
 typedef struct s_matrix {
+	unsigned int	rows;
+	unsigned int	columns;
+	float			**values;
 }	t_matrix;
 
 /*
- * Creates a new matrix object. Returns the newly allocated matrix object, null
+ * Creates a new matrix object with the given values. If no matrix is given, a
+ * new array will be allocated. Returns the newly allocated matrix object, null
  * if the allocation failed.
  */
-t_matrix	*matrix_new(void);
+t_matrix	*matrix_new(
+				float **matrix,
+				unsigned int rows,
+				unsigned int columns);
 
 /*
- * Initializes the given matrix object.
+ * Initializes the given matrix object using the given values. Does nothing if
+ * no matrix object is given.
  */
-void		matrix_create(t_matrix *this);
+void		matrix_create(
+				t_matrix *this,
+				float **matrix,
+				unsigned int rows,
+				unsigned int columns);
+
+/*
+ * Multiplies the given matrices and store the result in a newly allocated
+ * matrix. Returns null if either the allocation failed or at least one
+ * parameter is missing or if the calculation is impossible.
+ */
+t_matrix	*matrix_new_multiply(t_matrix *m1, t_matrix *m2);
+
+/*
+ * Multiplies the given matrices and stores the result in the given matrix.
+ * Does nothing if the given result matrix is not compatible to store the
+ * result of the calculation. Does also nothing if at least one parameter is
+ * missing.
+ */
+void		matrix_multiply(t_matrix *result, t_matrix *m1, t_matrix *m2);
 
 /*
  * Destroys the given matrix object. Does not attempt to free the given object,
@@ -26,7 +54,8 @@ void		matrix_create(t_matrix *this);
 void		matrix_destroy(t_matrix *this);
 
 /*
- * Deletes the given matrix object. Does nothing if no object is given.
+ * Deletes the given matrix object. Also frees the float array contained by the
+ * given matrix object. Does nothing if no object is given.
  */
 void		matrix_delete(t_matrix *this);
 

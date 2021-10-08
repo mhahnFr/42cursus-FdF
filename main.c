@@ -7,37 +7,62 @@
 #include "model/model.h"
 #include "CLI/cli.h"
 
-/*
-#include "utils/math/matrix_new.h"
+
+#include "utils/math/matrix.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include "libft.h"
 void test() {
-	t_matrix4x4 a = {
-		{ 1, 2, 3, 4 },
-		{ 5, 6, 7, 8 },
-		{ 9, 10, 11, 12 },
-		{ 13, 14, 15, 16 }
-	};
-	t_matrix4x4 b = {
-		{ 17, 18, 19, 20 },
-		{ 21, 22, 23, 24 },
-		{ 25, 26, 27, 28 },
-		{ 29, 30, 31, 32 }
-	};
-	t_matrix4x4 c = {{0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}  };
-	matrix_multiply_m4x4_m4x4(&c, a, b);
-	for (int i = 0; i < 4; i++) {
+	float **a = malloc(4*sizeof(float*));
+	a[0] = malloc(4*sizeof(float));
+	a[1] = malloc(4*sizeof(float));
+	a[2] = malloc(4*sizeof(float));
+	a[3] = malloc(4*sizeof(float));
+	
+	float **b = malloc(4*sizeof(float*));
+	b[0] = malloc(4*sizeof(float));
+	b[1] = malloc(4*sizeof(float));
+	b[2] = malloc(4*sizeof(float));
+	b[3] = malloc(4*sizeof(float));
+
+	int q = 1;
+	for (int i = 0; i < 4; i++)
 		for (int j = 0; j < 4; j++)
-			printf("  %f  ", c[i][j]);
+			a[i][j] = q++;
+	for (int i = 0; i < 4; i++)
+		for (int j = 0; j < 4; j++)
+			b[i][j] = q++;
+	t_matrix *am = matrix_new(a, 3, 4);
+	t_matrix *bm = matrix_new(b, 4, 1);
+	t_matrix *cm = matrix_new_multiply(am, bm);
+	printf("%p\n", cm);
+	printf("%u %u\n", cm->rows, cm->columns);
+	//matrix_multiply_m4x4_m4x4(&c, a, b);
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 1; j++)
+			printf("  %f  ", cm->values[i][j]);
+		printf("\n");
+	}
+	printf("\n");
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++)
+			printf("  %f  ", a[i][j]);
+		printf("\n");
+	}
+	printf("\n");
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 1; j++)
+			printf("  %f  ", b[i][j]);
 		printf("\n");
 	}
 
-	t_vec4 d = {1, 2, 3, 4};
+	/*t_vec4 d = {1, 2, 3, 4};
 	t_vec4 e = {};
 	matrix_multiply_m4x4_v4(&e, a, d);
 	for (int i = 0; i < 4; i++)
 		printf("  %f  ", e[i]);
-	printf("\n");
-}*/
+	printf("\n");*/
+}
 
 int	main(int argc, char **argv)
 {
@@ -45,6 +70,7 @@ int	main(int argc, char **argv)
 	t_model3D	*model;
 	t_cli		*cli_obj;
 
+	test();
 	cli_obj = cli(argc, argv);
 	model = generate_parse_arguments(cli_obj);
 	mlx = init_mlx();
