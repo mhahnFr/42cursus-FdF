@@ -1,7 +1,5 @@
 #include <stdlib.h>
 
-#include "libft.h"
-
 #include "matrix.h"
 
 t_matrix	*matrix_new(
@@ -9,17 +7,18 @@ t_matrix	*matrix_new(
 				unsigned int rows,
 				unsigned int columns)
 {
-	t_matrix	*ret;
+	t_matrix		*ret;
+	unsigned int	i;
 
 	ret = malloc(sizeof(struct s_matrix));
 	if (ret == NULL)
 		return (NULL);
 	if (matrix == NULL)
 	{
-		// Fill matrix function!!!
-		matrix = ft_calloc(rows, sizeof(float *));
-		for (unsigned int i = 0; i < rows; i++)
-			matrix[i] = ft_calloc(columns, sizeof(float));
+		matrix = malloc(rows * sizeof(float *));
+		i = 0;
+		while (i < rows)
+			matrix[i++] = malloc(columns * sizeof(float));
 		if (matrix == NULL)
 			return (NULL);
 	}

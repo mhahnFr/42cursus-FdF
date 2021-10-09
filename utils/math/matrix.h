@@ -39,12 +39,29 @@ void		matrix_create(
 t_matrix	*matrix_new_multiply(t_matrix *m1, t_matrix *m2);
 
 /*
+ * Creates a matrix filled with the given floating point number and the given
+ * size. Returns the newly allocated matrix object, or null if the allocation
+ * failed.
+ */
+t_matrix	*matrix_new_filled(
+				float fill,
+				unsigned int rows,
+				unsigned int colummns);
+
+/*
  * Multiplies the given matrices and stores the result in the given matrix.
  * Does nothing if the given result matrix is not compatible to store the
  * result of the calculation. Does also nothing if at least one parameter is
- * missing.
+ * missing. Overwrites the contents of the given result matrix.
  */
 void		matrix_multiply(t_matrix *result, t_matrix *m1, t_matrix *m2);
+
+/*
+ * Fills the given matrix with the given floating point number. Overwrites all
+ * values that are already stored in the matrix! Does nothing if no matrix
+ * object is given.
+ */
+void		matrix_fill(t_matrix *this, float fill);
 
 /*
  * Destroys the given matrix object. Does not attempt to free the given object,

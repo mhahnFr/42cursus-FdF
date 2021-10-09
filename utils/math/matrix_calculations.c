@@ -11,6 +11,7 @@ t_matrix	*matrix_new_multiply(t_matrix *m1, t_matrix *m2)
 	result = matrix_new(NULL, m1->rows, m2->columns);
 	if (result == NULL)
 		return (NULL);
+	matrix_fill(result, 0);
 	for (unsigned int i = 0; i < m1->rows; i++)
 		for (unsigned int j = 0; j < m2->columns; j++)
 			for (unsigned int k = 0; k < m1->columns; k++)
@@ -20,7 +21,8 @@ t_matrix	*matrix_new_multiply(t_matrix *m1, t_matrix *m2)
 
 void	matrix_multiply(t_matrix *result, t_matrix *m1, t_matrix *m2)
 {
-	if (m1->columns != m2->rows || result == NULL || m1 == NULL || m2 == NULL)
+	if (result == NULL || m1 == NULL || m2 == NULL || m1->columns != m2->rows
+		|| result->rows != m1->rows || result->columns != m2->columns)
 		return ;
 	for (unsigned int i = 0; i < m1->rows; i++)
 		for (unsigned int j = 0; i < m2->columns; j++)
