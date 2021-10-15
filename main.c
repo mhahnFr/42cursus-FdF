@@ -1,5 +1,7 @@
 #include "mlx.h"
 
+#include "ft_printf.h"
+
 #include "main.h"
 #include "delegate/app_delegate.h"
 #include "view/init.h"
@@ -73,6 +75,11 @@ int	main(int argc, char **argv)
 	test();
 	cli_obj = cli(argc, argv);
 	model = generate_parse_arguments(cli_obj);
+	if (model == NULL)
+	{
+		ft_printf("Could not read file!\n");
+		return (-1);
+	}
 	mlx = init_mlx();
 	return (onApplicationFinishedLaunching(model, mlx, cli_obj));
 }
