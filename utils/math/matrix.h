@@ -13,8 +13,8 @@ typedef struct s_matrix {
 
 /*
  * Creates a new matrix object with the given values. If no matrix is given, a
- * new array will be allocated. Returns the newly allocated matrix object, null
- * if the allocation failed.
+ * new array will be allocated and filled with zeros. Returns the newly allocated
+ * matrix object, null if the allocation failed.
  */
 t_matrix	*matrix_new(
 				float **matrix,
