@@ -42,6 +42,13 @@ t_cli	*cli_new(int argc, char **argv);
 void	cli_create(t_cli *this, int argc, char **argv);
 
 /*
+ * Calls the perror function with the program name and the file name as
+ * parameters. Takes as parameter an CLI object. Does nothing if no object is
+ * given.
+ */
+void	cli_file_error(t_cli *this);
+
+/*
  * Destroys the content of the given CLI object. Does nothing if no object is
  * given.
  */

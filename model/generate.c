@@ -1,5 +1,6 @@
 #include <fcntl.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "libft.h"
 #include "get_next_line.h"
@@ -37,14 +38,17 @@ t_arraylist	*generate_read_file(char *file_name)
 
 	ret = NULL;
 	fd = open(file_name, O_RDONLY);
-	line = get_next_line(fd);
-	while (line != NULL)
+	if (fd >= 0)
 	{
-		tmp = arraylist_new((void *) ft_split(line, ' '));
-		if (tmp == NULL || tmp->content == NULL)
-			ft_printf("Error 1");
-		arraylist_append_unsafe(&ret, tmp);
 		line = get_next_line(fd);
+		while (line != NULL)
+		{
+			tmp = arraylist_new((void *) ft_split(line, ' '));
+			if (tmp == NULL || tmp->content == NULL)
+				perror("FdF");
+			arraylist_append_unsafe(&ret, tmp);
+			line = get_next_line(fd);
+		}
 	}
 	return (ret);
 }
@@ -54,6 +58,7 @@ t_arraylist	*generate_convert_vertices(t_arraylist *raw_vertices)
 	t_arraylist	*ret;
 	size_t		i;
 
+	ret = NULL;
 	while (raw_vertices != NULL)
 	{
 		i = 0;

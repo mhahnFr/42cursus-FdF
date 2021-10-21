@@ -2,7 +2,7 @@
 NAME	=	fdf
 
 # The flags to compile with.
-CFLAGS	=	-Wall -Werror -Wextra
+CFLAGS	=	-Wall -Werror -Wextra -g
 
 # The macro to get the object file names from the source file names.
 OBJ		=	$(patsubst %.c,%.o,$(SRC))
@@ -17,7 +17,7 @@ SRC		=	./delegate/app_delegate.c ./view/init.c ./model/generate.c \
 			./CLI/cli_destroy.c ./view/window_destroy.c \
 			./view/event/key_event_destroy.c ./delegate/renderer_destroy.c \
 			./utils/math/matrix_new.c ./utils/math/matrix_calculations.c \
-			./utils/math/matrix_filler.c
+			./utils/math/matrix_filler.c ./CLI/cli_error.c
 
 # The path to the home made libft.
 LFT_D	=	./libft

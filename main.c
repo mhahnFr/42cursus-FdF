@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #include "mlx.h"
 
 #include "ft_printf.h"
@@ -10,11 +12,11 @@
 #include "CLI/cli.h"
 
 
-#include "utils/math/matrix.h"
+/*#include "utils/math/matrix.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include "libft.h"
-void test() {
+static void test() {
 	float **a = malloc(4*sizeof(float*));
 	a[0] = malloc(4*sizeof(float));
 	a[1] = malloc(4*sizeof(float));
@@ -58,13 +60,13 @@ void test() {
 		printf("\n");
 	}
 
-	/*t_vec4 d = {1, 2, 3, 4};
-	t_vec4 e = {};
-	matrix_multiply_m4x4_v4(&e, a, d);
-	for (int i = 0; i < 4; i++)
-		printf("  %f  ", e[i]);
-	printf("\n");*/
-}
+	//t_vec4 d = {1, 2, 3, 4};
+	//t_vec4 e = {};
+	//matrix_multiply_m4x4_v4(&e, a, d);
+	//for (int i = 0; i < 4; i++)
+		//printf("  %f  ", e[i]);
+	//printf("\n");
+}*/
 
 int	main(int argc, char **argv)
 {
@@ -72,12 +74,13 @@ int	main(int argc, char **argv)
 	t_model3D	*model;
 	t_cli		*cli_obj;
 
-	test();
+	//test();
 	cli_obj = cli(argc, argv);
 	model = generate_parse_arguments(cli_obj);
 	if (model == NULL)
 	{
-		ft_printf("Could not read file!\n");
+		cli_file_error(cli_obj);
+		while(1);
 		return (-1);
 	}
 	mlx = init_mlx();
