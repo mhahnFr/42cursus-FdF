@@ -80,7 +80,6 @@ int	main(int argc, char **argv)
 	if (model == NULL)
 	{
 		cli_file_error(cli_obj);
-		while(1);
 		return (-1);
 	}
 	mlx = init_mlx();
