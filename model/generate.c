@@ -46,6 +46,7 @@ t_arraylist	*generate_read_file(char *file_name)
 			tmp = arraylist_new((void *) ft_split(line, ' '));
 			if (tmp == NULL || tmp->content == NULL)
 				perror("FdF");
+				// TODO malloc protection!!!
 			arraylist_append_unsafe(&ret, tmp);
 			line = get_next_line(fd);
 		}
@@ -64,6 +65,7 @@ t_arraylist	*generate_convert_vertices(t_arraylist *raw_vertices)
 		i = 0;
 		while (((void **) raw_vertices->content)[i] != NULL)
 		{
+		// TODO malloc protection!!!
 			arraylist_append_unsafe(
 				&ret,
 				arraylist_new(
