@@ -2,50 +2,68 @@
 
 #include "arraylist.h"
 
-void	**arraylist_to_array(t_arraylist *this)
+void	**arraylist_to_array(t_arraylist *this, void *(*dup)(void *))
 {
 	void	**array;
 	size_t	counter;
 
+	if (dup == NULL)
+		return (NULL);
 	array = malloc(arraylist_size(this) * sizeof(void *));
+	if (array == NULL)
+		return (NULL);
 	counter = 0;
 	while (this != NULL)
 	{
-		array[counter] = this->content;
+		array[counter] = dup(this->content);
 		counter++;
 		this = this->next;
 	}
 	return (array);
 }
 
-unsigned int	arraylist_size(t_arraylist *this)
-{
-	unsigned int	count;
-
-	count = 0;
-	while (this != NULL)
-	{
-		count += 1;
-		this = this->next;
-	}
-	return (count);
-}
-
-size_t	arraylist_size_unsafe(t_arraylist *this)
-{
-	while (this != NULL)
-		this = this->next;
-	return (this->index + 1);
-}
-
-void	**arraylist_to_array_unsafe(t_arraylist *this)
+void	**arraylist_to_array_unsafe(t_arraylist *this, void *(*dup)(void *))
 {
 	void	**array;
 
+	if (dup == NULL)
+		return (NULL);
 	array = malloc(arraylist_size_unsafe(this) * sizeof(void *));
+	if (array == NULL)
+		return (NULL);
 	while (this != NULL)
 	{
 		array[this->index] = this->content;
+		this = this->next;
+	}
+	return (array);
+}
+
+void	**arraylist_to_array_transfer(t_arraylist **this)
+{
+	void	**array;
+
+	array = arraylist_to_array_transfer_unsafe(*this);
+	if (array != NULL)
+		arraylist_clear(this, NULL);
+	return (array);
+}
+
+void	**arraylist_to_array_transfer_core(t_arraylist *this)
+{
+	void	**array;
+	size_t	counter;
+
+	if (this == NULL)
+		return (NULL);
+	array = malloc(arraylist_size(this) * sizeof(void *));
+	if (array == NULL)
+		return (NULL);
+	counter = 0;
+	while (this != NULL)
+	{
+		array[counter] = this->content;
+		counter++;
 		this = this->next;
 	}
 	return (array);

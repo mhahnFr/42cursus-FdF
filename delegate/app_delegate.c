@@ -66,5 +66,6 @@ void	delegate_exit(t_delegate *this)
 {
 	// Suggestion: Stop rendering before deleting stuff needed to render.
 	delegate_delete(this);
+	while (1);
 	exit(0);
 }

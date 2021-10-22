@@ -66,3 +66,20 @@ void	arraylist_delete(t_arraylist **this, void (*remover)(void *))
 	}
 	*this = NULL;
 }
+
+void	arraylist_clear(t_arraylist **this, void (*remover)(void *))
+{
+	t_arraylist	*tmp;
+	t_arraylist	*n;
+
+	if (this == NULL)
+		return ;
+	tmp = *this;
+	while (tmp != NULL)
+	{
+		n = tmp->next;
+		arraylist_delete(&tmp, remover);
+		tmp = n;
+	}
+	*this = NULL;
+}

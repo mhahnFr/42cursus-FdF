@@ -18,9 +18,11 @@ t_model3D	*generate_parse_arguments(t_cli *cli_obj)
 
 	vertices_raw = generate_read_file(cli_obj->file);
 	vertices = generate_convert_vertices(vertices_raw);
-	arraylist_delete(&vertices_raw, free);
+	//arraylist_delete(&vertices_raw, free);
+	arraylist_clear(&vertices_raw, free);
 	model = model3D_new(vertices);
-	arraylist_delete(&vertices, generate_vertex3D_delete);
+	arraylist_clear(&vertices, generate_vertex3D_delete);
+	//arraylist_delete(&vertices, generate_vertex3D_delete);
 	return (model);
 }
 

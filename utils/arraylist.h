@@ -65,22 +65,54 @@ void			arraylist_append_unsafe(
 
 /*
  * Converts the given arraylist to a simple array. Note that any changes made
- * to either object are not tracked by the other one. If an empty arraylist is
- * given, an empty array is returned. Returns either the newly allocated array
- * or null if either the allocation failed or no arraylist is given.
+ * to either object are not tracked by the other one, as the array contains
+ * duplicates of the contents of the arraylist using the given function. If an
+ * empty arraylist is given, an empty array is returned. Returns either the
+ * newly allocated array or null if either the allocation failed or no
+ * arraylist or no duplicate function is given.
  */
-void			**arraylist_to_array(t_arraylist *this);
+void			**arraylist_to_array(
+				t_arraylist *this,
+				void *(*dup)(void *));
 
 /*
  * Converts the given arraylist to a simple array. Please note that any changes
- * made to either object are not tracked by the other one. If an empty
- * arraylist is given, an empty array is returned. Returns either the newly
- * alloacted array or null if either the allocation failed or no arraylist is
+ * made to either object are not tracked by the other one as the array contains
+ * duplicates of the contents of the arraylist. If an empty arraylist is given,
+ * an empty array is returned. Returns either the newly alloacted array or null
+ * if either the allocation failed or no arraylist or no duplicate function is
  * given. As this unsafe version is using the changable index of each element,
  * this method might crash in case the indices of the elements in the given
  * arraylist are manipulated.
  */
-void			**arraylist_to_array_unsafe(t_arraylist *this);
+void			**arraylist_to_array_unsafe(
+				t_arraylist *this,
+				void *(*dup)(void *));
+
+/*
+ * Converts the give arraylist to a simple array. The contents of the given
+ * arraylist are not duplicated, the given arraylist is deleted after the
+ * transformation into an array without deleting the contents. If an empty
+ * arraylist is given, an empty array is returned. Returns either the newly
+ * allocated array or null if the allocation failed. If the array could not be
+ * created, the given arraylist will not be deleted.
+ */
+void			**arraylist_to_array_transfer(t_arraylist **this);
+
+/*
+ * Converts the give arraylist to a simple array. The contents of the given
+ * arraylist are not duplicated, but the given arraylist is also not deleted
+ * after the transformation into an array. If an empty arraylist is given, an
+ * empty array is returned. Returns either the newly allocated array or null if
+ * the allocation failed.
+ */
+void			**arraylist_to_array_transfer_core(t_arraylist *this);
+
+void			**arraylist_to_array_transfer_unsafe(
+				t_arraylist *this);
+
+void			**arraylist_to_array_transfer_core_unsafe(
+				t_arraylist *this);
 
 /*
  * Deletes the given part of the arraylist. The function is an optional
@@ -101,5 +133,12 @@ unsigned int	arraylist_size(t_arraylist *this);
  * in the given arraylist are manipulated.
  */
 size_t			arraylist_size_unsafe(t_arraylist *this);
+
+/*
+ * Deletes the whole given list. Uses the optionally given delete function to
+ * remove the contents of each element. If no list is given, this function does
+ * nothing.
+ */
+void			arraylist_clear(t_arraylist **this, void (*remover)(void *));
 
 #endif
