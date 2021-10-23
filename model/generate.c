@@ -15,16 +15,17 @@ t_model3D	*generate_parse_arguments(t_cli *cli_obj)
 	t_arraylist	*vertices_raw;
 	t_arraylist	*vertices;
 	t_model3D	*model;
+	size_t		count;
 
 	vertices_raw = generate_read_file(cli_obj->file);
 	vertices = generate_convert_vertices(vertices_raw);
-	//arraylist_delete(&vertices_raw, free);
 	arraylist_clear(
 		&vertices_raw,
 		(t_arraylist_remover) generate_delete_char_array);
-	model = model3D_new(vertices);
-	arraylist_clear(&vertices, (t_arraylist_remover) vertex3D_delete);
-	//arraylist_delete(&vertices, generate_vertex3D_delete);
+	count = arraylist_size(vertices);
+	model = model3D_new(
+			(t_vertex3D **) arraylist_to_array_transfer(&vertices),
+			count);
 	return (model);
 }
 
