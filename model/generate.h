@@ -19,10 +19,11 @@ t_model3D	*generate_parse_arguments(t_cli *cli_obj);
 t_arraylist	*generate_read_file(char *file_name);
 
 /*
- * Calls the vertex3D_delete function. Used as delete function for the
- * arraylist, which requires a void pointer as parameter.
+ * Deletes the given char array. The last element of the given array has to be
+ * a null pointer, as it serves as indicator of the end of the array. Does
+ * nothing if no rray is given.
  */
-void		generate_vertex3D_delete(void *vertex);
+void		generate_delete_char_array(char **array);
 
 /*
  * Converts the given arraylist containing the raw vertex data read from the

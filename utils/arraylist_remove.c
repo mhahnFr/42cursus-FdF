@@ -5,7 +5,7 @@
 void	arraylist_remove_at_element(
 			t_arraylist **this,
 			t_arraylist **element,
-			void (*remover)(void*))
+			t_arraylist_remover remover)
 {
 	t_arraylist	*tmp;
 
@@ -31,8 +31,8 @@ void	arraylist_remove_at_element(
 
 void	arraylist_remove_at_index(
 			t_arraylist **this,
-			unsigned int index,
-			void (*remover)(void *))
+			size_t index,
+			t_arraylist_remover remover)
 {
 	t_arraylist	*tmp;
 
@@ -56,7 +56,7 @@ void	arraylist_remove_at_index(
 	}
 }
 
-void	arraylist_delete(t_arraylist **this, void (*remover)(void *))
+void	arraylist_delete(t_arraylist **this, t_arraylist_remover remover)
 {
 	if (this != NULL && *this != NULL)
 	{
@@ -67,7 +67,7 @@ void	arraylist_delete(t_arraylist **this, void (*remover)(void *))
 	*this = NULL;
 }
 
-void	arraylist_clear(t_arraylist **this, void (*remover)(void *))
+void	arraylist_clear(t_arraylist **this, t_arraylist_remover remover)
 {
 	t_arraylist	*tmp;
 	t_arraylist	*n;

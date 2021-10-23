@@ -1,8 +1,8 @@
-#include <arraylist.h>
+#include "arraylist.h"
 
-unsigned int	arraylist_size(t_arraylist *this)
+size_t	arraylist_size(t_arraylist *this)
 {
-	unsigned int	count;
+	size_t	count;
 
 	count = 0;
 	while (this != NULL)

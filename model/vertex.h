@@ -24,6 +24,19 @@ t_vertex3D	*vertex3D_new(double x, double y, double z);
 void		vertex3D_create(t_vertex3D *this, double x, double y, double z);
 
 /*
+ * Allocates a new vertex containing the values of the given vertex. Returns
+ * either the copy of the given vertex or null if the allocation failed or no
+ * vertex is given.
+ */
+t_vertex3D	*vertex3D_copy(t_vertex3D *this);
+
+/*
+ * Copies the values of the given vertex in the other given vertex. Does
+ * nothing if at least one vertex is missing.
+ */
+void		vertex3D_copy_values(t_vertex3D *this, t_vertex3D *new);
+
+/*
  * Destroys the content of the given vertex object. Does nothing if no object
  * is given.
  */

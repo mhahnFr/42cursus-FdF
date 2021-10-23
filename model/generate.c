@@ -19,16 +19,25 @@ t_model3D	*generate_parse_arguments(t_cli *cli_obj)
 	vertices_raw = generate_read_file(cli_obj->file);
 	vertices = generate_convert_vertices(vertices_raw);
 	//arraylist_delete(&vertices_raw, free);
-	arraylist_clear(&vertices_raw, free);
+	arraylist_clear(
+		&vertices_raw,
+		(t_arraylist_remover) generate_delete_char_array);
 	model = model3D_new(vertices);
-	arraylist_clear(&vertices, generate_vertex3D_delete);
+	arraylist_clear(&vertices, (t_arraylist_remover) vertex3D_delete);
 	//arraylist_delete(&vertices, generate_vertex3D_delete);
 	return (model);
 }
 
-void	generate_vertex3D_delete(void *vertex)
+void	generate_delete_char_array(char **array)
 {
-	vertex3D_delete((t_vertex3D *) vertex);
+	size_t	counter;
+
+	if (array == NULL)
+		return ;
+	counter = 0;
+	while (array[counter] != NULL)
+		free(array[counter++]);
+	free(array);
 }
 
 t_arraylist	*generate_read_file(char *file_name)
@@ -50,6 +59,7 @@ t_arraylist	*generate_read_file(char *file_name)
 				perror("FdF");
 				// TODO malloc protection!!!
 			arraylist_append_unsafe(&ret, tmp);
+			free(line);
 			line = get_next_line(fd);
 		}
 	}

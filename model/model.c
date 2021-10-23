@@ -20,7 +20,9 @@ void	model3D_create(t_model3D *this, t_arraylist *vertices)
 {
 	if (this != NULL && vertices != NULL)
 	{
-		this->vertices = (t_vertex3D **) arraylist_to_array(vertices);
+		this->vertices = (t_vertex3D **) arraylist_to_array(
+					vertices,
+					(t_arraylist_dup) vertex3D_copy);
 		this->vertex_count = arraylist_size(vertices);
 	}
 }

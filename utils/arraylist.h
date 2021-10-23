@@ -10,10 +10,14 @@
  */
 typedef struct s_arraylist {
 	void				*content;
-	unsigned int		index;
+	size_t			index;
 	struct s_arraylist	*previous;
 	struct s_arraylist	*next;
 }	t_arraylist;
+
+typedef void *(*t_arraylist_dup)(void *);
+
+typedef void (*t_arraylist_remover)(void *);
 
 /*
  * Returns a newly allocated arraylist.
@@ -27,8 +31,8 @@ t_arraylist		*arraylist_new(void *content);
  */
 void			arraylist_remove_at_index(
 					t_arraylist **this,
-					unsigned int index,
-					void (*remover)(void *));
+					size_t index,
+					t_arraylist_remover remover);
 
 /*
  * Deletes the given element out of the list, deletes the element afterwards.
@@ -39,7 +43,7 @@ void			arraylist_remove_at_index(
 void			arraylist_remove_at_element(
 					t_arraylist **this,
 					t_arraylist **element,
-					void (*remover)(void *));
+					t_arraylist_remover remover);
 
 /*
  * Adds the given element to the given arraylist. If the pointer to the
@@ -73,7 +77,7 @@ void			arraylist_append_unsafe(
  */
 void			**arraylist_to_array(
 				t_arraylist *this,
-				void *(*dup)(void *));
+				t_arraylist_dup dup);
 
 /*
  * Converts the given arraylist to a simple array. Please note that any changes
@@ -87,10 +91,10 @@ void			**arraylist_to_array(
  */
 void			**arraylist_to_array_unsafe(
 				t_arraylist *this,
-				void *(*dup)(void *));
+				t_arraylist_dup dup);
 
 /*
- * Converts the give arraylist to a simple array. The contents of the given
+ * Converts the given arraylist to a simple array. The contents of the given
  * arraylist are not duplicated, the given arraylist is deleted after the
  * transformation into an array without deleting the contents. If an empty
  * arraylist is given, an empty array is returned. Returns either the newly
@@ -100,7 +104,7 @@ void			**arraylist_to_array_unsafe(
 void			**arraylist_to_array_transfer(t_arraylist **this);
 
 /*
- * Converts the give arraylist to a simple array. The contents of the given
+ * Converts the given arraylist to a simple array. The contents of the given
  * arraylist are not duplicated, but the given arraylist is also not deleted
  * after the transformation into an array. If an empty arraylist is given, an
  * empty array is returned. Returns either the newly allocated array or null if
@@ -108,9 +112,29 @@ void			**arraylist_to_array_transfer(t_arraylist **this);
  */
 void			**arraylist_to_array_transfer_core(t_arraylist *this);
 
+/*
+ * Converts the given arraylist to a simple array. The contents of the given
+ * arraylist are not duplicated, the given arraylist is deleted after the
+ * transformation into an array without deleting the contents. If an empty
+ * arraylist is given, an empty array is returned. Returns either the newly
+ * allocated array or null if the allocation failed. If the array could not be
+ * created, the given arraylist will not be deleted. As this method is using
+ * other unsafe methods, it can crash or produce undefined behaviour and
+ * results if the indices of the elements in the arraylist are manipulated.
+ */
 void			**arraylist_to_array_transfer_unsafe(
-				t_arraylist *this);
+				t_arraylist **this);
 
+/*
+ * Converts the given arraylist to a simple array. The contents of the given
+ * arraylist are not duplicated, but the given arraylist is also not deleted
+ * after the transformation into an array. If an empty arraylist is given, an
+ * empty array is returned. Returns either the newly allocated array or null if
+ * the allocation failed. As this method is using other unsafe methods and
+ * relies itself on the changable index of each element in the given arraylist,
+ * it can crash or produce undefined behaviour and results if the indices of
+ * the elements in the arraylist are manipulated.
+ */
 void			**arraylist_to_array_transfer_core_unsafe(
 				t_arraylist *this);
 
@@ -118,13 +142,15 @@ void			**arraylist_to_array_transfer_core_unsafe(
  * Deletes the given part of the arraylist. The function is an optional
  * function to delete the content of an element, if desired.
  */
-void			arraylist_delete(t_arraylist **this, void (*remover)(void *));
+void			arraylist_delete(
+				t_arraylist **this,
+				t_arraylist_remover remover);
 
 /*
  * Returns the count of elements in the given arraylist. If no arraylist is
  * given, zero is returned.
  */
-unsigned int	arraylist_size(t_arraylist *this);
+size_t			arraylist_size(t_arraylist *this);
 
 /*
  * Returns the count of elements in the given arraylist. If no arraylist is
@@ -139,6 +165,8 @@ size_t			arraylist_size_unsafe(t_arraylist *this);
  * remove the contents of each element. If no list is given, this function does
  * nothing.
  */
-void			arraylist_clear(t_arraylist **this, void (*remover)(void *));
+void			arraylist_clear(
+				t_arraylist **this,
+				t_arraylist_remover remover);
 
 #endif
