@@ -15,8 +15,18 @@ typedef struct s_arraylist {
 	struct s_arraylist	*next;
 }	t_arraylist;
 
+/*
+ * Represents a function that can duplicate the specific content of an
+ * arraylist. It takes the content of an element a parameter and returns newly
+ * allocated copy of it.
+ */
 typedef void *(*t_arraylist_dup)(void *);
 
+/*
+ * Represents a function that can delete the specific content of an arraylist.
+ * It takes the content of an element as parameter and removes it. It does not
+ * return anything.
+ */
 typedef void (*t_arraylist_remover)(void *);
 
 /*
