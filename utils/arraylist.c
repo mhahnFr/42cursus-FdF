@@ -17,6 +17,24 @@ t_arraylist	*arraylist_new(void *content)
 	return (ret);
 }
 
+bool	arraylist_append_unsafe(t_arraylist **this, t_arraylist *appendix)
+{
+	if (this == NULL)
+		return (false);
+	else if (*this == NULL)
+	{
+		*this = appendix;
+		(*this)->index = 0;
+		(*this)->previous = *this;
+		return (true);
+	}
+	(*this)->previous->next = appendix;
+	appendix->previous = (*this)->previous;
+	(*this)->previous = appendix;
+	appendix->index = appendix->previous->index + 1;
+	return (true);
+}
+
 bool	arraylist_append(t_arraylist **this, t_arraylist *appendix)
 {
 	t_arraylist	*tmp;
@@ -43,7 +61,7 @@ bool	arraylist_append(t_arraylist **this, t_arraylist *appendix)
 	return (true);
 }
 
-bool	arraylist_append_unsafe(t_arraylist **this, t_arraylist *appendix)
+bool	arraylist_append_unsafe_old(t_arraylist **this, t_arraylist *appendix)
 {
 	t_arraylist	*tmp;
 
