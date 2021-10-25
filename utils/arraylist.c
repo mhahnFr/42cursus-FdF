@@ -17,18 +17,18 @@ t_arraylist	*arraylist_new(void *content)
 	return (ret);
 }
 
-void	arraylist_append(t_arraylist **this, t_arraylist *appendix)
+bool	arraylist_append(t_arraylist **this, t_arraylist *appendix)
 {
 	t_arraylist	*tmp;
 	size_t		counter;
 
 	if (this == NULL)
-		return ;
+		return (false);
 	else if (*this == NULL)
 	{
 		*this = appendix;
 		(*this)->index = 0;
-		return ;
+		return (true);
 	}
 	tmp = *this;
 	counter = 1;
@@ -40,19 +40,20 @@ void	arraylist_append(t_arraylist **this, t_arraylist *appendix)
 	tmp->next = appendix;
 	tmp->next->previous = tmp;
 	appendix->index = counter;
+	return (true);
 }
 
-void	arraylist_append_unsafe(t_arraylist **this, t_arraylist *appendix)
+bool	arraylist_append_unsafe(t_arraylist **this, t_arraylist *appendix)
 {
 	t_arraylist	*tmp;
 
 	if (this == NULL)
-		return ;
+		return (false);
 	else if (*this == NULL)
 	{
 		*this = appendix;
 		(*this)->index = 0;
-		return ;
+		return (true);
 	}
 	tmp = *this;
 	while (tmp->next != NULL)
@@ -60,4 +61,5 @@ void	arraylist_append_unsafe(t_arraylist **this, t_arraylist *appendix)
 	tmp->next = appendix;
 	tmp->next->previous = tmp;
 	appendix->index = tmp->index + 1;
+	return (true);
 }

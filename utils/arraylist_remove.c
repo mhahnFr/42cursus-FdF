@@ -2,7 +2,7 @@
 
 #include "arraylist.h"
 
-void	arraylist_remove_at_element(
+bool	arraylist_remove_at_element(
 			t_arraylist **this,
 			t_arraylist **element,
 			t_arraylist_remover remover)
@@ -10,7 +10,7 @@ void	arraylist_remove_at_element(
 	t_arraylist	*tmp;
 
 	if (this == NULL || *this == NULL || element == NULL)
-		return ;
+		return (false);
 	tmp = *this;
 	while (tmp != NULL)
 	{
@@ -23,13 +23,14 @@ void	arraylist_remove_at_element(
 			if (tmp == *this)
 				*this = tmp->next;
 			arraylist_delete(&tmp, remover);
-			break ;
+			return (true);
 		}
 		tmp = tmp->next;
 	}
+	return (false);
 }
 
-void	arraylist_remove_at_index(
+bool	arraylist_remove_at_index(
 			t_arraylist **this,
 			size_t index,
 			t_arraylist_remover remover)
@@ -37,7 +38,7 @@ void	arraylist_remove_at_index(
 	t_arraylist	*tmp;
 
 	if (this == NULL)
-		return ;
+		return (false);
 	tmp = *this;
 	while (tmp != NULL)
 	{
@@ -50,30 +51,31 @@ void	arraylist_remove_at_index(
 			if (tmp == *this)
 				*this = tmp->next;
 			arraylist_delete(&tmp, remover);
-			break ;
+			return (true);
 		}
 		tmp = tmp->next;
 	}
+	return (false);
 }
 
-void	arraylist_delete(t_arraylist **this, t_arraylist_remover remover)
+bool	arraylist_delete(t_arraylist **this, t_arraylist_remover remover)
 {
-	if (this != NULL && *this != NULL)
-	{
-		if (remover != NULL)
-			remover((*this)->content);
-		free(*this);
-	}
+	if (this == NULL || *this == NULL)
+		return (false);
+	if (remover != NULL)
+		remover((*this)->content);
+	free(*this);
 	*this = NULL;
+	return (true);
 }
 
-void	arraylist_clear(t_arraylist **this, t_arraylist_remover remover)
+bool	arraylist_clear(t_arraylist **this, t_arraylist_remover remover)
 {
 	t_arraylist	*tmp;
 	t_arraylist	*n;
 
 	if (this == NULL)
-		return ;
+		return (false);
 	tmp = *this;
 	while (tmp != NULL)
 	{
@@ -82,4 +84,5 @@ void	arraylist_clear(t_arraylist **this, t_arraylist_remover remover)
 		tmp = n;
 	}
 	*this = NULL;
+	return (true);
 }
