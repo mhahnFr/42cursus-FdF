@@ -18,6 +18,8 @@ typedef struct s_delegate {
 	t_renderer	*renderer;
 }	t_delegate;
 
+typedef int (*t_delegate_key_touched)(int, void *);
+
 /*
  * The starting point of the delegate. It controls whatever happens in this
  * application. Takes a pointer to the model and a pointer to the view of the
@@ -40,11 +42,11 @@ t_window	*delegate_get_new_window(
 
 /*
  * Delegates the event of a pressed key to the window on which it happened.
- * Tkaes as arguments the code of the pressed key and a pointer to the affected
- * window. Returns always zero, as the return value is useless according to the
- * documentation of the MiniLibX library.
+ * Takes as arguments the code of the pressed key and an object of the
+ * responsible delegate. Returns always zero, as the return value is useless
+ * according to the documentation of the MiniLibX library.
  */
-int			delegate_key_touched(int key, void *window);
+int			delegate_key_touched(int key, t_delegate *this);
 
 /*
  * Handles the key events for the main window. Takes as parameter the
@@ -93,18 +95,18 @@ void		delegate_exit(t_delegate *this);
  * This method renders a new frame. Whenever a new frame should be displayed,
  * this method should be called. Ideally do this in a loop or connect it with
  * the system, so that vertical syncronization is possible. Takes as parameter
- * a delegate as a void pointer. If no object is given, it will do nothing
- * and returns -1. Otherwise, it will render everything and returns zero.
+ * a delegate. If no object is given, it will do nothing and returns -1.
+ * Otherwise, it will render everything and returns zero.
  */
-int			delegate_render_frame(void *this);
+int			delegate_render_frame(t_delegate *this);
 
 /*
  * Settles up all prerequisities to be able to start rendering. This method
  * should be called only one time before the render loop starts. Takes as
- * parameter a delegate object as void pointer. If no object is given -1 will
- * be returned and nothing else happens. Otherwise, zero will be returned and
- * the render process is prepared.
+ * parameter a delegate object. If no object is given -1 will be returned and
+ * nothing else happens. Otherwise, zero will be returned and the render
+ * process is prepared.
  */
-int			delegate_pre_render(void *this);
+int			delegate_pre_render(t_delegate *this);
 
 #endif

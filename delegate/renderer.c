@@ -5,25 +5,27 @@
 #include "app_delegate.h"
 #include "renderer.h"
 
-int	delegate_render_frame(void *this)
+int	delegate_render_frame(t_delegate *this)
 {
 	if (this == NULL)
 		return (-1);
-	mlx_clear_window(((t_delegate *) this)->mlx_ptr,
-		((t_delegate *) this)->windows->mlx_window);
-	if (((t_delegate *) this)->renderer->text != NULL)
-		mlx_string_put(((t_delegate *) this)->mlx_ptr,
-			((t_delegate *) this)->windows->mlx_window, 1, 1, 0x00FFFFFF,
-			((t_delegate *) this)->renderer->text);
+	mlx_clear_window(this->mlx_ptr, this->windows->mlx_window);
+	if (this->renderer->text != NULL)
+		mlx_string_put(
+			this->mlx_ptr,
+			this->windows->mlx_window,
+			1,
+			1,
+			0x00FFFFFF,
+			this->renderer->text);
 	return (0);
 }
 
-int	delegate_pre_render(void *this)
+int	delegate_pre_render(t_delegate *this)
 {
 	if (this == NULL)
 		return (-1);
-	mlx_clear_window(((t_delegate *) this)->mlx_ptr,
-		((t_delegate *) this)->windows->mlx_window);
+	mlx_clear_window(this->mlx_ptr, this->windows->mlx_window);
 	return (0);
 }
 
