@@ -2,6 +2,7 @@
 # define ARRAYLIST_H
 
 # include <stddef.h>
+# include <stdbool.h>
 
 /*
  * Represents an element of a linked list, which consists of an array of any
@@ -30,16 +31,92 @@ typedef void *(*t_arraylist_dup)(void *);
 typedef void (*t_arraylist_remover)(void *);
 
 /*
- * Returns a newly allocated arraylist.
+ * Returns a newly allocated arraylist, containing the given content.
  */
 t_arraylist		*arraylist_new(void *content);
 
 /*
+ * Returns the content of the element at the given index in the given
+ * arraylist. Returns null if no list is given or the given index does not
+ * exist.
+ */
+void			*arraylist_get(t_arraylist *this, size_t index);
+
+/*
+ * Returns the element at the given index in the given arraylist. Returns null
+ * if no list is given or the given index does not exist in the given list.
+ */
+t_arraylist		*arraylist_get_element(
+					t_arraylist *this,
+					size_t index);
+
+/*
+ * Returns the content of the element at the given index in the given
+ * arraylist. Returns null if no list is given or the given index does not
+ * exist. As this unsafe version is relying on the index of each element, which
+ * can be manipulated, the content of the first element with the given index is
+ * returned, which is not necessarily equal to the count of elements in the
+ * list.
+ */
+void			*arraylist_get_unsafe(t_arraylist *this, size_t index);
+
+/*
+ * Returns the element at the given index in the given arraylist. Returns null
+ * if no list is given or the given index does not exist in the given list. As
+ * this unsafe version is relying on the index of each element, which can be
+ * manipulated, the first element with the given index is returned, which is
+ * not necessarily equal to the count of elements in the list.
+ */
+t_arraylist		*arraylist_get_element_unsafe(
+						t_arraylist *this,
+						size_t index);
+
+/*
+ * Inserts the given element at the given index in the given arraylist. The
+ * given element will have the given index. If the index does not exist in the
+ * given arraylist, the element is appended at the end of the list, and the
+ * element will have the coresponding index. Returns true if the element was
+ * inserted as desired, false if the element was appended at the end of the
+ * list or if at least one parameter is missing or the given index is outside
+ * of the given list.
+ */
+bool			arraylist_insert_at(
+					t_arraylist **this,
+					t_arraylist *element,
+					size_t index);
+
+/*
+ * Inserts the given element before the given element in the given arraylist.
+ * If the given element does not exist in the given arraylist, the new element
+ * will be appended at the end of the given arraylist. Returns true, if the
+ * element was appended as desired, false if the element was appended at the
+ * end of the list or if at least one parameter is missing.
+ */
+bool			arraylist_insert_before(
+					t_arraylist **this,
+					t_arraylist *element,
+					t_arraylist *new);
+
+/*
+ * Inserts the given element after the given element in the given arraylist.
+ * If the given element does not exist in the given arraylist, the new element
+ * will be appended at the end of the given arraylist. Returns true, if the
+ * element was appended as desired, false if the element was appended at the
+ * end of the list or if at least one parameter is missing.
+ */
+bool			arraylist_insert_after(
+					t_arraylist **this,
+					t_arraylist *element,
+					t_arraylist *new);
+/*
  * Deletes the element at the given index out of the list and deletes that
  * element afterwards. The content of that element will be deleted by the
- * optionally given delete function.
+ * optionally given delete function. Returns true, if the element at the given
+ * index was successfully deleted, false if no list is given or the given index
+ * does not exist in the given list. Does not delete anything if the index is
+ * outside of the list.
  */
-void			arraylist_remove_at_index(
+bool			arraylist_remove_at_index(
 					t_arraylist **this,
 					size_t index,
 					t_arraylist_remover remover);
@@ -48,9 +125,10 @@ void			arraylist_remove_at_index(
  * Deletes the given element out of the list, deletes the element afterwards.
  * The pointer to the given element will be set to null. The content of that
  * element will be deleted with the given delete function. This function is
- * optional.
+ * optional. Returns true if the given element was successfully deleted, false
+ * if no list or no element is given.
  */
-void			arraylist_remove_at_element(
+bool			arraylist_remove_at_element(
 					t_arraylist **this,
 					t_arraylist **element,
 					t_arraylist_remover remover);
@@ -59,9 +137,10 @@ void			arraylist_remove_at_element(
  * Adds the given element to the given arraylist. If the pointer to the
  * beginning of the list is null, the appendix is the new beginning. If the
  * pointer to the beginning itself is null, this function does nothing. The
- * index of the appended element is also set.
+ * index of the appended element is also set. Returns true if the given element
+ * was successfully appended to the given list, false if no list is given.
  */
-void			arraylist_append(t_arraylist **this, t_arraylist *appendix);
+bool			arraylist_append(t_arraylist **this, t_arraylist *appendix);
 
 /*
  * Adds the given element to the given arraylist. If the pointer to the
@@ -71,9 +150,10 @@ void			arraylist_append(t_arraylist **this, t_arraylist *appendix);
  * element, if there is one. Thereby, as this unsafe version is using the
  * changable index of each element, the index of the appended element might be
  * wrong in case the index of the last element has been manipulated. It does
- * not crash because of this.
+ * not crash because of this. Returns true if the given element was
+ * successfully appended to the given list, false if no list is given.
  */
-void			arraylist_append_unsafe(
+bool			arraylist_append_unsafe(
 					t_arraylist **this,
 					t_arraylist *appendix);
 
@@ -150,9 +230,10 @@ void			**arraylist_to_array_transfer_core_unsafe(
 
 /*
  * Deletes the given part of the arraylist. The function is an optional
- * function to delete the content of an element, if desired.
+ * function to delete the content of an element, if desired. Returns true if
+ * the given element was deleted successfully, false if no element is given.
  */
-void			arraylist_delete(
+bool			arraylist_delete(
 				t_arraylist **this,
 				t_arraylist_remover remover);
 
@@ -172,10 +253,10 @@ size_t			arraylist_size_unsafe(t_arraylist *this);
 
 /*
  * Deletes the whole given list. Uses the optionally given delete function to
- * remove the contents of each element. If no list is given, this function does
- * nothing.
+ * remove the contents of each element. Returns true if the given list was
+ * cleared successfully, false if no list is given.
  */
-void			arraylist_clear(
+bool			arraylist_clear(
 				t_arraylist **this,
 				t_arraylist_remover remover);
 
