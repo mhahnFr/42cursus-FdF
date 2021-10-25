@@ -5,6 +5,7 @@
 #include "app_delegate.h"
 #include "renderer.h"
 
+void print_model(t_model3D*);
 int	delegate_render_frame(t_delegate *this)
 {
 	if (this == NULL)
@@ -18,7 +19,16 @@ int	delegate_render_frame(t_delegate *this)
 			1,
 			0x00FFFFFF,
 			this->renderer->text);
+	print_model(this->model);
 	return (0);
+}
+
+#include <stdio.h>
+void	print_model(t_model3D *model)
+{
+	for (size_t i = 0; i < model->vertex_count; i++)
+		printf("| %f %f %f |", model->vertices[i]->x, model->vertices[i]->y, model->vertices[i]->z);
+		printf("\n");
 }
 
 int	delegate_pre_render(t_delegate *this)
