@@ -64,6 +64,13 @@ void		matrix_multiply(t_matrix *result, t_matrix *m1, t_matrix *m2);
 void		matrix_fill(t_matrix *this, float fill);
 
 /*
+ * Fills the given matrix with values that make it neutral to multiplications.
+ * Overwrites all values that are already stored in the matrix! Returns true if
+ * the given matrix was filled, false otherwise.
+ */
+bool		matrix_fill_neutral(t_matrix *this);
+
+/*
  * Destroys the given matrix object. Does not attempt to free the given object,
  * this method only destroys the contents of the given object. Does nothing if
  * no object is given.

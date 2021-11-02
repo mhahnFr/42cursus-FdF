@@ -31,3 +31,16 @@ void	matrix_fill(t_matrix *this, float fill)
 		}
 	}
 }
+
+bool	matrix_fill_neutral(t_matrix *this)
+{
+	unsigned int	i;
+
+	if (this == NULL || this->rows != this->columns)
+		return (false);
+	matrix_fill(this, 0);
+	i = 0;
+	while (i++ < this->columns)
+		this->values[i][i] = 1;
+	return (true);
+}
