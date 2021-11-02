@@ -68,4 +68,8 @@ void	renderer_create(
 	this->camera = camera;
 	this->screen_width = screen_width;
 	this->screen_height = screen_height;
+	this->model = NULL;
+	this->view = NULL;
+	this->projection = NULL;
+	this->mvp = NULL;
 }
