@@ -260,4 +260,18 @@ bool			arraylist_clear(
 					t_arraylist **this,
 					t_arraylist_remover remover);
 
+/*
+ * Resets the indices for the given arraylist. The index of the first element
+ * will be zero, the second has the index one, and so on. Does nothing if no
+ * list is given.
+ */
+void			arraylist_reset_indices(t_arraylist *this);
+
+/*
+ * Resets the indices for the given arraylist. The index of the first element
+ * will be the given one, it is then incremented for every element. Does
+ * nothing if no list is given.
+ */
+void			arraylist_reset_indices_start(t_arraylist *this, size_t start);
+
 #endif

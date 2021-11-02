@@ -20,7 +20,7 @@ bool	arraylist_insert_at(
 	element->previous = tmp->previous;
 	element->next = tmp;
 	tmp->previous = element;
-	// TODO index repair
+	arraylist_reset_indices_start(element, tmp->index - 1);
 	return (true);
 }
 
@@ -44,7 +44,7 @@ bool	arraylist_insert_at_unsafe(
 	element->previous = tmp->previous;
 	element->next = tmp;
 	tmp->previous = element;
-	// TODO index repair
+	arraylist_reset_indices_start(element, tmp->index - 1);
 	return (true);
 }
 
@@ -67,7 +67,7 @@ bool	arraylist_insert_before(
 				element->previous->next = new;
 			element->previous = new;
 			new->next = element;
-			// TODO index repair
+			arraylist_reset_indices_start(new, element->index - 1);
 			return (true);
 		}
 		tmp = tmp->next;
@@ -95,7 +95,7 @@ bool	arraylist_insert_after(
 			if (tmp->next != NULL)
 				tmp->next->previous = new;
 			tmp->next = new;
-			// TODO index repair
+			arraylist_reset_indices_start(new, tmp->index + 1);
 			return (true);
 		}
 	}
