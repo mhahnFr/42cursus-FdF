@@ -64,6 +64,12 @@ t_matrix	*renderer_generate_view(t_renderer *this);
 t_matrix	*renderer_generate_projection(t_renderer *this);
 
 /*
+ * Stores the vector and the floating point value in the given float array.
+ * Does nothing if no vector or no array is given.
+ */
+void		renderer_generate_append(float result[4], t_vector *vec, float z);
+
+/*
  * Destroys the content of the given renderer object and its contents. Does
  * nothing if no object is given.
  */
