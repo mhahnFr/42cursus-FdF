@@ -5,27 +5,14 @@
 t_matrix	*matrix_new_multiply(t_matrix *m1, t_matrix *m2)
 {
 	t_matrix		*result;
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	k;
 
-	if (m1->columns != m2->rows || m1 == NULL || m2 == NULL)
+	if (m1 == NULL || m2 == NULL || m1->columns != m2->rows)
 		return (NULL);
 	result = matrix_new(NULL, m1->rows, m2->columns);
 	if (result == NULL)
 		return (NULL);
 	matrix_fill(result, 0);
-	i = 0;
-	while (i++ < m1->rows)
-	{
-		j = 0;
-		while (j++ < m2->columns)
-		{
-			k = 0;
-			while (k++ < m1->columns)
-				result->values[i][j] += m1->values[i][k] * m2->values[k][j];
-		}
-	}
+	matrix_multiply(result, m1, m2);
 	return (result);
 }
 
@@ -39,14 +26,19 @@ void	matrix_multiply(t_matrix *result, t_matrix *m1, t_matrix *m2)
 		|| result->rows != m1->rows || result->columns != m2->columns)
 		return ;
 	i = 0;
-	while (i++ < m1->rows)
+	while (i < m1->rows)
 	{
 		j = 0;
-		while (j++ < m2->columns)
+		while (j < m2->columns)
 		{
 			k = 0;
-			while (k++ < m1->columns)
+			while (k < m1->columns)
+			{
 				result->values[i][j] += m1->values[i][k] * m2->values[k][j];
+				k++;
+			}
+			j++;
 		}
+		i++;
 	}
 }

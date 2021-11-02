@@ -23,11 +23,15 @@ void	matrix_fill(t_matrix *this, float fill)
 	if (this != NULL)
 	{
 		i = 0;
-		while (i++ < this->rows)
+		while (i < this->rows)
 		{
 			j = 0;
-			while (j++ < this->columns)
+			while (j < this->columns)
+			{
 				this->values[i][j] = fill;
+				j++;
+			}
+			i++;
 		}
 	}
 }
@@ -40,7 +44,10 @@ bool	matrix_fill_neutral(t_matrix *this)
 		return (false);
 	matrix_fill(this, 0);
 	i = 0;
-	while (i++ < this->columns)
+	while (i < this->columns)
+	{
 		this->values[i][i] = 1;
+		i++;
+	}
 	return (true);
 }
