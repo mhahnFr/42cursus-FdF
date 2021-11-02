@@ -18,7 +18,6 @@ int	delegate_render_frame(t_delegate *this)
 			1,
 			0x00FFFFFF,
 			this->renderer->text);
-	print_model(this->model);
 	return (0);
 }
 

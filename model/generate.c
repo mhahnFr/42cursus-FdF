@@ -59,7 +59,7 @@ t_arraylist	*generate_read_file(char *file_name)
 			if (tmp == NULL || tmp->content == NULL)
 			{
 				perror("FdF");
-				arraylist_clear(&ret);
+				arraylist_clear(&ret, (t_arraylist_remover) generate_delete_char_array);
 				return (NULL);
 			}
 			arraylist_append_unsafe(&ret, tmp);
@@ -88,7 +88,7 @@ t_arraylist	*generate_convert_vertices(t_arraylist *raw_vertices)
 			if (tmp == NULL || tmp->content == NULL)
 			{
 				perror("FdF");
-				arraylist_clear(&ret);
+				arraylist_clear(&ret, (t_arraylist_remover) vertex3D_delete);
 				return (NULL);
 			}
 			arraylist_append_unsafe(&ret, tmp);
