@@ -17,19 +17,16 @@ int	onApplicationFinishedLaunching(t_model3D *model, void *view, t_cli *cli_obj)
 				cli_obj->height, "FdF");
 	else
 		this->windows = delegate_get_new_window(view, 200, 50, "FdF");
-	mlx_key_hook(
-		this->windows->mlx_window,
-		(t_delegate_key_touched) delegate_key_touched,
-		this);
+	mlx_key_hook(this->windows->mlx_window,
+		(t_delegate_key_touched) delegate_key_touched, this);
 	window_set_key_listener(
 		this->windows, key_listener_new(delegate_main_window_key_touched));
-	this->renderer = renderer_new(renderer_camera_new(vertex3D_new(0, 0, 0)));
+	this->renderer = renderer_new(renderer_camera_new(vertex3D_new(0, 0, 0)),
+			cli_obj->width, cli_obj->height);
 	if (this->renderer == NULL)
 		delegate_exit(this);
-	mlx_expose_hook(
-		this->windows->mlx_window,
-		(t_pre_render) delegate_pre_render,
-		this);
+	mlx_expose_hook(this->windows->mlx_window,
+		(t_pre_render) delegate_pre_render, this);
 	mlx_loop_hook(view, (t_render_frame) delegate_render_frame, this);
 	mlx_loop(view);
 	return (0);
