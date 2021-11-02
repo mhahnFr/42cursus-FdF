@@ -18,7 +18,7 @@ typedef struct s_delegate {
 	t_renderer	*renderer;
 }	t_delegate;
 
-typedef int (*t_delegate_key_touched)(int, void *);
+typedef int	(*t_delegate_key_touched)(int, void *);
 
 /*
  * The starting point of the delegate. It controls whatever happens in this

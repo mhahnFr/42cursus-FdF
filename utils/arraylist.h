@@ -11,7 +11,7 @@
  */
 typedef struct s_arraylist {
 	void				*content;
-	size_t			index;
+	size_t				index;
 	struct s_arraylist	*previous;
 	struct s_arraylist	*next;
 }	t_arraylist;
@@ -21,14 +21,14 @@ typedef struct s_arraylist {
  * arraylist. It takes the content of an element a parameter and returns newly
  * allocated copy of it.
  */
-typedef void *(*t_arraylist_dup)(void *);
+typedef void	*(*t_arraylist_dup)(void *);
 
 /*
  * Represents a function that can delete the specific content of an arraylist.
  * It takes the content of an element as parameter and removes it. It does not
  * return anything.
  */
-typedef void (*t_arraylist_remover)(void *);
+typedef void	(*t_arraylist_remover)(void *);
 
 /*
  * Returns a newly allocated arraylist, containing the given content.
@@ -68,8 +68,8 @@ void			*arraylist_get_unsafe(t_arraylist *this, size_t index);
  * not necessarily equal to the count of elements in the list.
  */
 t_arraylist		*arraylist_get_element_unsafe(
-						t_arraylist *this,
-						size_t index);
+					t_arraylist *this,
+					size_t index);
 
 /*
  * Inserts the given element at the given index in the given arraylist. The
@@ -166,8 +166,8 @@ bool			arraylist_append_unsafe(
  * arraylist or no duplicate function is given.
  */
 void			**arraylist_to_array(
-				t_arraylist *this,
-				t_arraylist_dup dup);
+					t_arraylist *this,
+					t_arraylist_dup dup);
 
 /*
  * Converts the given arraylist to a simple array. Please note that any changes
@@ -180,8 +180,8 @@ void			**arraylist_to_array(
  * arraylist are manipulated.
  */
 void			**arraylist_to_array_unsafe(
-				t_arraylist *this,
-				t_arraylist_dup dup);
+					t_arraylist *this,
+					t_arraylist_dup dup);
 
 /*
  * Converts the given arraylist to a simple array. The contents of the given
@@ -213,7 +213,7 @@ void			**arraylist_to_array_transfer_core(t_arraylist *this);
  * results if the indices of the elements in the arraylist are manipulated.
  */
 void			**arraylist_to_array_transfer_unsafe(
-				t_arraylist **this);
+					t_arraylist **this);
 
 /*
  * Converts the given arraylist to a simple array. The contents of the given
@@ -226,7 +226,7 @@ void			**arraylist_to_array_transfer_unsafe(
  * the elements in the arraylist are manipulated.
  */
 void			**arraylist_to_array_transfer_core_unsafe(
-				t_arraylist *this);
+					t_arraylist *this);
 
 /*
  * Deletes the given part of the arraylist. The function is an optional
@@ -234,8 +234,8 @@ void			**arraylist_to_array_transfer_core_unsafe(
  * the given element was deleted successfully, false if no element is given.
  */
 bool			arraylist_delete(
-				t_arraylist **this,
-				t_arraylist_remover remover);
+					t_arraylist **this,
+					t_arraylist_remover remover);
 
 /*
  * Returns the count of elements in the given arraylist. If no arraylist is
@@ -257,7 +257,7 @@ size_t			arraylist_size_unsafe(t_arraylist *this);
  * cleared successfully, false if no list is given.
  */
 bool			arraylist_clear(
-				t_arraylist **this,
-				t_arraylist_remover remover);
+					t_arraylist **this,
+					t_arraylist_remover remover);
 
 #endif

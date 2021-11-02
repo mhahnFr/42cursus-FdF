@@ -15,7 +15,7 @@ typedef struct s_renderer
  * whose value is totally ignored according to the documentation of the
  * MiniLibX library.
  */
-typedef int (*t_render_frame)(void *);
+typedef int	(*t_render_frame)(void *);
 
 /*
  * Represents a function that is called when the view in which the MiniLibX
@@ -24,7 +24,7 @@ typedef int (*t_render_frame)(void *);
  * payload. Returns an int, whose value is totally ignored according to the
  * documentation of the MiniLibX library.
  */
-typedef int (*t_pre_render)(void *);
+typedef int	(*t_pre_render)(void *);
 
 /*
  * Creates a new renderer. Returns the newly allocated renderer, or null, if
