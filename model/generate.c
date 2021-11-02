@@ -21,7 +21,7 @@ t_model3D	*generate_parse_arguments(t_cli *cli_obj)
 	vertices = generate_convert_vertices(vertices_raw);
 	arraylist_clear(
 		&vertices_raw,
-		(t_arraylist_remover) generate_delete_char_array);
+		(t_arraylist_remover) generate_del_chr_ar);
 	count = arraylist_size(vertices);
 	model = model3D_new(
 			(t_vertex3D **) arraylist_to_array_transfer(&vertices),
@@ -29,7 +29,7 @@ t_model3D	*generate_parse_arguments(t_cli *cli_obj)
 	return (model);
 }
 
-void	generate_delete_char_array(char **array)
+void	generate_del_chr_ar(char **array)
 {
 	size_t	counter;
 
@@ -45,10 +45,10 @@ t_arraylist	*generate_read_file(char *file_name)
 {
 	char		*line;
 	int			fd;
-	t_arraylist	*ret;
+	t_arraylist	*r;
 	t_arraylist	*tmp;
 
-	ret = NULL;
+	r = NULL;
 	fd = open(file_name, O_RDONLY);
 	if (fd >= 0)
 	{
@@ -59,15 +59,15 @@ t_arraylist	*generate_read_file(char *file_name)
 			if (tmp == NULL || tmp->content == NULL)
 			{
 				perror("FdF");
-				arraylist_clear(&ret, (t_arraylist_remover) generate_delete_char_array);
+				arraylist_clear(&r, (t_arraylist_remover) generate_del_chr_ar);
 				return (NULL);
 			}
-			arraylist_append_unsafe(&ret, tmp);
+			arraylist_append_unsafe(&r, tmp);
 			free(line);
 			line = get_next_line(fd);
 		}
 	}
-	return (ret);
+	return (r);
 }
 
 t_arraylist	*generate_convert_vertices(t_arraylist *raw_vertices)

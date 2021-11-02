@@ -23,7 +23,7 @@ t_arraylist	*generate_read_file(char *file_name);
  * a null pointer, as it serves as indicator of the end of the array. Does
  * nothing if no rray is given.
  */
-void		generate_delete_char_array(char **array);
+void		generate_del_chr_ar(char **array);
 
 /*
  * Converts the given arraylist containing the raw vertex data read from the
