@@ -23,7 +23,7 @@ int	onApplicationFinishedLaunching(t_model3D *model, void *view, t_cli *cli_obj)
 		this);
 	window_set_key_listener(
 		this->windows, key_listener_new(delegate_main_window_key_touched));
-	this->renderer = renderer_new();
+	this->renderer = renderer_new(renderer_camera_new(vertex3D_new(0, 0, 0)));
 	if (this->renderer == NULL)
 		delegate_exit(this);
 	mlx_expose_hook(
