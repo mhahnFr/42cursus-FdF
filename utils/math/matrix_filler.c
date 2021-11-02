@@ -17,10 +17,17 @@ t_matrix	*matrix_new_filled(
 
 void	matrix_fill(t_matrix *this, float fill)
 {
+	unsigned int	i;
+	unsigned int	j;
+
 	if (this != NULL)
 	{
-		for (unsigned int i = 0; i < this->rows; i++)
-			for (unsigned int j = 0; j < this->columns; j++)
+		i = 0;
+		while (i++ < this->rows)
+		{
+			j = 0;
+			while (j++ < this->columns)
 				this->values[i][j] = fill;
+		}
 	}
 }
