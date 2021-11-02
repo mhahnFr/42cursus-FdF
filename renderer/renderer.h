@@ -2,11 +2,19 @@
 # define RENDERER_H
 
 /*
- * Represents a renderer.
+ * Represents a renderer. Contains a matrix object for every possible
+ * transformation, so there is a model, a view and a projection matrix. Also,
+ * there is a combined matrix, as the matrices do not need to be recalculated
+ * for every frame.
  */
 typedef struct s_renderer
 {
-	char	*text;
+	char				*text;
+	t_matrix			*model;
+	t_matrix			*view;
+	t_matrix			*projection;
+	t_matrix			*mvp;
+	t_renderer_camera	*camera;
 }	t_renderer;
 
 /*
@@ -39,13 +47,28 @@ t_renderer	*renderer_new(void);
 void		renderer_create(t_renderer *this);
 
 /*
- * Destroys the content of the given renderer object. Does nothing if no object
+ * Generates an appopriate view matrix for the given renderer. Returns either
+ * the newly allocated matrix or null, if the allocation failed or no renderer
  * is given.
+ */
+t_matrix	*renderer_generate_view(t_renderer *this);
+
+/*
+ * Generates an appopriate projection matrix for the given renderer. Returns
+ * either the newly allocated matrix or null, if the allocation failed or no
+ * renderer is given.
+ */
+t_matrix	*renderer_generate_projection(t_renderer *this);
+
+/*
+ * Destroys the content of the given renderer object and its contents. Does
+ * nothing if no object is given.
  */
 void		renderer_destroy(t_renderer *this);
 
 /*
- * Deletes the given renderer. Does nothing if no object is given.
+ * Deletes the given renderer. Frees its matrices. Does nothing if no object is
+ * given.
  */
 void		renderer_delete(t_renderer *this);
 

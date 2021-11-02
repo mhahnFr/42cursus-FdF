@@ -13,9 +13,9 @@ SRC		=	./delegate/app_delegate.c ./view/init.c ./model/generate.c \
 			./main.c ./utils/arraylist_remove.c ./utils/arraylist_array.c \
 			./view/window.c ./view/event/key_listener.c \
 			./view/event/window_event.c ./view/event/key_event.c \
-			./delegate/delegate.c ./delegate/renderer.c ./utils/math/matrix.c \
+			./delegate/delegate.c ./renderer/renderer.c ./utils/math/matrix.c \
 			./CLI/cli_destroy.c ./view/window_destroy.c \
-			./view/event/key_event_destroy.c ./delegate/renderer_destroy.c \
+			./view/event/key_event_destroy.c ./renderer/renderer_destroy.c \
 			./utils/math/matrix_new.c ./utils/math/matrix_calculations.c \
 			./utils/math/matrix_filler.c ./CLI/cli_error.c \
 			./utils/arraylist_size.c ./utils/arraylist_array_unsafe.c \
