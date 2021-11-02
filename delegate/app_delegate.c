@@ -70,7 +70,7 @@ int	delegate_key_touched(int key, t_delegate *this)
 
 void	delegate_exit(t_delegate *this)
 {
-	// Suggestion: Stop rendering before deleting stuff needed to render.
+	mlx_loop_hook(this->mlx_ptr, NULL, NULL);
 	delegate_delete(this);
 	while (1);
 	exit(0);
