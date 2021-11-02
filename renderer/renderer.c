@@ -2,7 +2,7 @@
 
 #include "mlx.h"
 
-#include "app_delegate.h"
+#include "delegate/app_delegate.h"
 #include "renderer.h"
 
 int	delegate_render_frame(t_delegate *this)
@@ -27,7 +27,7 @@ int	delegate_pre_render(t_delegate *this)
 
 	if (this == NULL)
 		return (-1);
-	this->renderer->model = matrix_new(4, 4);
+	this->renderer->model = matrix_new(NULL, 4, 4);
 	matrix_fill_neutral(this->renderer->model);
 	this->renderer->view = renderer_generate_view(this->renderer);
 	this->renderer->projection = renderer_generate_projection(this->renderer);
@@ -38,18 +38,21 @@ int	delegate_pre_render(t_delegate *this)
 	return (0);
 }
 
-t_renderer	*renderer_new(void)
+t_renderer	*renderer_new(t_renderer_camera *camera)
 {
-	t_renderer	*ret;
+	t_renderer			*ret;
 
 	ret = malloc(sizeof(struct s_renderer));
-	if (ret != NULL)
-		renderer_create(ret);
+	if (ret == NULL)
+		return (NULL);
+	renderer_create(ret, camera);
 	return (ret);
 }
 
-void	renderer_create(t_renderer *this)
+void	renderer_create(t_renderer *this, t_renderer_camera *camera)
 {
-	if (this != NULL)
-		this->text = NULL;
+	if (this == NULL)
+		return ;
+	this->text = NULL;
+	this->camera = camera;
 }

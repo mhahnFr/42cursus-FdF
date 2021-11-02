@@ -1,6 +1,9 @@
 #ifndef RENDERER_H
 # define RENDERER_H
 
+# include "utils/math/matrix.h"
+# include "renderer_camera.h"
+
 /*
  * Represents a renderer. Contains a matrix object for every possible
  * transformation, so there is a model, a view and a projection matrix. Also,
@@ -35,16 +38,16 @@ typedef int	(*t_render_frame)(void *);
 typedef int	(*t_pre_render)(void *);
 
 /*
- * Creates a new renderer. Returns the newly allocated renderer, or null, if
- * the allocation failed.
+ * Creates a new renderer with the given camera. Returns the newly allocated
+ * renderer, or null, if the allocation failed.
  */
-t_renderer	*renderer_new(void);
+t_renderer	*renderer_new(t_renderer_camera *camera);
 
 /*
- * Initializes the content of the given renderer object. Does nothing if no
- * object is given.
+ * Initializes the content of the given renderer object using the given camera.
+ * Does nothing if at least one object is missing.
  */
-void		renderer_create(t_renderer *this);
+void		renderer_create(t_renderer *this, t_renderer_camera *camera);
 
 /*
  * Generates an appopriate view matrix for the given renderer. Returns either

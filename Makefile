@@ -20,7 +20,8 @@ SRC		=	./delegate/app_delegate.c ./view/init.c ./model/generate.c \
 			./utils/math/matrix_filler.c ./CLI/cli_error.c \
 			./utils/arraylist_size.c ./utils/arraylist_array_unsafe.c \
 			./model/vertex_copy.c ./utils/arraylist_get.c \
-			./utils/arraylist_insert.c ./utils/arraylist_reset_indices.c
+			./utils/arraylist_insert.c ./utils/arraylist_reset_indices.c \
+			./renderer/renderer_camera.c
 
 # The path to the home made libft.
 LFT_D	=	./libft
