@@ -17,6 +17,8 @@ typedef struct s_renderer
 	t_matrix			*view;
 	t_matrix			*projection;
 	t_matrix			*mvp;
+	size_t				screen_width;
+	size_t				screen_height;
 	t_renderer_camera	*camera;
 }	t_renderer;
 
@@ -41,13 +43,20 @@ typedef int	(*t_pre_render)(void *);
  * Creates a new renderer with the given camera. Returns the newly allocated
  * renderer, or null, if the allocation failed.
  */
-t_renderer	*renderer_new(t_renderer_camera *camera);
+t_renderer	*renderer_new(
+				t_renderer_camera *camera,
+				size_t screen_width,
+				size_t screen_height);
 
 /*
  * Initializes the content of the given renderer object using the given camera.
  * Does nothing if at least one object is missing.
  */
-void		renderer_create(t_renderer *this, t_renderer_camera *camera);
+void		renderer_create(
+				t_renderer *this,
+				t_renderer_camera *camera,
+				size_t screen_width,
+				size_t screen_height);
 
 /*
  * Generates an appopriate view matrix for the given renderer. Returns either
@@ -61,7 +70,10 @@ t_matrix	*renderer_generate_view(t_renderer *this);
  * either the newly allocated matrix or null, if the allocation failed or no
  * renderer is given.
  */
-t_matrix	*renderer_generate_projection(t_renderer *this);
+t_matrix	*renderer_generate_projection(
+				t_renderer *this,
+				float near,
+				float far);
 
 /*
  * Stores the vector and the floating point value in the given float array.

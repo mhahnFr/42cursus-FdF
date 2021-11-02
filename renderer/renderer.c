@@ -33,7 +33,8 @@ int	delegate_pre_render(t_delegate *this)
 	this->renderer->model = matrix_new(NULL, 4, 4);
 	matrix_fill_neutral(this->renderer->model);
 	this->renderer->view = renderer_generate_view(this->renderer);
-	this->renderer->projection = renderer_generate_projection(this->renderer);
+	this->renderer->projection = renderer_generate_projection(this->renderer,
+			1, 100);
 	mv = matrix_new_multiply(this->renderer->model, this->renderer->view);
 	this->renderer->mvp = matrix_new_multiply(mv, this->renderer->projection);
 	matrix_delete(mv);
@@ -41,21 +42,30 @@ int	delegate_pre_render(t_delegate *this)
 	return (0);
 }
 
-t_renderer	*renderer_new(t_renderer_camera *camera)
+t_renderer	*renderer_new(
+				t_renderer_camera *camera,
+				size_t screen_width,
+				size_t screen_height)
 {
 	t_renderer			*ret;
 
 	ret = malloc(sizeof(struct s_renderer));
 	if (ret == NULL)
 		return (NULL);
-	renderer_create(ret, camera);
+	renderer_create(ret, camera, screen_width, screen_height);
 	return (ret);
 }
 
-void	renderer_create(t_renderer *this, t_renderer_camera *camera)
+void	renderer_create(
+			t_renderer *this,
+			t_renderer_camera *camera,
+			size_t screen_width,
+			size_t screen_height)
 {
 	if (this == NULL)
 		return ;
 	this->text = NULL;
 	this->camera = camera;
+	this->screen_width = screen_width;
+	this->screen_height = screen_height;
 }
