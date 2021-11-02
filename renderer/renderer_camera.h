@@ -1,6 +1,7 @@
 #ifndef RENDERER_CAMERA_H
 # define RENDERER_CAMERA_H
 
+# include "utils/math/vector.h"
 # include "model/vertex.h"
 
 /*
@@ -9,6 +10,9 @@
 typedef struct s_renderer_camera
 {
 	t_vertex3D	*pos;
+	t_vector	*depth;
+	t_vector	*width;
+	t_vector	*height;
 }	t_renderer_camera;
 
 /*

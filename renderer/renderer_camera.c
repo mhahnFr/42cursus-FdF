@@ -19,6 +19,9 @@ void	renderer_camera_create(t_renderer_camera *this, t_vertex3D *position)
 	if (this == NULL || position == NULL)
 		return ;
 	this->pos = position;
+	this->depth = NULL;
+	this->width = NULL;
+	this->height = NULL;
 }
 
 void	renderer_camera_destroy(t_renderer_camera *this)
