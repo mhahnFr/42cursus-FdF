@@ -4,7 +4,7 @@
 # include "model/model.h"
 # include "view/window.h"
 # include "CLI/cli.h"
-# include "renderer.h"
+# include "renderer/renderer.h"
 
 /*
  * Represents a delegate object. Consists of the window, the MLX connection and

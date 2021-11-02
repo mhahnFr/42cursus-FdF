@@ -1,6 +1,8 @@
 #ifndef MATRIX_H
 # define MATRIX_H
 
+# include <stdbool.h>
+
 /*
  * Represents a mathematical matrix. Contains a two dimensional float array,
  * which is the actual matrix, as well as the length of the two dimensions.
