@@ -57,8 +57,11 @@ t_arraylist	*generate_read_file(char *file_name)
 		{
 			tmp = arraylist_new((void *) ft_split(line, ' '));
 			if (tmp == NULL || tmp->content == NULL)
+			{
 				perror("FdF");
-				// TODO malloc protection!!!
+				arraylist_clear(&ret);
+				return (NULL);
+			}
 			arraylist_append_unsafe(&ret, tmp);
 			free(line);
 			line = get_next_line(fd);
@@ -70,6 +73,7 @@ t_arraylist	*generate_read_file(char *file_name)
 t_arraylist	*generate_convert_vertices(t_arraylist *raw_vertices)
 {
 	t_arraylist	*ret;
+	t_arraylist	*tmp;
 	size_t		i;
 
 	ret = NULL;
@@ -78,14 +82,16 @@ t_arraylist	*generate_convert_vertices(t_arraylist *raw_vertices)
 		i = 0;
 		while (((void **) raw_vertices->content)[i] != NULL)
 		{
-		// TODO malloc protection!!!
-			arraylist_append_unsafe(
-				&ret,
-				arraylist_new(
-					vertex3D_new(
-						i,
-						raw_vertices->index,
-						ft_atoi(((char **) raw_vertices->content)[i]))));
+			tmp = arraylist_new(
+					vertex3D_new(i, raw_vertices->index,
+						ft_atoi(((char **) raw_vertices->content)[i])));
+			if (tmp == NULL || tmp->content == NULL)
+			{
+				perror("FdF");
+				arraylist_clear(&ret);
+				return (NULL);
+			}
+			arraylist_append_unsafe(&ret, tmp);
 			i++;
 		}
 		raw_vertices = raw_vertices->next;
