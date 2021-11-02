@@ -29,6 +29,9 @@ void	renderer_camera_destroy(t_renderer_camera *this)
 	if (this == NULL)
 		return ;
 	vertex3D_destroy(this->pos);
+	vector_destroy(this->depth);
+	vector_destroy(this->width);
+	vector_destroy(this->height);
 }
 
 void	renderer_camera_delete(t_renderer_camera *this)
@@ -36,5 +39,8 @@ void	renderer_camera_delete(t_renderer_camera *this)
 	if (this == NULL)
 		return ;
 	vertex3D_delete(this->pos);
+	vector_delete(this->depth);
+	vector_delete(this->width);
+	vector_delete(this->height);
 	free(this);
 }
