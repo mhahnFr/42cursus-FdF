@@ -12,11 +12,13 @@ int	onApplicationFinishedLaunching(t_model3D *model, void *view, t_cli *cli_obj)
 	t_delegate	*this;
 
 	this = delegate_new(view, model, cli_obj);
-	if (cli_obj->size_set)
-		this->windows = delegate_get_new_window(view, cli_obj->width,
-				cli_obj->height, "FdF");
-	else
-		this->windows = delegate_get_new_window(view, 200, 50, "FdF");
+	if (!cli_obj->size_set)
+	{
+		cli_obj->width = 200;
+		cli_obj->height = 50;
+	}
+	this->windows = delegate_get_new_window(view, cli_obj->width,
+			cli_obj->height, "FdF");
 	mlx_key_hook(this->windows->mlx_window,
 		(t_delegate_key_touched) delegate_key_touched, this);
 	window_set_key_listener(
@@ -69,5 +71,6 @@ void	delegate_exit(t_delegate *this)
 {
 	mlx_loop_hook(this->mlx_ptr, NULL, NULL);
 	delegate_delete(this);
+	while (1);
 	exit(0);
 }
