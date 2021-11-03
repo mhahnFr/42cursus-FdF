@@ -1,6 +1,7 @@
 #include <stdlib.h>
 
 #include "matrix.h"
+#include "model/vertex.h"
 
 t_matrix	*matrix_new(
 				float **matrix,
@@ -38,6 +39,27 @@ void	matrix_create(
 		this->rows = rows;
 		this->columns = columns;
 	}
+}
+
+t_vertex3D	*matrix_cast_vertex3D(t_matrix *this)
+{
+	t_vertex3D	*ret;
+
+	if (this == NULL
+		|| (this->rows == 4 && this->columns != 1)
+		|| (this->rows == 1 && this->columns != 4))
+		return (NULL);
+	if (this->columns == 4)
+	{
+		ret = vertex3D_new(this->values[0][0], this->values[0][1], this->values[0][2]);
+		ret->w = this->values[0][3];
+	}
+	else
+	{
+		ret = vertex3D_new(this->values[0][0], this->values[1][0], this->values[2][0]);
+		ret->w = this->values[3][0];
+	}
+	return (ret);
 }
 
 void	matrix_destroy(t_matrix __attribute__((unused)) *this)

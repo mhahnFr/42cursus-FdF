@@ -3,6 +3,8 @@
 
 # include <stdbool.h>
 
+typedef struct s_vertex3D t_vertex3D;
+
 /*
  * Represents a mathematical matrix. Contains a two dimensional float array,
  * which is the actual matrix, as well as the length of the two dimensions.
@@ -49,6 +51,13 @@ t_matrix	*matrix_new_filled(
 				float fill,
 				unsigned int rows,
 				unsigned int colummns);
+
+/*
+ * Allocates a new vertex, containing the values of the given matrix. Returns
+ * either the newly allocated vertex, or null if the allocation failed, no
+ * matrix is given or the matrix is not in the format 4x1 or 1x4.
+ */
+t_vertex3D	*matrix_cast_vertex3D(t_matrix *this);
 
 /*
  * Multiplies the given matrices and stores the result in the given matrix.
