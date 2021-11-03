@@ -3,6 +3,9 @@
 
 # include "utils/math/matrix.h"
 # include "renderer_camera.h"
+# include "renderer_image.h"
+
+typedef struct s_delegate t_delegate;
 
 /*
  * Represents a renderer. Contains a matrix object for every possible
@@ -20,6 +23,7 @@ typedef struct s_renderer
 	size_t				screen_width;
 	size_t				screen_height;
 	t_renderer_camera	*camera;
+	t_renderer_image	*buffer;
 }	t_renderer;
 
 /*
@@ -57,6 +61,13 @@ void		renderer_create(
 				t_renderer_camera *camera,
 				size_t screen_width,
 				size_t screen_height);
+
+void		renderer_draw(t_delegate *this);
+
+void		renderer_draw_line(
+				t_vertex3D *first,
+				t_vertex3D *second,
+				t_delegate *this);
 
 /*
  * Generates an appopriate view matrix for the given renderer. Returns either

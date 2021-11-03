@@ -5,11 +5,26 @@
 #include "delegate/app_delegate.h"
 #include "renderer.h"
 
+#include <stdio.h>
+void	draw(t_delegate *this)
+{
+	t_vertex3D *vtmp;
+	t_matrix *mtmp;
+
+	printf("\n\n\n");
+	for (size_t i = 0; i < this->model->vertex_count; i++) {
+		mtmp = matrix_new_multiply(this->renderer->mvp, vertex3D_cast_matrix(this->model->vertices[i]));
+		vtmp = matrix_cast_vertex3D(mtmp);
+		printf("%f %f %f %f\n", vtmp->x, vtmp->y, vtmp->z, vtmp->w);
+	}
+}
+
 int	delegate_render_frame(t_delegate *this)
 {
 	if (this == NULL)
 		return (-1);
 	mlx_clear_window(this->mlx_ptr, this->windows->mlx_window);
+	renderer_draw(this);
 	if (this->renderer->text != NULL)
 		mlx_string_put(
 			this->mlx_ptr,
@@ -34,10 +49,12 @@ int	delegate_pre_render(t_delegate *this)
 	matrix_fill_neutral(this->renderer->model);
 	this->renderer->view = renderer_generate_view(this->renderer);
 	this->renderer->projection = renderer_generate_projection(this->renderer,
-			1, 100);
+			0, 1);
 	mv = matrix_new_multiply(this->renderer->model, this->renderer->view);
 	this->renderer->mvp = matrix_new_multiply(mv, this->renderer->projection);
 	matrix_delete(mv);
+	this->renderer->buffer = renderer_image_new(this->mlx_ptr,
+		this->renderer->screen_width, this->renderer->screen_height);
 	mlx_clear_window(this->mlx_ptr, this->windows->mlx_window);
 	return (0);
 }
@@ -72,4 +89,5 @@ void	renderer_create(
 	this->view = NULL;
 	this->projection = NULL;
 	this->mvp = NULL;
+	this->buffer = NULL;
 }
