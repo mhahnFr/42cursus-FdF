@@ -28,6 +28,7 @@ void	renderer_draw(t_delegate *this)
 		prev = v_tmp;
 		i++;
 	}
+	vertex3D_delete(prev);
 }
 
 void	renderer_draw_line(
