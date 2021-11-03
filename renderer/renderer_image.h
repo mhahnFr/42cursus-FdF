@@ -9,6 +9,8 @@ typedef struct s_renderer_image
 	int		depth;
 	int		line_size;
 	int		endian;
+	size_t	width;
+	size_t	height;
 	char	*raw;
 	void	*mlx_img;
 	void	*mlx_ptr;
