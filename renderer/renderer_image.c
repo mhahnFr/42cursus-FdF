@@ -1,5 +1,7 @@
 #include <stdlib.h>
 
+#include "mlx.h"
+
 #include "renderer_image.h"
 
 t_renderer_image	*renderer_image_new(
@@ -39,13 +41,15 @@ void	renderer_image_destroy(t_renderer_image *this)
 {
 	if (this == NULL)
 		return ;
-	mlx_destroy_image(this->mlx_ptr, this->mlx_img);
+	if (this->mlx_img != NULL)
+		mlx_destroy_image(this->mlx_ptr, this->mlx_img);
+	this->mlx_img = NULL;
 }
 
 void	renderer_image_delete(t_renderer_image *this)
 {
 	if (this == NULL)
 		return ;
-	renderer_image_destroy(this, mlx_ptr);
+	renderer_image_destroy(this);
 	free(this);
 }

@@ -13,8 +13,7 @@ void	renderer_destroy(t_renderer *this)
 	matrix_destroy(this->projection);
 	matrix_destroy(this->mvp);
 	renderer_camera_destroy(this->camera);
-	if (this->mlx_img != NULL)
-		mlx_destroy_image(this->mlx_img);
+	renderer_image_destroy(this->buffer);
 }
 
 void	renderer_delete(t_renderer *this)
@@ -27,5 +26,6 @@ void	renderer_delete(t_renderer *this)
 	matrix_delete(this->projection);
 	matrix_delete(this->mvp);
 	renderer_camera_delete(this->camera);
+	renderer_image_delete(this->buffer);
 	free(this);
 }
