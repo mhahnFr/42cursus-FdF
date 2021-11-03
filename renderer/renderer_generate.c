@@ -13,6 +13,8 @@ t_matrix	*renderer_generate_view(t_renderer *this)
 	vector_create(&cam_pos, this->camera->pos->x, this->camera->pos->y,
 		this->camera->pos->z);
 	ret = matrix_new_filled(0, 4, 4);
+	if (ret == NULL)
+		return (NULL);
 	renderer_generate_append(ret->values[0], this->camera->width,
 		vector_scalar_product(this->camera->width, &cam_pos)
 		* -1);
@@ -50,6 +52,8 @@ t_matrix	*renderer_generate_projection(
 	phi = 50;
 	ratio = this->screen_width / this->screen_height;
 	ret = matrix_new_filled(0, 4, 4);
+	if (ret == NULL)
+		return (NULL);
 	ret->values[0][0] = 1 / (ratio * tan(phi / 2));
 	ret->values[1][1] = 1 / (tan(phi / 2));
 	ret->values[2][2] = far / (near - far);
