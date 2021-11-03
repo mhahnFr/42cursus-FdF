@@ -3,7 +3,7 @@
 
 # include <stdbool.h>
 
-typedef struct s_vertex3D t_vertex3D;
+typedef struct s_vertex3D	t_vertex3D;
 
 /*
  * Represents a mathematical matrix. Contains a two dimensional float array,

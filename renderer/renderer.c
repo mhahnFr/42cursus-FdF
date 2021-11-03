@@ -5,20 +5,6 @@
 #include "delegate/app_delegate.h"
 #include "renderer.h"
 
-#include <stdio.h>
-void	draw(t_delegate *this)
-{
-	t_vertex3D *vtmp;
-	t_matrix *mtmp;
-
-	printf("\n\n\n");
-	for (size_t i = 0; i < this->model->vertex_count; i++) {
-		mtmp = matrix_new_multiply(this->renderer->mvp, vertex3D_cast_matrix(this->model->vertices[i]));
-		vtmp = matrix_cast_vertex3D(mtmp);
-		printf("%f %f %f %f\n", vtmp->x, vtmp->y, vtmp->z, vtmp->w);
-	}
-}
-
 int	delegate_render_frame(t_delegate *this)
 {
 	if (this == NULL)
@@ -54,7 +40,7 @@ int	delegate_pre_render(t_delegate *this)
 	this->renderer->mvp = matrix_new_multiply(mv, this->renderer->projection);
 	matrix_delete(mv);
 	this->renderer->buffer = renderer_image_new(this->mlx_ptr,
-		this->renderer->screen_width, this->renderer->screen_height);
+			this->renderer->screen_width, this->renderer->screen_height);
 	mlx_clear_window(this->mlx_ptr, this->windows->mlx_window);
 	return (0);
 }

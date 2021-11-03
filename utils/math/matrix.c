@@ -51,12 +51,14 @@ t_vertex3D	*matrix_cast_vertex3D(t_matrix *this)
 		return (NULL);
 	if (this->columns == 4)
 	{
-		ret = vertex3D_new(this->values[0][0], this->values[0][1], this->values[0][2]);
+		ret = vertex3D_new(this->values[0][0], this->values[0][1],
+				this->values[0][2]);
 		ret->w = this->values[0][3];
 	}
 	else
 	{
-		ret = vertex3D_new(this->values[0][0], this->values[1][0], this->values[2][0]);
+		ret = vertex3D_new(this->values[0][0], this->values[1][0],
+				this->values[2][0]);
 		ret->w = this->values[3][0];
 	}
 	return (ret);

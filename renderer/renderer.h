@@ -5,8 +5,6 @@
 # include "renderer_camera.h"
 # include "renderer_image.h"
 
-typedef struct s_delegate t_delegate;
-
 /*
  * Represents a renderer. Contains a matrix object for every possible
  * transformation, so there is a model, a view and a projection matrix. Also,
@@ -26,13 +24,15 @@ typedef struct s_renderer
 	t_renderer_image	*buffer;
 }	t_renderer;
 
+typedef struct s_delegate	t_delegate;
+
 /*
  * Represents a function that renders a frame. It is called in a loop by the
  * MiniLibX library, which passes a void pointer as payload. Returns an int,
  * whose value is totally ignored according to the documentation of the
  * MiniLibX library.
  */
-typedef int	(*t_render_frame)(void *);
+typedef int					(*t_render_frame)(void *);
 
 /*
  * Represents a function that is called when the view in which the MiniLibX
@@ -41,7 +41,7 @@ typedef int	(*t_render_frame)(void *);
  * payload. Returns an int, whose value is totally ignored according to the
  * documentation of the MiniLibX library.
  */
-typedef int	(*t_pre_render)(void *);
+typedef int					(*t_pre_render)(void *);
 
 /*
  * Creates a new renderer with the given camera. Returns the newly allocated

@@ -34,7 +34,7 @@ void	renderer_image_create(
 	this->width = width;
 	this->height = height;
 	this->raw = mlx_get_data_addr(mlx_img, &(this->depth), &(this->line_size),
-					&(this->endian));
+			&(this->endian));
 }
 
 void	renderer_image_destroy(t_renderer_image *this)

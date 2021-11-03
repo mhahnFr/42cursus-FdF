@@ -1,7 +1,7 @@
 #ifndef VERTEX_H
 # define VERTEX_H
 
-typedef struct s_matrix t_matrix;
+typedef struct s_matrix	t_matrix;
 
 /*
  * Represents a three dimensional vertex.
