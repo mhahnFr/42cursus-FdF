@@ -1,5 +1,7 @@
 #include <stdlib.h>
 
+#include "mlx.h"
+
 #include "renderer.h"
 
 void	renderer_destroy(t_renderer *this)
@@ -11,6 +13,8 @@ void	renderer_destroy(t_renderer *this)
 	matrix_destroy(this->projection);
 	matrix_destroy(this->mvp);
 	renderer_camera_destroy(this->camera);
+	if (this->mlx_img != NULL)
+		mlx_destroy_image(this->mlx_img);
 }
 
 void	renderer_delete(t_renderer *this)
