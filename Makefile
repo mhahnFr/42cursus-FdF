@@ -120,6 +120,7 @@ $(MLX_P):
 cleano:
 	- $(RM) $(OBJ)
 	- $(RM) *~
+	- find . -name \*~ -print -delete
 
 # Removes only the files of the program, also the executable, but not the
 # library files.
