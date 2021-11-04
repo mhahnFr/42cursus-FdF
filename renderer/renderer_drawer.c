@@ -1,5 +1,7 @@
 #include <stddef.h>
 
+#include "mlx.h"
+
 #include "renderer.h"
 #include "delegate/app_delegate.h"
 
@@ -29,6 +31,7 @@ void	renderer_draw(t_delegate *this)
 		i++;
 	}
 	vertex3D_delete(prev);
+	mlx_put_image_to_window(this->mlx_ptr, this->windows->mlx_window, this->renderer->buffer->mlx_img, 0, 0);
 }
 
 void	renderer_draw_line(
@@ -36,6 +39,19 @@ void	renderer_draw_line(
 			t_vertex3D *second,
 			t_delegate *this)
 {
-	first = second;
-	this = NULL;
+	t_renderer_image	*buf;
+	char				*dst;
+
+	buf = this->renderer->buffer;
+	if (first->x * -1 <= buf->width && first->y * -1 <= buf->height)
+	{
+		dst = buf->raw + (((long) first->x) * -1 * (buf->depth / 8)) + (((long) first->y) * -1 * buf->line_size);
+		*(unsigned int *) dst = 0x00FFFFFF;
+	}
+	if (second->x * -1 <= buf->width && second->y * -1 <= buf->height)
+	{
+		dst = buf->raw + (((long) second->x) * -1 * (buf->depth / 8)) + (((long) second->y) * -1 * buf->line_size);
+		*(unsigned int *) dst = 0x00FFFFFF;
+	}
+
 }
