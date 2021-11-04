@@ -69,7 +69,8 @@ int	delegate_key_touched(int key, t_delegate *this)
 
 void	delegate_exit(t_delegate *this)
 {
-	mlx_loop_hook(this->mlx_ptr, NULL, NULL);
+	// TODO Delete the window!!!
+	// TODO Exit application when closing the window!!!
 	delegate_delete(this);
 	while (1);
 	exit(0);
