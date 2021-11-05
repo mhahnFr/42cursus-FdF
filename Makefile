@@ -23,7 +23,8 @@ SRC		=	./delegate/app_delegate.c ./view/init.c ./model/generate.c \
 			./utils/arraylist_insert.c ./utils/arraylist_reset_indices.c \
 			./renderer/renderer_camera.c ./renderer/renderer_generate.c \
 			./utils/math/vector.c ./utils/math/vector_delete.c \
-			./renderer/renderer_drawer.c ./renderer/renderer_image.c
+			./renderer/renderer_drawer.c ./renderer/renderer_image.c \
+			./utils/math/matrix_destroy.c
 
 # The path to the home made libft.
 LFT_D	=	./libft
