@@ -23,15 +23,12 @@ void	renderer_draw(t_delegate *this)
 		matrix_cast_vertex3D(m_tmp, &v_tmp);
 		matrix_delete(m_tmp);
 		if (prev != NULL)
-		{
 			renderer_draw_line(prev, &v_tmp, this);
-			vertex3D_destroy(prev);
-		}
 		prev = &v_tmp;
 		i++;
 	}
-	vertex3D_destroy(prev);
-	mlx_put_image_to_window(this->mlx_ptr, this->windows->mlx_window, this->renderer->buffer->mlx_img, 0, 0);
+	mlx_put_image_to_window(this->mlx_ptr, this->windows->mlx_window,
+		this->renderer->buffer->mlx_img, 0, 0);
 }
 
 void	renderer_draw_line(
@@ -45,13 +42,14 @@ void	renderer_draw_line(
 	buf = this->renderer->buffer;
 	if (first->x * -1 <= buf->width && first->y * -1 <= buf->height)
 	{
-		dst = buf->raw + (((long) first->x) * -1 * (buf->depth / 8)) + (((long) first->y) * -1 * buf->line_size);
+		dst = buf->raw + (((long) first->x) * -1 * (buf->depth / 8))
+			+ (((long) first->y) * -1 * buf->line_size);
 		*(unsigned int *) dst = 0x00FFFFFF;
 	}
 	if (second->x * -1 <= buf->width && second->y * -1 <= buf->height)
 	{
-		dst = buf->raw + (((long) second->x) * -1 * (buf->depth / 8)) + (((long) second->y) * -1 * buf->line_size);
+		dst = buf->raw + (((long) second->x) * -1 * (buf->depth / 8))
+			+ (((long) second->y) * -1 * buf->line_size);
 		*(unsigned int *) dst = 0x00FFFFFF;
 	}
-
 }
