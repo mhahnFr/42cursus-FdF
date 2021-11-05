@@ -41,7 +41,7 @@ void	delegate_destroy(t_delegate *this)
 
 void	delegate_delete(t_delegate **this)
 {
-	if (this != NULL)
+	if (this != NULL && *this != NULL)
 	{
 		window_delete((*this)->windows);
 		model3D_delete((*this)->model);
