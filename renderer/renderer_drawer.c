@@ -7,7 +7,7 @@
 
 void	renderer_draw(t_delegate *this)
 {
-	t_vertex3D	*v_tmp;
+	t_vertex3D	v_tmp;
 	t_vertex3D	*prev;
 	t_matrix	*m_tmp;
 	t_matrix	*m_tmp2;
@@ -20,17 +20,17 @@ void	renderer_draw(t_delegate *this)
 		m_tmp2 = vertex3D_cast_matrix(this->model->vertices[i]);
 		m_tmp = matrix_new_multiply(this->renderer->mvp, m_tmp2);
 		matrix_delete(m_tmp2);
-		v_tmp = matrix_cast_vertex3D(m_tmp);
+		matrix_cast_vertex3D(m_tmp, &v_tmp);
 		matrix_delete(m_tmp);
 		if (prev != NULL)
 		{
-			renderer_draw_line(prev, v_tmp, this);
-			vertex3D_delete(prev);
+			renderer_draw_line(prev, &v_tmp, this);
+			vertex3D_destroy(prev);
 		}
-		prev = v_tmp;
+		prev = &v_tmp;
 		i++;
 	}
-	vertex3D_delete(prev);
+	vertex3D_destroy(prev);
 	mlx_put_image_to_window(this->mlx_ptr, this->windows->mlx_window, this->renderer->buffer->mlx_img, 0, 0);
 }
 
