@@ -27,8 +27,7 @@ int	onApplicationFinishedLaunching(t_model3D *model, void *view, t_cli *cli_obj)
 			cli_obj->width, cli_obj->height);
 	if (this->renderer == NULL)
 		delegate_exit(&this);
-	mlx_expose_hook(this->windows->mlx_window,
-		(t_pre_render) delegate_pre_render, &this);
+	delegate_pre_render(&this);
 	mlx_loop_hook(view, (t_render_frame) delegate_render_frame, &this);
 	mlx_loop(view);
 	return (0);
