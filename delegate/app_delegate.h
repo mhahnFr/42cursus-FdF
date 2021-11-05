@@ -46,7 +46,7 @@ t_window	*delegate_get_new_window(
  * responsible delegate. Returns always zero, as the return value is useless
  * according to the documentation of the MiniLibX library.
  */
-int			delegate_key_touched(int key, t_delegate *this);
+int			delegate_key_touched(int key, t_delegate **this);
 
 /*
  * Handles the key events for the main window. Takes as parameter the
@@ -84,12 +84,12 @@ void		delegate_destroy(t_delegate *this);
  * Deletes the given delegate object. Also removes all of its contents. Does
  * nothing if no object is given.
  */
-void		delegate_delete(t_delegate *this);
+void		delegate_delete(t_delegate **this);
 
 /*
  * Closes the application.
  */
-void		delegate_exit(t_delegate *this);
+void		delegate_exit(t_delegate **this);
 
 /*
  * This method renders a new frame. Whenever a new frame should be displayed,
@@ -98,7 +98,7 @@ void		delegate_exit(t_delegate *this);
  * a delegate. If no object is given, it will do nothing and returns -1.
  * Otherwise, it will render everything and returns zero.
  */
-int			delegate_render_frame(t_delegate *this);
+int			delegate_render_frame(t_delegate **this);
 
 /*
  * Settles up all prerequisities to be able to start rendering. This method
@@ -107,6 +107,6 @@ int			delegate_render_frame(t_delegate *this);
  * nothing else happens. Otherwise, zero will be returned and the render
  * process is prepared.
  */
-int			delegate_pre_render(t_delegate *this);
+int			delegate_pre_render(t_delegate **this);
 
 #endif

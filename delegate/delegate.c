@@ -39,14 +39,15 @@ void	delegate_destroy(t_delegate *this)
 	}
 }
 
-void	delegate_delete(t_delegate *this)
+void	delegate_delete(t_delegate **this)
 {
 	if (this != NULL)
 	{
-		window_delete(this->windows);
-		model3D_delete(this->model);
-		cli_delete(this->cli_obj);
-		renderer_delete(this->renderer);
-		free(this);
+		window_delete((*this)->windows);
+		model3D_delete((*this)->model);
+		cli_delete((*this)->cli_obj);
+		renderer_delete((*this)->renderer);
+		free(*this);
+		*this = NULL;
 	}
 }
