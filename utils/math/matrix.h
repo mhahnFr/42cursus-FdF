@@ -57,7 +57,13 @@ t_matrix	*matrix_new_filled(
  * either the newly allocated vertex, or null if the allocation failed, no
  * matrix is given or the matrix is not in the format 4x1 or 1x4.
  */
-t_vertex3D	*matrix_cast_vertex3D(t_matrix *this);
+t_vertex3D	*matrix_cast_new_vertex3D(t_matrix *this);
+
+/*
+ * Writes the values of the given matrix into the given vertex. Does nothing if
+ * either object is missing or the matrix is not in the format 4x1 or 1x4.
+ */
+void		matrix_cast_vertex3D(t_matrix *this, t_vertex3D *dest);
 
 /*
  * Multiplies the given matrices and stores the result in the given matrix.
