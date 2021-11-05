@@ -57,7 +57,7 @@ LFLAGS	=	-framework OpenGL -framework AppKit -lz -L$(MLX_D) -lmlx -L$(LFT_D) \
 			-lft -L$(FT_PF_D) -lftprintf -L$(GNL_D) -lgnl
 
 # The flags to use for compiling the minilibx.
-MLX_F	=	$(CFLAGS) -O2 -D GL_SILENCE_DEPRECATION -Wno-unused-parameter \
+MLX_F	=	$(CFLAGS) -D GL_SILENCE_DEPRECATION -Wno-unused-parameter \
 			-Wno-unused-variable
 
 # The path to the ft_printf library.
