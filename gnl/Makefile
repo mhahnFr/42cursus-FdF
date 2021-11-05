@@ -6,7 +6,7 @@ SRC			=	./get_next_line.c \
 				./get_next_line_utils.c
 
 # The flags to compile the files with.
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Werror -Wextra -Ofast
 
 # A macro to get the object files for the corresponding source files.
 OBJ			=	$(patsubst %.c,%.o,$(SRC))
