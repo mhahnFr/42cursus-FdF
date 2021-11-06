@@ -62,8 +62,16 @@ void		renderer_create(
 				size_t screen_width,
 				size_t screen_height);
 
+/*
+ * Draws a frame to the buffer, the buffer is then put onto the screen. Takes
+ * as parameter a delegate object with all necessary informations.
+ */
 void		renderer_draw(t_delegate *this);
 
+/*
+ * Draws a line from the given vertex to the other one. They have to be screen
+ * coordinates. Also takes a delegate object with the needed informations.
+ */
 void		renderer_draw_line(
 				t_vertex3D *first,
 				t_vertex3D *second,

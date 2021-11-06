@@ -18,6 +18,12 @@ typedef struct s_delegate {
 	t_renderer	*renderer;
 }	t_delegate;
 
+/*
+ * Represents a function that gets called by the MiniLibX library, when a key
+ * on the keyboard is pressed. Takes as parameter the key code and a void
+ * pointer as payload. It returns an integer value, it is however ignored by
+ * the MiniLibX library according to its documentation.
+ */
 typedef int	(*t_delegate_key_touched)(int, void *);
 
 /*
