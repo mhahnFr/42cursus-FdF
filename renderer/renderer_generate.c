@@ -51,7 +51,7 @@ t_matrix	*renderer_generate_projection(
 
 	if (this == NULL)
 		return (NULL);
-	phi = 50;
+	phi = 41;
 	ratio = this->screen_width / this->screen_height;
 	ret = matrix_new_filled(0, 4, 4);
 	if (ret == NULL)
@@ -59,7 +59,7 @@ t_matrix	*renderer_generate_projection(
 	ret->values[0][0] = 1 / (ratio * tan(phi / 2));
 	ret->values[1][1] = 1 / (tan(phi / 2));
 	ret->values[2][2] = far / (near - far);
-	ret->values[3][2] = (near * far) / (near - far);
-	ret->values[2][3] = -1;
+	ret->values[2][3] = (near * far) / (near - far);
+	ret->values[3][2] = -1; // 3 | 2 ?
 	return (ret);
 }

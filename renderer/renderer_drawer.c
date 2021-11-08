@@ -5,6 +5,7 @@
 #include "renderer.h"
 #include "delegate/app_delegate.h"
 
+#include <stdio.h>
 void	renderer_draw(t_delegate *this)
 {
 	t_vertex3D	v_tmp;
@@ -13,10 +14,12 @@ void	renderer_draw(t_delegate *this)
 
 	prev = NULL;
 	i = 0;
+	printf("\n");
 	while (i < this->model->vertex_count)
 	{
 		matrix_multiply_vertex3D(
 			&v_tmp, this->renderer->mvp, this->model->vertices[i]);
+		printf("%f %f %f %f\n", v_tmp.x, v_tmp.y, v_tmp.z, v_tmp.w);
 		if (prev != NULL)
 			renderer_draw_line(prev, &v_tmp, this->renderer->buffer);
 		prev = &v_tmp;
