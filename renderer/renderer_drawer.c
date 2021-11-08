@@ -36,28 +36,42 @@ void	renderer_draw_line(
 			t_vertex3D *second,
 			t_renderer_image *buf)
 {
-	int	err;
-	int	step_x;
-	int	step_y;
+	t_vertex3D	step;
+	t_vertex3D	diff;
+	t_vertex3D	point;
+	int			err;
 
-	err = (second->x - first->x) + (second->y - first->y);
-	step_x = renderer_get_step(first->x, second->x);
-	step_y = renderer_get_step(first->y, second->y);
+	diff.x = second->x - first->x;
+	diff.y = second->y - first->y;
+	err = diff.x + diff.y;
+	step.x = renderer_get_step(first->x, second->x);
+	step.y = renderer_get_step(first->y, second->y);
+	point.x = first->x;
+	point.y = first->y;
 	while (1)
 	{
-		renderer_draw_point(first, buf);
-		if (first->x == second->x && first->y == second->y)
+		renderer_draw_point(&point, buf);
+		if (point.x == second->x && point.y == second->y)
 			break ;
-		if (err * 2 > second->y - first->y)
-		{
-			err += second->y - first->y;
-			first->x += step_x;
-		}
-		if (err * 2 < second->x - first->x)
-		{
-			err += second->x - first->x;
-			first->y += step_y;
-		}
+		renderer_draw_loop_adjust(&point, &diff, &step, &err);
+	}
+}
+
+void	renderer_draw_loop_adjust(
+			t_vertex3D *point,
+			t_vertex3D *diff,
+			t_vertex3D *step,
+			int *err)
+{
+	if (*err * 2 > diff->y)
+	{
+		*err = *err + diff->y;
+		point->x += step->x;
+	}
+	if (*err * 2 < diff->x)
+	{
+		*err = *err + diff->x;
+		point->y += step->y;
 	}
 }
 

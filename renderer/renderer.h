@@ -75,7 +75,7 @@ void		renderer_draw(t_delegate *this);
 void		renderer_draw_line(
 				t_vertex3D *first,
 				t_vertex3D *second,
-				t_delegate *this);
+				t_renderer_image *buf);
 
 /*
  * Generates an appopriate view matrix for the given renderer. Returns either
@@ -106,6 +106,19 @@ void		renderer_generate_append(float result[4], t_vector *vec, float z);
  * Crashes if wrong arguments are given.
  */
 void		renderer_draw_point(t_vertex3D *point, t_renderer_image *buf);
+
+/*
+ * Adjusts the values for the loop of the Bresenham algorythm. Takes as
+ * parameters the current point on the screen, the original difference between
+ * the two points and the step to which to move to. Also takes the error value,
+ * which determines when to step on the next pixel. Crashes if wrong input is
+ * given.
+ */
+void		renderer_draw_loop_adjust(
+				t_vertex3D *point,
+				t_vertex3D *diff,
+				t_vertex3D *step,
+				int *err);
 
 /*
  * Returns wether the first number is bigger (1) or not (-1).
