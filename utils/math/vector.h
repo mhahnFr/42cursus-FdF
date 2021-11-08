@@ -46,6 +46,22 @@ void		vector_substract(
 float		vector_length(t_vector *this);
 
 /*
+ * Multiplies the given vector with the given number. Returns either the newly
+ * allocated vector or null if either the allocation failed or no vector is
+ * given.
+ */
+t_vector	*vector_new_multiply_digit(t_vector *this, float multiplicator);
+
+/*
+ * Multiplies the given vector with the given number and stores the result in
+ * the given vector. Does nothing if at least one vector is missing.
+ */
+void		vector_multiply_digit(
+				t_vector *result,
+				t_vector *this,
+				float multiplicator);
+
+/*
  * Performs a division with the given vector and stores the result in the
  * given vector. Does nothing if at least one vector is missing.
  */
