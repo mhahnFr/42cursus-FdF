@@ -74,6 +74,16 @@ void		matrix_cast_vertex3D(t_matrix *this, t_vertex3D *dest);
 void		matrix_multiply(t_matrix *result, t_matrix *m1, t_matrix *m2);
 
 /*
+ * Multiplies the given matrix with the given vertex and stores the results in
+ * the given vertex. Does nothing if at least one parameter is missing or the
+ * given matrix is not in the format 4x1 or 1x4.
+ */
+void		matrix_multiply_vertex3D(
+				t_vertex3D *result,
+				t_matrix *m,
+				t_vertex3D *v);
+
+/*
  * Fills the given matrix with the given floating point number. Overwrites all
  * values that are already stored in the matrix! Does nothing if no matrix
  * object is given.
