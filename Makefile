@@ -24,7 +24,10 @@ SRC		=	./delegate/app_delegate.c ./view/init.c ./model/generate.c \
 			./renderer/renderer_camera.c ./renderer/renderer_generate.c \
 			./utils/math/vector.c ./utils/math/vector_delete.c \
 			./renderer/renderer_drawer.c ./renderer/renderer_image.c \
-			./utils/math/matrix_destroy.c
+			./utils/math/matrix_destroy.c ./utils/math/vector_add_sub.c \
+			./utils/math/vector_division.c \
+			./utils/math/vector_multiplications.c \
+			./renderer/renderer_generate_vectors.c
 
 # The path to the home made libft.
 LFT_D	=	./libft

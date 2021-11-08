@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <math.h>
 
 #include "vector.h"
 
@@ -21,9 +22,9 @@ void	vector_create(t_vector *this, float x, float y, float z)
 	this->z = z;
 }
 
-float	vector_scalar_product(t_vector *one, t_vector *two)
+float	vector_length(t_vector *this)
 {
-	if (one == NULL || two == NULL)
+	if (this == NULL)
 		return (0);
-	return (one->x * two->x + one->y * two->y + one->z * two->z);
+	return (sqrt(this->x * this->x + this->y * this->y + this->z * this->z));
 }
