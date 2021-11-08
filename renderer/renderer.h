@@ -101,6 +101,18 @@ t_matrix	*renderer_generate_projection(
 void		renderer_generate_append(float result[4], t_vector *vec, float z);
 
 /*
+ * Draws a point in the given image, if the point is on that image. The point
+ * is an instance of vertex3D, only the X and the Y coordinates are used.
+ * Crashes if wrong arguments are given.
+ */
+void		renderer_draw_point(t_vertex3D *point, t_renderer_image *buf);
+
+/*
+ * Returns wether the first number is bigger (1) or not (-1).
+ */
+int			renderer_get_step(int first, int second);
+
+/*
  * Destroys the content of the given renderer object and its contents. Does
  * nothing if no object is given.
  */

@@ -23,7 +23,7 @@ void	renderer_draw(t_delegate *this)
 		matrix_cast_vertex3D(m_tmp, &v_tmp);
 		matrix_delete(m_tmp);
 		if (prev != NULL)
-			renderer_draw_line(prev, &v_tmp, this);
+			renderer_draw_line(prev, &v_tmp, this->renderer->buffer);
 		prev = &v_tmp;
 		i++;
 	}
@@ -32,6 +32,56 @@ void	renderer_draw(t_delegate *this)
 }
 
 void	renderer_draw_line(
+			t_vertex3D *first,
+			t_vertex3D *second,
+			t_renderer_image *buf)
+{
+	int	err;
+	int	step_x;
+	int	step_y;
+
+	err = (second->x - first->x) + (second->y - first->y);
+	step_x = renderer_get_step(first->x, second->x);
+	step_y = renderer_get_step(first->y, second->y);
+	while (1)
+	{
+		renderer_draw_point(first, buf);
+		if (first->x == second->x && first->y == second->y)
+			break ;
+		if (err * 2 > second->y - first->y)
+		{
+			err += second->y - first->y;
+			first->x += step_x;
+		}
+		if (err * 2 < second->x - first->x)
+		{
+			err += second->x - first->x;
+			first->y += step_y;
+		}
+	}
+}
+
+void	renderer_draw_point(t_vertex3D *point, t_renderer_image *buf)
+{
+	char	*dst;
+
+	if (point->x <= buf->width && point->x >= 0)
+	{
+		dst = buf->raw + (long) point->x * (buf->depth / 8) + (long) point->y
+			* buf->line_size;
+		*(unsigned int *) dst = 0x00FFFFFF;
+	}
+}
+
+int	renderer_get_step(int first, int second)
+{
+	if (first < second)
+		return (1);
+	else
+		return (-1);
+}
+
+void	renderer_draw_line1(
 			t_vertex3D *first,
 			t_vertex3D *second,
 			t_delegate *this)
