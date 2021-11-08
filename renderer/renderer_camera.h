@@ -10,6 +10,7 @@
 typedef struct s_renderer_camera
 {
 	t_vertex3D	*pos;
+	t_vertex3D	*view_point;
 	t_vector	*depth;
 	t_vector	*width;
 	t_vector	*height;

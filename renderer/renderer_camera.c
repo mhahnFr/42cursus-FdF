@@ -22,6 +22,7 @@ void	renderer_camera_create(t_renderer_camera *this, t_vertex3D *position)
 	this->depth = NULL;
 	this->width = NULL;
 	this->height = NULL;
+	this->view_point = NULL;
 }
 
 void	renderer_camera_destroy(t_renderer_camera *this)
