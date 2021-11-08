@@ -23,6 +23,8 @@ t_model3D	*generate_parse_arguments(t_cli *cli_obj)
 		&vertices_raw,
 		(t_arraylist_remover) generate_del_chr_ar);
 	count = arraylist_size(vertices);
+	if (count <= 0)
+		return (NULL);
 	model = model3D_new(
 			(t_vertex3D **) arraylist_to_array_transfer(&vertices),
 			count);
