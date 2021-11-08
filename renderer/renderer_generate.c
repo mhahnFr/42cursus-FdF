@@ -8,11 +8,12 @@ t_matrix	*renderer_generate_view(t_renderer *this)
 	t_matrix	*ret;
 	t_vector	cam_pos;
 
-	if (this == NULL || this->camera == NULL || this->camera->height == NULL
-		|| this->camera->width == NULL || this->camera->depth == NULL)
+	if (this == NULL || this->camera == NULL || this->camera->pos == NULL
+		|| this->camera->view_point == NULL)
 		return (NULL);
 	vector_create(&cam_pos, this->camera->pos->x, this->camera->pos->y,
 		this->camera->pos->z);
+	renderer_generate_vectors(this->camera);
 	ret = matrix_new_filled(0, 4, 4);
 	if (ret == NULL)
 		return (NULL);

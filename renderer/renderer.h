@@ -101,6 +101,32 @@ t_matrix	*renderer_generate_projection(
 void		renderer_generate_append(float result[4], t_vector *vec, float z);
 
 /*
+ * Generates the vectors for the rendderer camera.
+ */
+void		renderer_generate_vectors(t_renderer_camera *camera);
+
+/*
+ * Generates the depth vector for the given camera. Returns either a newly
+ * allocated vector or null if either the allocation failed or no camera is
+ * given.
+ */
+t_vector	*renderer_generate_depth(t_renderer_camera *camera);
+
+/*
+ * Generates the right vector for the given camera. Returns either the newly
+ * allocated vector or null if either the allocation failed or no camera is
+ * given.
+ */
+t_vector	*renderer_generate_right(t_renderer_camera *camera);
+
+/*
+ * Generates the up vector for the given camera. Returns either the newly
+ * allocated vector or null if either the allocation failed or no camera is
+ * given.
+ */
+t_vector	*renderer_generate_up(t_renderer_camera *camera);
+
+/*
  * Draws a point in the given image, if the point is on that image. The point
  * is an instance of vertex3D, only the X and the Y coordinates are used.
  * Crashes if wrong arguments are given.

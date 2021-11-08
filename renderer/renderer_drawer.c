@@ -15,7 +15,8 @@ void	renderer_draw(t_delegate *this)
 	i = 0;
 	while (i < this->model->vertex_count)
 	{
-		matrix_multiply_vertex3D(&v_tmp, this->renderer->mvp, this->model->vertices[i]);
+		matrix_multiply_vertex3D(
+			&v_tmp, this->renderer->mvp, this->model->vertices[i]);
 		if (prev != NULL)
 			renderer_draw_line(prev, &v_tmp, this->renderer->buffer);
 		prev = &v_tmp;
@@ -87,27 +88,4 @@ int	renderer_get_step(int first, int second)
 		return (1);
 	else
 		return (-1);
-}
-
-void	renderer_draw_line1(
-			t_vertex3D *first,
-			t_vertex3D *second,
-			t_delegate *this)
-{
-	t_renderer_image	*buf;
-	char				*dst;
-
-	buf = this->renderer->buffer;
-	if (first->x * -1 <= buf->width && first->y * -1 <= buf->height)
-	{
-		dst = buf->raw + (((long) first->x) * -1 * (buf->depth / 8))
-			+ (((long) first->y) * -1 * buf->line_size);
-		*(unsigned int *) dst = 0x00FFFFFF;
-	}
-	if (second->x * -1 <= buf->width && second->y * -1 <= buf->height)
-	{
-		dst = buf->raw + (((long) second->x) * -1 * (buf->depth / 8))
-			+ (((long) second->y) * -1 * buf->line_size);
-		*(unsigned int *) dst = 0x00FFFFFF;
-	}
 }
