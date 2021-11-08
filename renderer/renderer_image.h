@@ -1,6 +1,8 @@
 #ifndef RENDERER_IMAGE_H
 # define RENDERER_IMAGE_H
 
+# include <stddef.h>
+
 /*
  * Represents an image.
  */
