@@ -37,7 +37,7 @@ t_vector	*renderer_generate_up(t_renderer_camera *cam)
 	t_vector	tmp2;
 	float		norm;
 
-	vector_create(&w_u, 1, 1, 1);
+	vector_create(&w_u, 0, 1, 0);
 	vector_multiply_digit(&tmp, cam->depth, vector_scalar_product(cam->depth, &w_u));
 	vector_substract(&tmp2, &w_u, &tmp);
 	norm = 1 / vector_length(&tmp2);

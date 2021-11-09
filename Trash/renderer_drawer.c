@@ -14,12 +14,21 @@ void	renderer_draw(t_delegate *this)
 
 	prev = NULL;
 	i = 0;
-	printf("\n");
+	//printf("\n");
 	while (i < this->model->vertex_count)
 	{
 		matrix_multiply_vertex3D(
 			&v_tmp, this->renderer->mvp, this->model->vertices[i]);
-		printf("%f %f %f %f\n", v_tmp.x, v_tmp.y, v_tmp.z, v_tmp.w);
+		v_tmp.y *= -1;
+		v_tmp.x /= v_tmp.w; //!= 0 ? v_tmp.w : 1;
+		v_tmp.y /= v_tmp.w;//!= 0 ? v_tmp.w : 1;
+		v_tmp.z /= v_tmp.w; //!= 0 ? v_tmp.w : 1;
+		v_tmp.x = 0 + (1 + v_tmp.x) * this->renderer->screen_width / 2;
+		v_tmp.y = 0 + (1 + v_tmp.y) * this->renderer->screen_height / 2;
+		v_tmp.z = 0 + v_tmp.z * (1 - 0);
+		//printf("%f %f %f %f\n", v_tmp.x, v_tmp.y, v_tmp.z, v_tmp.w);
+//		printf("%f %f\n", v_tmp.x / v_tmp.z, v_tmp.y / v_tmp.z);
+		
 		if (prev != NULL)
 			renderer_draw_line(prev, &v_tmp, this->renderer->buffer);
 		prev = &v_tmp;

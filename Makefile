@@ -21,13 +21,12 @@ SRC		=	./delegate/app_delegate.c ./view/init.c ./model/generate.c \
 			./utils/arraylist_size.c ./utils/arraylist_array_unsafe.c \
 			./model/vertex_copy.c ./utils/arraylist_get.c \
 			./utils/arraylist_insert.c ./utils/arraylist_reset_indices.c \
-			./renderer/renderer_camera.c ./renderer/renderer_generate.c \
+			./renderer/renderer_camera.c ./renderer/renderer_draw.c \
 			./utils/math/vector.c ./utils/math/vector_delete.c \
-			./renderer/renderer_drawer.c ./renderer/renderer_image.c \
+			./renderer/renderer_image.c \
 			./utils/math/matrix_destroy.c ./utils/math/vector_add_sub.c \
 			./utils/math/vector_division.c \
-			./utils/math/vector_multiplications.c \
-			./renderer/renderer_generate_vectors.c
+			./utils/math/vector_multiplications.c
 
 # The path to the home made libft.
 LFT_D	=	./libft
@@ -84,7 +83,7 @@ all: $(NAME)
 # Runs a test file.
 .phony: run
 run: $(NAME)
-	./$(NAME) tester/files/42.fdf
+	./$(NAME) tester/files/42.fdf 1000 1000
 
 # Runs the norm checker on each registered source file.
 .phony: nor

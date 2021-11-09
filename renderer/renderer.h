@@ -131,8 +131,9 @@ t_vector	*renderer_generate_up(t_renderer_camera *camera);
  * is an instance of vertex3D, only the X and the Y coordinates are used.
  * Crashes if wrong arguments are given.
  */
-void		renderer_draw_point(t_vertex3D *point, t_renderer_image *buf);
+void		renderer_draw_point1(t_vertex3D *point, t_renderer_image *buf);
 
+void		renderer_draw_point(long pointX, long pointY, t_renderer_image *buf);
 /*
  * Adjusts the values for the loop of the Bresenham algorythm. Takes as
  * parameters the current point on the screen, the original difference between

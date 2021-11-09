@@ -28,3 +28,11 @@ float	vector_length(t_vector *this)
 		return (0);
 	return (sqrt(this->x * this->x + this->y * this->y + this->z * this->z));
 }
+
+void	vector_normalize(t_vector *this)
+{
+	float	l;
+
+	l = 1 / vector_length(this);
+	vector_multiply_digit(this, this, l);
+}

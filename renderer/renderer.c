@@ -28,12 +28,12 @@ int	delegate_pre_render(t_delegate **this)
 
 	if (this == NULL || *this == NULL)
 		return (-1);
-	(*this)->renderer->camera->view_point = vertex3D_new(0, 0, 0);
+	(*this)->renderer->camera->view_point = vertex3D_new(16, 11, 0);
 	(*this)->renderer->model = matrix_new(NULL, 4, 4);
 	matrix_fill_neutral((*this)->renderer->model);
 	(*this)->renderer->view = renderer_generate_view((*this)->renderer);
 	(*this)->renderer->projection = renderer_generate_projection(
-			(*this)->renderer, 0, 1);
+			(*this)->renderer, 0.1, 100);
 	mv = matrix_new_multiply((*this)->renderer->model, (*this)->renderer->view);
 	(*this)->renderer->mvp = matrix_new_multiply(
 			mv, (*this)->renderer->projection);

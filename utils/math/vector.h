@@ -61,6 +61,8 @@ void		vector_multiply_digit(
 				t_vector *this,
 				float multiplicator);
 
+void		vector_normalize(t_vector *this);
+
 /*
  * Performs a division with the given vector and stores the result in the
  * given vector. Does nothing if at least one vector is missing.
