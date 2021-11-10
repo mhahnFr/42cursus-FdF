@@ -8,122 +8,89 @@
 #include "delegate/app_delegate.h"
 #include "model/vertex.h"
 #include "utils/math/vector.h"
-
-void line(int, int, int, int, t_renderer_image*);
-void my_line(t_vertex3D*,t_vertex3D*,t_renderer_image*);
+#include "utils/point.h"
 
 void	renderer_draw(t_delegate *this)
 {
-	t_vertex3D	tmp;
-	t_vertex3D	prev;
+	t_point	tmp;
+	t_point	prev;
 
-	printf("\n");
+//	printf("\n");
 	for (size_t i = 0; i < this->model->vertex_count; i++) {
 		//printf("%f %f %f %f\n", this->model->vertices[i]->x, 
 		//	this->model->vertices[i]->y, this->model->vertices[i]->z,
 		//	this->model->vertices[i]->w);
-		vertex3D_create(&tmp, this->model->vertices[i]->x * 10, 
-			this->model->vertices[i]->y * 10, this->model->vertices[i]->z * 10);
-		if (i != 0) {
+		point_create(&tmp, this->model->vertices[i]->x * 10, this->model->vertices[i]->y * 10);
+		if (i != 0)
 			renderer_draw_line(&prev, &tmp, this->renderer->buffer);
-			vertex3D_create(&tmp, this->model->vertices[i - 1]->x, this->model->vertices[i - 1]->y,this->model->vertices[i - 1]->z);
-
-		//	my_line(&prev, &tmp, this->renderer->buffer);
-		}
-		vertex3D_create(&prev, tmp.x, tmp.y, tmp.z);
+		point_create(&prev, tmp.x, tmp.y);
 	}
 	mlx_put_image_to_window(this->mlx_ptr, this->windows->mlx_window,
 		this->renderer->buffer->mlx_img, 0, 0);
 }
 
-void	renderer_draw_line(t_vertex3D *first, t_vertex3D *second, t_renderer_image *buf) {
-	line(first->x, first->y, second->x, second->y, buf);
-/*	int err, stepX, stepY;
-	long firstX, firstY, secondX, secondY;
-
-	firstX = first->x;
-	firstY = first->y;
-	secondX = second->x;
-	secondY = second->y;
-	err = labs(secondX - firstX) + -labs(secondY - firstY);
-	stepX = firstX < secondX ? 1 : -1;
-	stepY = firstY < secondY ? 1 : -1;
-	size_t ctr = 0;
-	printf("\n");
-	while (true) {
-		ctr++;
-		printf("%zu\n", ctr);
-		renderer_draw_point(firstX, firstY, buf);
-		if (firstX == secondX && firstY == secondY)
-			break ;
-		if (err * 2 > secondY - firstY) {
-			err += secondY - firstY;
-			firstX += stepX;
-		}
-		if (err * 2 < secondX - firstX) {
-			err += secondX - firstX;
-			firstY += stepY;
-		}
-	}*/
-}
-
-void my_line(t_vertex3D *first, t_vertex3D *second, t_renderer_image *buf)
+void	renderer_draw_line(t_point *one, t_point *two, t_renderer_image *buf)
 {
-	long	dx, dy, sx, sy, err, e2;
-	long	x0, x1, y0, y1;
+	t_point	diff;
+	t_point	s;
+	long	err;
+	long	e2;
 
-	x0 = first->x;
-	x1 = second->x;
-	y0 = first->y;
-	y1 = second->y;
-	dx = labs(x1 - x0);
-	dy = -labs(y1 - y0);
-	sx = x0 < x1 ? 1 : -1;
-	sy = y0 < y1 ? 1 : -1;
-	err = dx + dy;
-	while (1) {
-		renderer_draw_point(x0, y0, buf);
-		if (x0 == x1 && y0 == y1)
+	point_create(&diff, labs(two->x - one->x), -labs(two->y - one->y));
+	point_create(&s, renderer_sp(one->x, two->x), renderer_sp(one->y, two->y));
+	err = diff.x + diff.y;
+	while (1)
+	{
+		renderer_draw_point(one, buf);
+		if (one->x == two->x && one->y == two->y)
 			break ;
 		e2 = 2 * err;
-		if (e2 > dy) {
-			err += dy;
-			x0 += sx;
+		if (e2 > diff.y)
+		{
+			err += diff.y;
+			one->x += s.x;
 		}
-		if (e2 < dx) {
-			err += dx;
-			y0 += sy;
+		if (e2 < diff.x)
+		{
+			err += diff.x;
+			one->y += s.y;
 		}
 	}
 }
 
-void line(int x0, int y0, int x1, int y1, t_renderer_image *buf)
+long	renderer_sp(long first, long second)
 {
-  int dx =  abs(x1-x0), sx = x0<x1 ? 1 : -1;
-  int dy = -abs(y1-y0), sy = y0<y1 ? 1 : -1;
-  int err = dx+dy, e2; /* error value e_xy */
-
-  while (1) {
-    renderer_draw_point(x0,y0, buf);
-    if (x0==x1 && y0==y1) break;
-    e2 = 2*err;
-    if (e2 > dy) { err += dy; x0 += sx; } /* e_xy+e_x > 0 */
-    if (e2 < dx) { err += dx; y0 += sy; } /* e_xy+e_y < 0 */
-  }
+	if (first > second)
+		return (-1);
+	return (1);
 }
 
-void	renderer_draw_point(long pointX, long pointY, t_renderer_image *buf)
+//void line(int x0, int y0, int x1, int y1, t_renderer_image *buf)
+//{
+//  int dx =  abs(x1-x0), sx = x0<x1 ? 1 : -1;
+//  int dy = -abs(y1-y0), sy = y0<y1 ? 1 : -1;
+//  int err = dx+dy, e2; /* error value e_xy */
+
+//  while (1) {
+//    renderer_draw_point(x0,y0, buf);
+//    if (x0==x1 && y0==y1) break;
+//    e2 = 2*err;
+//    if (e2 > dy) { err += dy; x0 += sx; } /* e_xy+e_x > 0 */
+//    if (e2 < dx) { err += dx; y0 += sy; } /* e_xy+e_y < 0 */
+//  }
+//}
+
+void	renderer_draw_point(t_point *point, t_renderer_image *buf)
 {
 	char	*dst;
 
-	if (pointX <= (long) buf->width && pointX >= 0
-		&& pointY <= (long) buf->height && pointY >= 0)
+	if (point->x <= (long) buf->width && point->x >= 0
+		&& point->y <= (long) buf->height && point->y >= 0)
 	{
-		dst = buf->raw + (long) pointX * (buf->depth / 8) + (long) pointY
+		dst = buf->raw + (long) point->x * (buf->depth / 8) + (long) point->y
 			* buf->line_size;
 		*(unsigned int *) dst = 0x00FFFFFF;
 	}
-//	printf("%f %f\n", point->x, point->y);
 }
 
 t_matrix	*renderer_generate_projection(t_renderer *this, float near, float far)

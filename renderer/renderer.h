@@ -26,6 +26,8 @@ typedef struct s_renderer
 
 typedef struct s_delegate	t_delegate;
 
+typedef struct s_point		t_point;
+
 /*
  * Represents a function that renders a frame. It is called in a loop by the
  * MiniLibX library, which passes a void pointer as payload. Returns an int,
@@ -69,12 +71,12 @@ void		renderer_create(
 void		renderer_draw(t_delegate *this);
 
 /*
- * Draws a line from the given vertex to the other one. They have to be screen
- * coordinates. Also takes a delegate object with the needed informations.
+ * Draws a line from the given point to the other one. They have to be screen
+ * coordinates. Also takes the buffer image in which to draw the line.
  */
 void		renderer_draw_line(
-				t_vertex3D *first,
-				t_vertex3D *second,
+				t_point *first,
+				t_point *second,
 				t_renderer_image *buf);
 
 /*
@@ -131,26 +133,12 @@ t_vector	*renderer_generate_up(t_renderer_camera *camera);
  * is an instance of vertex3D, only the X and the Y coordinates are used.
  * Crashes if wrong arguments are given.
  */
-void		renderer_draw_point1(t_vertex3D *point, t_renderer_image *buf);
-
-void		renderer_draw_point(long pointX, long pointY, t_renderer_image *buf);
-/*
- * Adjusts the values for the loop of the Bresenham algorythm. Takes as
- * parameters the current point on the screen, the original difference between
- * the two points and the step to which to move to. Also takes the error value,
- * which determines when to step on the next pixel. Crashes if wrong input is
- * given.
- */
-void		renderer_draw_loop_adjust(
-				t_vertex3D *point,
-				t_vertex3D *diff,
-				t_vertex3D *step,
-				int *err);
+void		renderer_draw_point(t_point *point, t_renderer_image *buf);
 
 /*
- * Returns wether the first number is bigger (1) or not (-1).
+ * Returns wether the first number is bigger (-1) or not (1).
  */
-int			renderer_get_step(int first, int second);
+long		renderer_sp(long first, long second);
 
 /*
  * Destroys the content of the given renderer object and its contents. Does
