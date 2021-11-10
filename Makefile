@@ -23,7 +23,7 @@ SRC		=	./delegate/app_delegate.c ./view/init.c ./model/generate.c \
 			./utils/arraylist_insert.c ./utils/arraylist_reset_indices.c \
 			./renderer/renderer_camera.c ./renderer/renderer_draw.c \
 			./utils/math/vector.c ./utils/math/vector_delete.c \
-			./renderer/renderer_image.c \
+			./renderer/renderer_image.c ./utils/point.c \
 			./utils/math/matrix_destroy.c ./utils/math/vector_add_sub.c \
 			./utils/math/vector_division.c \
 			./utils/math/vector_multiplications.c
