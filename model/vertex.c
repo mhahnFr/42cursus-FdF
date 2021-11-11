@@ -15,13 +15,12 @@ t_vertex3D	*vertex3D_new(double x, double y, double z)
 
 void	vertex3D_create(t_vertex3D *this, double x, double y, double z)
 {
-	if (this != NULL)
-	{
-		this->x = x;
-		this->y = y;
-		this->z = z;
-		this->w = 1;
-	}
+	if (this == NULL)
+		return ;
+	this->x = x;
+	this->y = y;
+	this->z = z;
+	this->w = 1;
 }
 
 t_matrix	*vertex3D_cast_matrix(t_vertex3D *this)

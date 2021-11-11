@@ -1,6 +1,8 @@
 #ifndef VERTEX_H
 # define VERTEX_H
 
+#include <stdbool.h>
+
 typedef struct s_matrix	t_matrix;
 
 /*
@@ -8,10 +10,10 @@ typedef struct s_matrix	t_matrix;
  */
 typedef struct s_vertex3D
 {
-	double	x;
-	double	y;
-	double	z;
-	double	w;
+	float	x;
+	float	y;
+	float	z;
+	float	w;
 }	t_vertex3D;
 
 /*
