@@ -15,20 +15,40 @@ t_model3D	*generate_parse_arguments(t_cli *cli_obj)
 	t_arraylist	*vertices_raw;
 	t_arraylist	*vertices;
 	t_model3D	*model;
-	size_t		count;
 
 	vertices_raw = generate_read_file(cli_obj->file);
 	vertices = generate_convert_vertices(vertices_raw);
 	arraylist_clear(
 		&vertices_raw,
 		(t_arraylist_remover) generate_del_chr_ar);
-	count = arraylist_size(vertices);
-	if (count <= 0)
-		return (NULL);
 	model = model3D_new(
-			(t_vertex3D **) arraylist_to_array_transfer(&vertices),
-			count);
+			generate_convert_and_count_contents(vertices),
+			arraylist_size_unsafe(vertices),
+			(t_vertex3D ***) arraylist_to_array_transfer_unsafe(&vertices));
 	return (model);
+}
+
+size_t	*generate_convert_and_count_contents(t_arraylist *list)
+{
+	t_arraylist	*tmp;
+	size_t		*ret;
+	size_t		count;
+
+	if (list == NULL)
+		return (NULL);
+	ret = malloc(sizeof(size_t) * arraylist_size_unsafe(list));
+	if (ret == NULL)
+		return (NULL);
+	count = 0;
+	while (list != NULL)
+	{
+		tmp = (t_arraylist *) list->content;
+		ret[count] = arraylist_size_unsafe(tmp);
+		list->content = arraylist_to_array_transfer_unsafe(&tmp);
+		list = list->next;
+		count++;
+	}
+	return (ret);
 }
 
 void	generate_del_chr_ar(char **array)
@@ -75,6 +95,7 @@ t_arraylist	*generate_read_file(char *file_name)
 t_arraylist	*generate_convert_vertices(t_arraylist *raw_vertices)
 {
 	t_arraylist	*ret;
+	t_arraylist	*i_list;
 	t_arraylist	*tmp;
 	size_t		i;
 
@@ -82,20 +103,19 @@ t_arraylist	*generate_convert_vertices(t_arraylist *raw_vertices)
 	while (raw_vertices != NULL)
 	{
 		i = 0;
+		i_list = NULL;
 		while (((void **) raw_vertices->content)[i] != NULL)
 		{
 			tmp = arraylist_new(
 					vertex3D_new(i, raw_vertices->index,
 						ft_atoi(((char **) raw_vertices->content)[i])));
 			if (tmp == NULL || tmp->content == NULL)
-			{
-				perror("FdF");
-				arraylist_clear(&ret, (t_arraylist_remover) vertex3D_delete);
-				return (NULL);
-			}
-			arraylist_append_unsafe(&ret, tmp);
+				return (generate_error_clear_double(&i_list,
+						(t_arraylist_remover) vertex3D_delete, &ret, NULL));
+			arraylist_append_unsafe(&i_list, tmp);
 			i++;
 		}
+		arraylist_append_unsafe(&ret, arraylist_new(i_list));
 		raw_vertices = raw_vertices->next;
 	}
 	return (ret);

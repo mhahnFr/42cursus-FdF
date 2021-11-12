@@ -35,4 +35,28 @@ void		generate_del_chr_ar(char **array);
  */
 t_arraylist	*generate_convert_vertices(t_arraylist *raw_vertices);
 
+/*
+ * Converts all arraylists inside of the given list to arrays and stores them
+ * in that list. Stores the count of each list inside of a new array, which is
+ * returned. Uses the unsafe arraylist functions. Returns either the newly
+ * allocated array or null if either the allocation failed or no list is given.
+ */
+size_t		*generate_convert_and_count_contents(t_arraylist *list);
+
+/*
+ * Clears the two given lists with the given remove functions. Displays an
+ * error message on the the standard error stream.
+ */
+t_arraylist	*generate_error_clear_double(
+				t_arraylist **list,
+				t_arraylist_remover r,
+				t_arraylist **second,
+				t_arraylist_remover r_second);
+
+/*
+ * Clears the given list using the given remove function. Displays an error
+ * message on the standard error stream.
+ */
+t_arraylist	*generate_error_clear(t_arraylist **list, t_arraylist_remover r);
+
 #endif
