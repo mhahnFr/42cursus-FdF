@@ -70,6 +70,6 @@ void	delegate_exit(t_delegate **this)
 {
 	// TODO Exit application when closing the window!!!
 	delegate_delete(this);
-	while (1);
+	system("leaks fdf");
 	exit(0);
 }
