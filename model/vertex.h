@@ -1,9 +1,11 @@
 #ifndef VERTEX_H
 # define VERTEX_H
 
-#include <stdbool.h>
+# include <stdbool.h>
 
 typedef struct s_matrix	t_matrix;
+
+typedef struct s_point	t_point;
 
 /*
  * Represents a three dimensional vertex.
@@ -41,6 +43,19 @@ t_vertex3D	*vertex3D_copy(t_vertex3D *this);
  * or no vertex is given.
  */
 t_matrix	*vertex3D_cast_matrix(t_vertex3D *this);
+
+/*
+ * Returns a new point consisting of the X and Y values of the given vertex.
+ * Returns either the newly allocated point or null if either the allocation
+ * failed or no vertex is given.
+ */
+t_point		*vertex3D_cast_new_point(t_vertex3D *this);
+
+/*
+ * Stores the X and Y values of the given vertex in the given point. Does
+ * nothing if at least one parameter is missing.
+ */
+void		vertex3D_cast_point(t_vertex3D *this, t_point *point);
 
 /*
  * Copies the values of the given vertex in the other given vertex. Does
