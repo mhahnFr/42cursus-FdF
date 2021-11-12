@@ -12,18 +12,15 @@
 
 void	renderer_draw(t_delegate *this)
 {
-	t_point	tmp;
-	t_point	prev;
+	t_point cur;
+	t_point tmp;
 
-//	printf("\n");
-	for (size_t i = 0; i < this->model->vertex_count; i++) {
-		//printf("%f %f %f %f\n", this->model->vertices[i]->x, 
-		//	this->model->vertices[i]->y, this->model->vertices[i]->z,
-		//	this->model->vertices[i]->w);
-		point_create(&tmp, this->model->vertices[i]->x * 10, this->model->vertices[i]->y * 10);
-		if (i != 0)
-			renderer_draw_line(&prev, &tmp, this->renderer->buffer);
-		point_create(&prev, tmp.x, tmp.y);
+	for (size_t i = 0; i < this->model->vertex_count_length; i++) {
+		for (size_t j = 0; j < this->model->vertex_count[i]; j++) {
+			vertex3D_cast_point(this->model->vertices[i][j], &cur);
+			vertex3D_cast_point(this->model->vertices[i][j], &tmp);
+			renderer_draw_line(&cur, &tmp, this->renderer->buffer);
+		}
 	}
 	mlx_put_image_to_window(this->mlx_ptr, this->windows->mlx_window,
 		this->renderer->buffer->mlx_img, 0, 0);
