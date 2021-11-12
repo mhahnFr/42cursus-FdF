@@ -12,8 +12,8 @@
 
 void	renderer_draw(t_delegate *this)
 {
-	t_point cur;
-	t_point tmp;
+	t_point	cur;
+	t_point	tmp;
 
 	for (size_t i = 0; i < this->model->vertex_count_length; i++) {
 		for (size_t j = 0; j < this->model->vertex_count[i]; j++) {
@@ -97,7 +97,7 @@ t_matrix	*renderer_generate_projection(t_renderer *this, float near, float far)
 	return NULL;
 }
 
-t_matrix *renderer_generate_view(t_renderer *this) {
+t_matrix	*renderer_generate_view(t_renderer *this) {
 	this = NULL;
 	return NULL;
 }
