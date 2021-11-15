@@ -12,9 +12,9 @@ t_matrix	*vertex3D_cast_matrix(t_vertex3D *this)
 	if (ret == NULL)
 		return (NULL);
 	ret->values[0][0] = this->x;
-	ret->values[1][0] = this->y;
-	ret->values[2][0] = this->z;
-	ret->values[3][0] = this->w;
+	ret->values[0][1] = this->y;
+	ret->values[0][2] = this->z;
+	ret->values[0][3] = this->w;
 	return (ret);
 }
 
