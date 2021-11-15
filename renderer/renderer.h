@@ -128,6 +128,11 @@ t_vector	*renderer_generate_right(t_renderer_camera *camera);
  */
 t_vector	*renderer_generate_up(t_renderer_camera *camera);
 
+void		renderer_generate_point(
+				t_renderer *this,
+				t_vertex3D *result,
+				t_vertex3D *point);
+
 /*
  * Draws a point in the given image, if the point is on that image. The point
  * is an instance of vertex3D, only the X and the Y coordinates are used.

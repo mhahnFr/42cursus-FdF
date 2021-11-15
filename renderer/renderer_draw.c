@@ -12,29 +12,42 @@
 
 void	renderer_draw(t_delegate *this)
 {
-	t_point	cur;
-	t_point	tmp;
+	t_point		cur;
+	t_point		tmp;
+	t_vertex3D	v_tmp;
+	t_vertex3D	vv_tmp;
 
 	for (size_t i = 0; i < this->model->vertex_count_length; i++) {
 		for (size_t j = 0; j < this->model->vertex_count[i]; j++) {
-			vertex3D_cast_point(this->model->vertices[i][j], &cur);
+			matrix_multiply_vertex3D(&v_tmp, this->renderer->mvp, this->model->vertices[i][j]);
+			// Alle multiplizieren!!!
+			renderer_generate_point(this->renderer, &v_tmp, &vv_tmp);
+			vertex3D_cast_point(&vv_tmp, &cur);
 			if (j < this->model->vertex_count[i] - 1) {
-				vertex3D_cast_point(this->model->vertices[i][j + 1], &tmp);
+				matrix_multiply_vertex3D(&v_tmp, this->renderer->mvp, this->model->vertices[i][j + 1]);
+				renderer_generate_point(this->renderer, &vv_tmp, &v_tmp);
+				vertex3D_cast_point(&vv_tmp, &tmp);
 				renderer_draw_line(&cur, &tmp, this->renderer->buffer);
 			}
-			if (j > 0) {
-				vertex3D_cast_point(this->model->vertices[i][j - 1], &tmp);
+/*			if (j > 0) {
+				matrix_multiply_vertex3D(&v_tmp, this->renderer->mvp, this->model->vertices[i][j - 1]);
+				renderer_generate_point(this->renderer, &vv_tmp, &v_tmp);
+				vertex3D_cast_point(&vv_tmp, &tmp);
 				renderer_draw_line(&cur, &tmp, this->renderer->buffer);
 			}
-			if (i > 0) {
-				vertex3D_cast_point(this->model->vertices[i - 1][j], &tmp);
+*//*			if (i > 0) {
+				matrix_multiply_vertex3D(&v_tmp, this->renderer->mvp, this->model->vertices[i - 1][j]);
+				renderer_generate_point(this->renderer, &vv_tmp, &v_tmp);
+				vertex3D_cast_point(&vv_tmp, &tmp);
 				renderer_draw_line(&cur, &tmp, this->renderer->buffer);
 			}
-			if (i < this->model->vertex_count_length - 1) {
-				vertex3D_cast_point(this->model->vertices[i + 1][j], &tmp);
+*//*			if (i < this->model->vertex_count_length - 1) {
+				matrix_multiply_vertex3D(&v_tmp, this->renderer->mvp, this->model->vertices[i + 1][j]);
+				renderer_generate_point(this->renderer, &vv_tmp, &v_tmp);
+				vertex3D_cast_point(&vv_tmp, &tmp);
 				renderer_draw_line(&cur, &tmp, this->renderer->buffer);
 			}
-		}
+*/		}
 	}
 	mlx_put_image_to_window(this->mlx_ptr, this->windows->mlx_window,
 		this->renderer->buffer->mlx_img, 0, 0);
@@ -95,23 +108,11 @@ void	renderer_draw_point(t_point *point, t_renderer_image *buf)
 {
 	char	*dst;
 
-	if (point->x <= (long) buf->width && point->x >= 0
-		&& point->y <= (long) buf->height && point->y >= 0)
+	if (point->x < (long) buf->width && point->x >= 0
+		&& point->y < (long) buf->height && point->y >= 0)
 	{
 		dst = buf->raw + (long) point->x * (buf->depth / 8) + (long) point->y
 			* buf->line_size;
 		*(unsigned int *) dst = 0x00FFFFFF;
 	}
-}
-
-t_matrix	*renderer_generate_projection(t_renderer *this, float near, float far)
-{
-	this = NULL;
-	near = far;
-	return NULL;
-}
-
-t_matrix	*renderer_generate_view(t_renderer *this) {
-	this = NULL;
-	return NULL;
 }
