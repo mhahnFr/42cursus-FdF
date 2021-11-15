@@ -23,6 +23,7 @@ void	renderer_camera_create(t_renderer_camera *this, t_vertex3D *position)
 	this->width = NULL;
 	this->height = NULL;
 	this->view_point = NULL;
+	this->up = vertex3D_new(0, 1, 0);
 }
 
 void	renderer_camera_destroy(t_renderer_camera *this)
@@ -34,6 +35,7 @@ void	renderer_camera_destroy(t_renderer_camera *this)
 	vector_destroy(this->width);
 	vector_destroy(this->height);
 	vertex3D_destroy(this->view_point);
+	vertex3D_destroy(this->up);
 }
 
 void	renderer_camera_delete(t_renderer_camera *this)
@@ -45,5 +47,6 @@ void	renderer_camera_delete(t_renderer_camera *this)
 	vector_delete(this->width);
 	vector_delete(this->height);
 	vertex3D_delete(this->view_point);
+	vertex3D_delete(this->up);
 	free(this);
 }

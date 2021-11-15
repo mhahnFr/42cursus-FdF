@@ -14,6 +14,7 @@ typedef struct s_renderer_camera
 	t_vector	*depth;
 	t_vector	*width;
 	t_vector	*height;
+	t_vertex3D	*up;
 }	t_renderer_camera;
 
 /*
