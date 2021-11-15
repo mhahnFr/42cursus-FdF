@@ -17,7 +17,5 @@ size_t	arraylist_size_unsafe(t_arraylist *this)
 {
 	if (this == NULL)
 		return (0);
-	while (this->next != NULL)
-		this = this->next;
-	return (this->index + 1);
+	return (this->previous->index + 1);
 }
