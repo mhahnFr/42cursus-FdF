@@ -3,6 +3,7 @@
 #include "vertex.h"
 #include "utils/point.h"
 #include "utils/math/matrix.h"
+#include "utils/math/vector.h"
 
 t_matrix	*vertex3D_cast_matrix(t_vertex3D *this)
 {
@@ -33,4 +34,21 @@ void	vertex3D_cast_point(t_vertex3D *this, t_point *point)
 	if (this == NULL || point == NULL)
 		return ;
 	point_create(point, this->x, this->y);
+}
+
+t_vector	*vertex3D_cast_new_vector(t_vertex3D *this)
+{
+	t_vector	*ret;
+
+	if (this == NULL)
+		return (NULL);
+	ret = vector_new(this->x, this->y, this->z);
+	return (ret);
+}
+
+void	vertex3D_cast_vector(t_vertex3D *this, t_vector *vector)
+{
+	if (this == NULL || vector == NULL)
+		return ;
+	vector_create(vector, this->x, this->y, this->z);
 }

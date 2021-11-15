@@ -7,6 +7,8 @@ typedef struct s_matrix	t_matrix;
 
 typedef struct s_point	t_point;
 
+typedef struct s_vector	t_vector;
+
 /*
  * Represents a three dimensional vertex.
  */
@@ -56,6 +58,10 @@ t_point		*vertex3D_cast_new_point(t_vertex3D *this);
  * nothing if at least one parameter is missing.
  */
 void		vertex3D_cast_point(t_vertex3D *this, t_point *point);
+
+t_vector	*vertex3D_cast_new_vector(t_vertex3D *this);
+
+void		vertex3D_cast_vector(t_vertex3D *this, t_vector *vector);
 
 /*
  * Copies the values of the given vertex in the other given vertex. Does
