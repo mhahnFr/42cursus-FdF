@@ -18,8 +18,22 @@ void	renderer_draw(t_delegate *this)
 	for (size_t i = 0; i < this->model->vertex_count_length; i++) {
 		for (size_t j = 0; j < this->model->vertex_count[i]; j++) {
 			vertex3D_cast_point(this->model->vertices[i][j], &cur);
-			vertex3D_cast_point(this->model->vertices[i][j], &tmp);
-			renderer_draw_line(&cur, &tmp, this->renderer->buffer);
+			if (j < this->model->vertex_count[i] - 1) {
+				vertex3D_cast_point(this->model->vertices[i][j + 1], &tmp);
+				renderer_draw_line(&cur, &tmp, this->renderer->buffer);
+			}
+			if (j > 0) {
+				vertex3D_cast_point(this->model->vertices[i][j - 1], &tmp);
+				renderer_draw_line(&cur, &tmp, this->renderer->buffer);
+			}
+			if (i > 0) {
+				vertex3D_cast_point(this->model->vertices[i - 1][j], &tmp);
+				renderer_draw_line(&cur, &tmp, this->renderer->buffer);
+			}
+			if (i < this->model->vertex_count_length - 1) {
+				vertex3D_cast_point(this->model->vertices[i + 1][j], &tmp);
+				renderer_draw_line(&cur, &tmp, this->renderer->buffer);
+			}
 		}
 	}
 	mlx_put_image_to_window(this->mlx_ptr, this->windows->mlx_window,
