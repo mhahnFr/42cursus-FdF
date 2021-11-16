@@ -64,11 +64,7 @@ t_matrix	*renderer_generate_view(t_renderer *this)
 	if (ret == NULL)
 		return (NULL);
 	matrix_fill_neutral(ret);
-	vector_substract(&zaxis, this->camera->pos, this->camera->view_point);
-	vector_normalize(&zaxis);
-	vector_multiply(&xaxis, this->camera->up, &zaxis);
-	vector_normalize(&xaxis);
-	vector_multiply(&yaxis, &zaxis, &xaxis);
+	renderer_generate_proj_vectors(this, &xaxis, &yaxis, &zaxis);
 	ret->values[0][0] = xaxis.x;
 	ret->values[1][0] = xaxis.y;
 	ret->values[2][0] = xaxis.z;
@@ -84,11 +80,28 @@ t_matrix	*renderer_generate_view(t_renderer *this)
 	return (ret);
 }
 
+void	renderer_generate_proj_vectors(
+			t_renderer *this,
+			t_vector *xaxis,
+			t_vector *yaxis,
+			t_vector *zaxis)
+{
+	if (this == NULL || xaxis == NULL || yaxis == NULL || zaxis == NULL)
+		return ;
+	vector_substract(zaxis, this->camera->pos, this->camera->view_point);
+	vector_normalize(zaxis);
+	vector_multiply(xaxis, this->camera->up, zaxis);
+	vector_normalize(xaxis);
+	vector_multiply(yaxis, zaxis, xaxis);
+}
+
 void	renderer_generate_point(
 			t_renderer *this,
 			t_vertex3D *result,
 			t_vertex3D *point)
 {
+	if (this == NULL || result == NULL || point == NULL)
+		return ;
 	result->x = (1.0 + point->x) * this->buffer->width / 2.0;
 	result->y = (1.0 + point->y) * this->buffer->height / 2.0;
 	// TODO save min/max z values!!!
