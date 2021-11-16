@@ -97,37 +97,22 @@ t_matrix	*renderer_generate_projection(
 				float far);
 
 /*
- * Stores the vector and the floating point value in the given float array.
- * Does nothing if no vector or no array is given.
+ * Generates the values for the given vectors. The vectors are supposed to be
+ * used for the projection matrix. Does nothing if at least one parameter is
+ * missing.
  */
-void		renderer_generate_append(float result[4], t_vector *vec, float z);
+void		renderer_generate_proj_vectors(
+				t_renderer *this,
+				t_vector *xaxis,
+				t_vector *yaxis,
+				t_vector *zaxis);
 
 /*
- * Generates the vectors for the rendderer camera.
+ * Performs the viewport transformation. Calculates a point on the screen based
+ * on the values of the given renderer and the given point. Stores the result
+ * in the given vertex object. Does nothing if at least one parameter is
+ * missing.
  */
-void		renderer_generate_vectors(t_renderer_camera *camera);
-
-/*
- * Generates the depth vector for the given camera. Returns either a newly
- * allocated vector or null if either the allocation failed or no camera is
- * given.
- */
-t_vector	*renderer_generate_depth(t_renderer_camera *camera);
-
-/*
- * Generates the right vector for the given camera. Returns either the newly
- * allocated vector or null if either the allocation failed or no camera is
- * given.
- */
-t_vector	*renderer_generate_right(t_renderer_camera *camera);
-
-/*
- * Generates the up vector for the given camera. Returns either the newly
- * allocated vector or null if either the allocation failed or no camera is
- * given.
- */
-t_vector	*renderer_generate_up(t_renderer_camera *camera);
-
 void		renderer_generate_point(
 				t_renderer *this,
 				t_vertex3D *result,
