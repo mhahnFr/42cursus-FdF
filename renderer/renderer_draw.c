@@ -15,39 +15,28 @@ void	renderer_draw(t_delegate *this)
 	t_point		cur;
 	t_point		tmp;
 	t_vertex3D	v_tmp;
-	t_vertex3D	vv_tmp;
+	t_vertex3D	start_conv;
+	t_vertex3D	vvv_tmp;
 
 	for (size_t i = 0; i < this->model->vertex_count_length; i++) {
 		for (size_t j = 0; j < this->model->vertex_count[i]; j++) {
 			matrix_multiply_vertex3D(&v_tmp, this->renderer->mvp, this->model->vertices[i][j]);
-			// Alle multiplizieren!!!
-			renderer_generate_point(this->renderer, &v_tmp, &vv_tmp);
-			vertex3D_cast_point(&vv_tmp, &cur);
+			renderer_generate_point(this->renderer, &start_conv, &v_tmp);
+			vertex3D_cast_point(&start_conv, &cur);
 			if (j < this->model->vertex_count[i] - 1) {
 				matrix_multiply_vertex3D(&v_tmp, this->renderer->mvp, this->model->vertices[i][j + 1]);
-				renderer_generate_point(this->renderer, &vv_tmp, &v_tmp);
-				vertex3D_cast_point(&vv_tmp, &tmp);
+				renderer_generate_point(this->renderer, &vvv_tmp, &v_tmp);
+				vertex3D_cast_point(&vvv_tmp, &tmp);
 				renderer_draw_line(&cur, &tmp, this->renderer->buffer);
 			}
-/*			if (j > 0) {
-				matrix_multiply_vertex3D(&v_tmp, this->renderer->mvp, this->model->vertices[i][j - 1]);
-				renderer_generate_point(this->renderer, &vv_tmp, &v_tmp);
-				vertex3D_cast_point(&vv_tmp, &tmp);
-				renderer_draw_line(&cur, &tmp, this->renderer->buffer);
-			}
-*//*			if (i > 0) {
-				matrix_multiply_vertex3D(&v_tmp, this->renderer->mvp, this->model->vertices[i - 1][j]);
-				renderer_generate_point(this->renderer, &vv_tmp, &v_tmp);
-				vertex3D_cast_point(&vv_tmp, &tmp);
-				renderer_draw_line(&cur, &tmp, this->renderer->buffer);
-			}
-*//*			if (i < this->model->vertex_count_length - 1) {
+			if (i < this->model->vertex_count_length - 1) {
 				matrix_multiply_vertex3D(&v_tmp, this->renderer->mvp, this->model->vertices[i + 1][j]);
-				renderer_generate_point(this->renderer, &vv_tmp, &v_tmp);
-				vertex3D_cast_point(&vv_tmp, &tmp);
+				renderer_generate_point(this->renderer, &vvv_tmp, &v_tmp);
+				vertex3D_cast_point(&vvv_tmp, &tmp);
+				vertex3D_cast_point(&start_conv, &cur);
 				renderer_draw_line(&cur, &tmp, this->renderer->buffer);
 			}
-*/		}
+		}
 	}
 	mlx_put_image_to_window(this->mlx_ptr, this->windows->mlx_window,
 		this->renderer->buffer->mlx_img, 0, 0);
