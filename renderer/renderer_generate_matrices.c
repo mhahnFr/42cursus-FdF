@@ -3,7 +3,7 @@
 #include "renderer.h"
 #include "utils/math/matrix.h"
 
-t_matrix	*renderer_generate_projection(t_renderer *this)
+t_matrix	*renderer_generate_projection_per(t_renderer *this)
 {
 	t_matrix	*ret;
 	float		w;
@@ -20,12 +20,11 @@ t_matrix	*renderer_generate_projection(t_renderer *this)
 	ret->values[1][1] = h;
 	ret->values[2][2] = this->far_z / (this->near_z - this->far_z);
 	ret->values[2][3] = -1;
-	ret->values[3][2]
-		= (this->near_z * this->far_z) / (this->near_z - this->far_z);
+	ret->values[3][2] = (this->near_z * this->far_z) / (this->near_z - this->far_z);
 	return (ret);
 }
 
-t_matrix	*renderer_generate_projection_ort(t_renderer *this)
+t_matrix	*renderer_generate_projection(t_renderer *this)
 {
 	t_matrix	*ret;
 	float		w;
@@ -36,7 +35,7 @@ t_matrix	*renderer_generate_projection_ort(t_renderer *this)
 	ret = matrix_new_filled(0, 4, 4);
 	if (ret == NULL)
 		return (NULL);
-	h = 1 / tan(30);
+	h = 1 / tan(3);
 	w = h / (this->screen_width / this->screen_height);
 	ret->values[0][0] = 2.0 / w;
 	ret->values[1][1] = 2.0 / h;
