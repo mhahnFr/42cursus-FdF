@@ -3,10 +3,7 @@
 #include "renderer.h"
 #include "utils/math/matrix.h"
 
-t_matrix	*renderer_generate_projection(
-				t_renderer *this,
-				float near,
-				float far)
+t_matrix	*renderer_generate_projection(t_renderer *this)
 {
 	t_matrix	*ret;
 	float		w;
@@ -21,16 +18,14 @@ t_matrix	*renderer_generate_projection(
 	w = h / (this->screen_width / this->screen_height);
 	ret->values[0][0] = w;
 	ret->values[1][1] = h;
-	ret->values[2][2] = far / (near - far);
+	ret->values[2][2] = this->far_z / (this->near_z - this->far_z);
 	ret->values[2][3] = -1;
-	ret->values[3][2] = (near * far) / (near - far);
+	ret->values[3][2]
+		= (this->near_z * this->far_z) / (this->near_z - this->far_z);
 	return (ret);
 }
 
-t_matrix	*renderer_generate_projection_ort(
-				t_renderer *this,
-				float near,
-				float far)
+t_matrix	*renderer_generate_projection_ort(t_renderer *this)
 {
 	t_matrix	*ret;
 	float		w;
@@ -45,9 +40,9 @@ t_matrix	*renderer_generate_projection_ort(
 	w = h / (this->screen_width / this->screen_height);
 	ret->values[0][0] = 2.0 / w;
 	ret->values[1][1] = 2.0 / h;
-	ret->values[2][2] = 1.0 / (near - far);
+	ret->values[2][2] = 1.0 / (this->near_z - this->far_z);
 	ret->values[2][3] = -1;
-	ret->values[3][2] = near / (near - far);
+	ret->values[3][2] = this->near_z / (this->near_z - this->far_z);
 	return (ret);
 }
 
@@ -104,6 +99,5 @@ void	renderer_generate_point(
 		return ;
 	result->x = (1.0 + point->x) * this->buffer->width / 2.0;
 	result->y = (1.0 + point->y) * this->buffer->height / 2.0;
-	// TODO save min/max z values!!!
-	result->z = 0.1 + point->z * (100 - 0.1);
+	result->z = this->near_z + point->z * (this->far_z - this->near_z);
 }
