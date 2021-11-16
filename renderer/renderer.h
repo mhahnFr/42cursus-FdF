@@ -9,7 +9,9 @@
  * Represents a renderer. Contains a matrix object for every possible
  * transformation, so there is a model, a view and a projection matrix. Also,
  * there is a combined matrix, as the matrices do not need to be recalculated
- * for every frame.
+ * for every frame. The screen bounds are stored, a framebuffer is present, the
+ * camera includes the view points and finally, there are the clipping
+ * distances.
  */
 typedef struct s_renderer
 {
@@ -20,6 +22,8 @@ typedef struct s_renderer
 	t_matrix			*mvp;
 	size_t				screen_width;
 	size_t				screen_height;
+	float				near_z;
+	float				far_z;
 	t_renderer_camera	*camera;
 	t_renderer_image	*buffer;
 }	t_renderer;
