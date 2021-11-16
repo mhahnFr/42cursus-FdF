@@ -95,10 +95,7 @@ t_matrix	*renderer_generate_view(t_renderer *this);
  * either the newly allocated matrix or null, if the allocation failed or no
  * renderer is given.
  */
-t_matrix	*renderer_generate_projection(
-				t_renderer *this,
-				float near,
-				float far);
+t_matrix	*renderer_generate_projection(t_renderer *this);
 
 /*
  * Generates the values for the given vectors. The vectors are supposed to be
@@ -128,6 +125,30 @@ void		renderer_generate_point(
  * Crashes if wrong arguments are given.
  */
 void		renderer_draw_point(t_point *point, t_renderer_image *buf);
+
+/*
+ * Modifies the given matrix in a way to perform a rotation araound the Z axis.
+ * Does nothing if no matrix is given.
+ */
+void		renderer_rotate_matrix_z(t_matrix *rot, float angle);
+
+/*
+ * Modifies the given matrix in a way to perform a rotation around the Y axis.
+ * Does nothing if no matrix is given.
+ */
+void		renderer_rotate_matrix_y(t_matrix *rot, float angle);
+
+/*
+ * Modifies the given matrix in a way to perform a rotation around the X axis.
+ * Does nothing if no matrix is given.
+ */
+void		renderer_rotate_matrix_x(t_matrix *rot, float angle);
+
+/*
+ * Modifies the given matrix in a way to perform a translation with the values
+ * of the given vector. Does nothing if no matrix or no vector is given.
+ */
+void		renderer_move_matrix(t_matrix *m, t_vector *vec);
 
 /*
  * Returns wether the first number is bigger (-1) or not (1).
