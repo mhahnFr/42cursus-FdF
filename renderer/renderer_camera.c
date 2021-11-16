@@ -2,7 +2,7 @@
 
 #include "renderer_camera.h"
 
-t_renderer_camera	*renderer_camera_new(t_vertex3D *position)
+t_renderer_camera	*renderer_camera_new(t_vector *position)
 {
 	t_renderer_camera	*ret;
 
@@ -14,39 +14,30 @@ t_renderer_camera	*renderer_camera_new(t_vertex3D *position)
 	return (ret);
 }
 
-void	renderer_camera_create(t_renderer_camera *this, t_vertex3D *position)
+void	renderer_camera_create(t_renderer_camera *this, t_vector *position)
 {
 	if (this == NULL || position == NULL)
 		return ;
 	this->pos = position;
-	this->depth = NULL;
-	this->width = NULL;
-	this->height = NULL;
 	this->view_point = NULL;
-	this->up = vertex3D_new(0, 1, 0);
+	this->up = vector_new(0, 1, 0);
 }
 
 void	renderer_camera_destroy(t_renderer_camera *this)
 {
 	if (this == NULL)
 		return ;
-	vertex3D_destroy(this->pos);
-	vector_destroy(this->depth);
-	vector_destroy(this->width);
-	vector_destroy(this->height);
-	vertex3D_destroy(this->view_point);
-	vertex3D_destroy(this->up);
+	vector_destroy(this->pos);
+	vector_destroy(this->view_point);
+	vector_destroy(this->up);
 }
 
 void	renderer_camera_delete(t_renderer_camera *this)
 {
 	if (this == NULL)
 		return ;
-	vertex3D_delete(this->pos);
-	vector_delete(this->depth);
-	vector_delete(this->width);
-	vector_delete(this->height);
-	vertex3D_delete(this->view_point);
-	vertex3D_delete(this->up);
+	vector_delete(this->pos);
+	vector_delete(this->view_point);
+	vector_delete(this->up);
 	free(this);
 }

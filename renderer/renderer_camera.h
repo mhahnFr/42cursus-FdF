@@ -9,12 +9,9 @@
  */
 typedef struct s_renderer_camera
 {
-	t_vertex3D	*pos;
-	t_vertex3D	*view_point;
-	t_vector	*depth;
-	t_vector	*width;
-	t_vector	*height;
-	t_vertex3D	*up;
+	t_vector	*pos;
+	t_vector	*view_point;
+	t_vector	*up;
 }	t_renderer_camera;
 
 /*
@@ -22,7 +19,7 @@ typedef struct s_renderer_camera
  * newly allocated camera or null, if either the allocation failed or no
  * position is given.
  */
-t_renderer_camera	*renderer_camera_new(t_vertex3D *position);
+t_renderer_camera	*renderer_camera_new(t_vector *position);
 
 /*
  * Initializes the given camera object using the given position. Does nothing,
@@ -30,7 +27,7 @@ t_renderer_camera	*renderer_camera_new(t_vertex3D *position);
  */
 void				renderer_camera_create(
 						t_renderer_camera *this,
-						t_vertex3D *position);
+						t_vector *position);
 
 /*
  * Destroys the given camera object. Does nothing if no object is given.
