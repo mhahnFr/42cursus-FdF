@@ -18,14 +18,12 @@ int	onApplicationFinishedLaunching(t_model3D *model, void *view, t_cli *cli_obj)
 		cli_obj->height = 50;
 	}
 	this->windows = delegate_get_new_window(view, cli_obj->width,
-			cli_obj->height, "FdF");
+			cli_obj->height, cli_obj->file);
 	mlx_key_hook(this->windows->mlx_window,
 		(t_delegate_key_touched) delegate_key_touched, &this);
 	window_set_key_listener(
 		this->windows, key_listener_new(delegate_main_window_key_touched));
-//	unsigned long x = this->model->vertex_count[0] / 2;
-//	unsigned long y = this->model->vertex_count_length / 2;
-	this->renderer = renderer_new(renderer_camera_new(vector_new(-1, -1, 10)),
+	this->renderer = renderer_new(renderer_camera_new(vector_new(-100, -100, 100)),
 			cli_obj->width, cli_obj->height);
 	if (this->renderer == NULL)
 		delegate_exit(&this);
