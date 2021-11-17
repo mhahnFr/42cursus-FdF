@@ -79,8 +79,8 @@ void		renderer_draw(t_delegate *this);
  * coordinates. Also takes the buffer image in which to draw the line.
  */
 void		renderer_draw_line(
-				t_point *first,
-				t_point *second,
+				t_point first,
+				t_point second,
 				t_renderer_image *buf);
 
 /*
