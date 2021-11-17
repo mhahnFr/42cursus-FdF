@@ -31,11 +31,6 @@ int	delegate_pre_render(t_delegate **this)
 	(*this)->renderer->camera->view_point = vector_new(10, 10, 10);
 	(*this)->renderer->model = matrix_new(NULL, 4, 4);
 	matrix_fill_neutral((*this)->renderer->model);
-//	renderer_move_matrix((*this)->renderer->model,
-//			vector_new(
-//				-((*this)->model->vertex_count[0] / 2),
-//				-((*this)->model->vertex_count_length / 2),
-//				0));
 	renderer_rotate_matrix_z((*this)->renderer->model, 180);
 	(*this)->renderer->view = renderer_generate_view((*this)->renderer);
 	(*this)->renderer->near_z = 0.1;
