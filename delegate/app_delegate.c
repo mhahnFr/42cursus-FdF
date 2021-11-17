@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "mlx.h"
 
@@ -165,6 +166,17 @@ void	delegate_main_window_key_touched(
 		renderer_multiply_matrices(
 			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
+	else if (k_event->key == RETURN)
+		printf("Camera position: %f %f %f\nView point: %f %f %f\n",
+			(*((t_delegate **) w_event->pay_load))->renderer->camera->pos->x,
+			(*((t_delegate **) w_event->pay_load))->renderer->camera->pos->y,
+			(*((t_delegate **) w_event->pay_load))->renderer->camera->pos->z,
+			(*((t_delegate **) w_event->pay_load))->renderer->camera
+			->view_point->x,
+			(*((t_delegate **) w_event->pay_load))->renderer->camera
+			->view_point->y,
+			(*((t_delegate **) w_event->pay_load))->renderer->camera
+			->view_point->z);
 	else
 		ft_printf("Key pressed on main window: %d\n", k_event->key);
 }
