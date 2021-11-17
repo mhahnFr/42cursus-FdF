@@ -20,7 +20,8 @@ t_matrix	*renderer_generate_projection_per(t_renderer *this)
 	ret->values[1][1] = h;
 	ret->values[2][2] = this->far_z / (this->near_z - this->far_z);
 	ret->values[2][3] = -1;
-	ret->values[3][2] = (this->near_z * this->far_z) / (this->near_z - this->far_z);
+	ret->values[3][2]
+		= (this->near_z * this->far_z) / (this->near_z - this->far_z);
 	return (ret);
 }
 
