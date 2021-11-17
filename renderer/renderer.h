@@ -107,6 +107,12 @@ void		renderer_set_perspective_projection(t_renderer *this);
 void		renderer_set_orthogonal_projection(t_renderer *this);
 
 /*
+ * Sets the view matrix off the given renderer. Does nothing if no renderer is
+ * given or if needed values are missing in the renderer object.
+ */
+void		renderer_set_view(t_renderer *this);
+
+/*
  * Generates the values for the given vectors. The vectors are supposed to be
  * used for the projection matrix. Does nothing if at least one parameter is
  * missing.

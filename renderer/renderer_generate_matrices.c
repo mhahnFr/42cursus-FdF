@@ -39,7 +39,31 @@ void	renderer_set_orthogonal_projection(t_renderer *this)
 		= this->near_z / (this->near_z - this->far_z);
 }
 
-t_matrix	*renderer_generate_view(t_renderer *this)
+void	renderer_set_view(t_renderer *this)
+{
+	t_vector	xaxis;
+	t_vector	yaxis;
+	t_vector	zaxis;
+
+	if (this == NULL || this->view == NULL)
+		return ;
+	matrix_fill_neutral(this->view);
+	renderer_generate_proj_vectors(this, &xaxis, &yaxis, &zaxis);
+	this->view->values[0][0] = xaxis.x;
+	this->view->values[1][0] = xaxis.y;
+	this->view->values[2][0] = xaxis.z;
+	this->view->values[3][0] = -vector_scalar_product(&xaxis, this->camera->pos);
+	this->view->values[0][1] = yaxis.x;
+	this->view->values[1][1] = yaxis.y;
+	this->view->values[2][1] = yaxis.z;
+	this->view->values[3][1] = -vector_scalar_product(&yaxis, this->camera->pos);
+	this->view->values[0][2] = zaxis.x;
+	this->view->values[1][2] = zaxis.y;
+	this->view->values[2][2] = zaxis.z;
+	this->view->values[3][2] = -vector_scalar_product(&zaxis, this->camera->pos);
+}
+
+/*t_matrix	*renderer_generate_view(t_renderer *this)
 {
 	t_matrix	*ret;
 	t_vector	zaxis;
@@ -66,7 +90,7 @@ t_matrix	*renderer_generate_view(t_renderer *this)
 	ret->values[2][2] = zaxis.z;
 	ret->values[3][2] = -vector_scalar_product(&zaxis, this->camera->pos);
 	return (ret);
-}
+}*/
 
 void	renderer_generate_proj_vectors(
 			t_renderer *this,
