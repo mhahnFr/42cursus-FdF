@@ -42,7 +42,8 @@ int	delegate_pre_render(t_delegate **this)
 	(*this)->renderer->far_z = 10;
 	(*this)->renderer->projection = renderer_generate_projection(
 			(*this)->renderer);
-	mv = matrix_new_multiply((*this)->renderer->model, (*this)->renderer->view);
+	mv = matrix_new_multiply((*this)->renderer->model,
+			(*this)->renderer->view);
 	(*this)->renderer->mvp = matrix_new_multiply(
 			mv, (*this)->renderer->projection);
 	matrix_delete(mv);
