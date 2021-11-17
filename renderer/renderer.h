@@ -1,6 +1,8 @@
 #ifndef RENDERER_H
 # define RENDERER_H
 
+# include <stdbool.h>
+
 # include "utils/math/matrix.h"
 # include "renderer_camera.h"
 # include "renderer_image.h"
@@ -91,13 +93,6 @@ void		renderer_draw_line(
 t_matrix	*renderer_generate_view(t_renderer *this);
 
 /*
- * Generates an appopriate projection matrix for the given renderer. Returns
- * either the newly allocated matrix or null, if the allocation failed or no
- * renderer is given.
- */
-t_matrix	*renderer_generate_projection(t_renderer *this);
-
-/*
  * Sets the projection matrix of the given renderer to a perspective
  * projection. Does nothing if no renderer is given or needed values are
  * missing in the renderer object.
@@ -139,6 +134,14 @@ void		renderer_generate_point(
  * Crashes if wrong arguments are given.
  */
 void		renderer_draw_point(t_point *point, t_renderer_image *buf);
+
+/*
+ * Clears the buffer of the given renderer. All pixels are set to the color
+ * specified in the renderer object. If no color is set, the color black is
+ * used.  Does nothing if no renderer is given or the renderer does not contain
+ * a buffer.
+ */
+void		renderer_clear_buffer(t_renderer *this);
 
 /*
  * Modifies the given matrix in a way to perform a rotation araound the Z axis.

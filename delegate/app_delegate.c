@@ -43,6 +43,20 @@ void	delegate_main_window_key_touched(
 		(*((t_delegate **) w_event->pay_load))->renderer->text = "Hello World!";
 	else if (k_event->key == FOUR || k_event->key == NUM_4)
 		(*((t_delegate **) w_event->pay_load))->renderer->text = "42 Heilbronn";
+	else if (k_event->key == P)
+	{
+		renderer_set_perspective_projection(
+			(*((t_delegate **) w_event->pay_load))->renderer);
+		renderer_multiply_matrices(
+			(*((t_delegate **) w_event->pay_load))->renderer);
+	}
+	else if (k_event->key == O)
+	{
+		renderer_set_orthogonal_projection(
+			(*((t_delegate **) w_event->pay_load))->renderer);
+		renderer_multiply_matrices(
+			(*((t_delegate **) w_event->pay_load))->renderer);
+	}
 	else
 		ft_printf("Key pressed on main window: %d\n", k_event->key);
 }

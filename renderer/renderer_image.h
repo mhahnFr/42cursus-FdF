@@ -4,18 +4,20 @@
 # include <stddef.h>
 
 /*
- * Represents an image.
+ * Represents an image. Contains all informations of the MiniLibX image.
+ * Contains the background color as well.
  */
 typedef struct s_renderer_image
 {
-	int		depth;
-	int		line_size;
-	int		endian;
-	size_t	width;
-	size_t	height;
-	char	*raw;
-	void	*mlx_img;
-	void	*mlx_ptr;
+	int				depth;
+	int				line_size;
+	int				endian;
+	size_t			width;
+	size_t			height;
+	unsigned int	background_color;
+	char			*raw;
+	void			*mlx_img;
+	void			*mlx_ptr;
 }	t_renderer_image;
 
 /*

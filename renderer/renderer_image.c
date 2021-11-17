@@ -33,6 +33,7 @@ void	renderer_image_create(
 	this->mlx_img = mlx_img;
 	this->width = width;
 	this->height = height;
+	this->background_color = 0;
 	this->raw = mlx_get_data_addr(mlx_img, &(this->depth), &(this->line_size),
 			&(this->endian));
 }

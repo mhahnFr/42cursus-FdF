@@ -10,6 +10,7 @@ int	delegate_render_frame(t_delegate **this)
 	if (this == NULL || *this == NULL)
 		return (-1);
 	mlx_clear_window((*this)->mlx_ptr, (*this)->windows->mlx_window);
+	renderer_clear_buffer((*this)->renderer);
 	renderer_draw(*this);
 	if ((*this)->renderer->text != NULL)
 		mlx_string_put(

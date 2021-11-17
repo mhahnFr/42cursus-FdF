@@ -21,49 +21,6 @@ void	renderer_set_perspective_projection(t_renderer *this)
 		= (this->near_z * this->far_z) / (this->near_z - this->far_z);
 }
 
-/*t_matrix	*renderer_generate_projection_per(t_renderer *this)
-{
-	t_matrix	*ret;
-	float		w;
-	float		h;
-
-	if (this == NULL)
-		return (NULL);
-	ret = matrix_new_filled(0, 4, 4);
-	if (ret == NULL)
-		return (NULL);
-	h = 1 / tan(30);
-	w = h / (this->screen_width / this->screen_height);
-	ret->values[0][0] = w;
-	ret->values[1][1] = h;
-	ret->values[2][2] = this->far_z / (this->near_z - this->far_z);
-	ret->values[2][3] = -1;
-	ret->values[3][2]
-		= (this->near_z * this->far_z) / (this->near_z - this->far_z);
-	return (ret);
-}*/
-
-/*t_matrix	*renderer_generate_projection(t_renderer *this)
-{
-	t_matrix	*ret;
-	float		w;
-	float		h;
-
-	if (this == NULL)
-		return (NULL);
-	ret = matrix_new_filled(0, 4, 4);
-	if (ret == NULL)
-		return (NULL);
-	h = 1 / tan(3);
-	w = h / (this->screen_width / this->screen_height);
-	ret->values[0][0] = 2.0 / w;
-	ret->values[1][1] = 2.0 / h;
-	ret->values[2][2] = 1.0 / (this->near_z - this->far_z);
-	ret->values[2][3] = -1;
-	ret->values[3][2] = this->near_z / (this->near_z - this->far_z);
-	return (ret);
-}*/
-
 void	renderer_set_orthogonal_projection(t_renderer *this)
 {
 	float	h;
@@ -124,16 +81,4 @@ void	renderer_generate_proj_vectors(
 	vector_multiply(xaxis, this->camera->up, zaxis);
 	vector_normalize(xaxis);
 	vector_multiply(yaxis, zaxis, xaxis);
-}
-
-void	renderer_generate_point(
-			t_renderer *this,
-			t_vertex3D *result,
-			t_vertex3D *point)
-{
-	if (this == NULL || result == NULL || point == NULL)
-		return ;
-	result->x = (1.0 + point->x) * this->buffer->width / 2.0;
-	result->y = (1.0 + point->y) * this->buffer->height / 2.0;
-	result->z = this->near_z + point->z * (this->far_z - this->near_z);
 }
