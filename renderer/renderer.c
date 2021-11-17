@@ -24,8 +24,6 @@ int	delegate_render_frame(t_delegate **this)
 
 int	delegate_pre_render(t_delegate **this)
 {
-	t_matrix	*mv;
-
 	if (this == NULL || *this == NULL)
 		return (-1);
 	(*this)->renderer->camera->view_point = vector_new(10, 10, 10);
@@ -35,13 +33,10 @@ int	delegate_pre_render(t_delegate **this)
 	(*this)->renderer->view = renderer_generate_view((*this)->renderer);
 	(*this)->renderer->near_z = 0.1;
 	(*this)->renderer->far_z = 10;
-	(*this)->renderer->projection = renderer_generate_projection(
-			(*this)->renderer);
-	mv = matrix_new_multiply((*this)->renderer->model,
-			(*this)->renderer->view);
-	(*this)->renderer->mvp = matrix_new_multiply(
-			mv, (*this)->renderer->projection);
-	matrix_delete(mv);
+	(*this)->renderer->projection = matrix_new(NULL, 4, 4);
+	renderer_set_orthogonal_projection((*this)->renderer);
+	(*this)->renderer->mvp = matrix_new_filled(0, 4, 4);
+	renderer_multiply_matrices((*this)->renderer);
 	(*this)->renderer->buffer = renderer_image_new((*this)->mlx_ptr,
 			(*this)->renderer->screen_width, (*this)->renderer->screen_height);
 	mlx_clear_window((*this)->mlx_ptr, (*this)->windows->mlx_window);

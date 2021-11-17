@@ -98,6 +98,20 @@ t_matrix	*renderer_generate_view(t_renderer *this);
 t_matrix	*renderer_generate_projection(t_renderer *this);
 
 /*
+ * Sets the projection matrix of the given renderer to a perspective
+ * projection. Does nothing if no renderer is given or needed values are
+ * missing in the renderer object.
+ */
+void		renderer_set_perspective_projection(t_renderer *this);
+
+/*
+ * Sets the projection matrix of the given renderer to an orthogonal
+ * projection. Does nothing if no renderer is given or needed values are
+ * missing in the renderer object.
+ */
+void		renderer_set_orthogonal_projection(t_renderer *this);
+
+/*
  * Generates the values for the given vectors. The vectors are supposed to be
  * used for the projection matrix. Does nothing if at least one parameter is
  * missing.
@@ -149,6 +163,13 @@ void		renderer_rotate_matrix_x(t_matrix *rot, float angle);
  * of the given vector. Does nothing if no matrix or no vector is given.
  */
 void		renderer_move_matrix(t_matrix *m, t_vector *vec);
+
+/*
+ * Multiplies the set matrices of the given renderer and stores the result in
+ * the combined matrix of the given renderer. Does nothing if no renderer is
+ * given.
+ */
+void		renderer_multiply_matrices(t_renderer *this);
 
 /*
  * Returns wether the first number is bigger (-1) or not (1).

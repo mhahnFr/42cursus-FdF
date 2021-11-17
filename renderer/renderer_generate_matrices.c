@@ -3,7 +3,25 @@
 #include "renderer.h"
 #include "utils/math/matrix.h"
 
-t_matrix	*renderer_generate_projection_per(t_renderer *this)
+void	renderer_set_perspective_projection(t_renderer *this)
+{
+	float	w;
+	float	h;
+
+	if (this == NULL || this->projection == NULL)
+		return ;
+	matrix_fill(this->projection, 0);
+	h = 1 / tan(30);
+	w = h / (this->screen_width / this->screen_height);
+	this->projection->values[0][0] = w;
+	this->projection->values[1][1] = h;
+	this->projection->values[2][2] = this->far_z / (this->near_z - this->far_z);
+	this->projection->values[2][3] = -1;
+	this->projection->values[3][2]
+		= (this->near_z * this->far_z) / (this->near_z - this->far_z);
+}
+
+/*t_matrix	*renderer_generate_projection_per(t_renderer *this)
 {
 	t_matrix	*ret;
 	float		w;
@@ -23,9 +41,9 @@ t_matrix	*renderer_generate_projection_per(t_renderer *this)
 	ret->values[3][2]
 		= (this->near_z * this->far_z) / (this->near_z - this->far_z);
 	return (ret);
-}
+}*/
 
-t_matrix	*renderer_generate_projection(t_renderer *this)
+/*t_matrix	*renderer_generate_projection(t_renderer *this)
 {
 	t_matrix	*ret;
 	float		w;
@@ -44,6 +62,24 @@ t_matrix	*renderer_generate_projection(t_renderer *this)
 	ret->values[2][3] = -1;
 	ret->values[3][2] = this->near_z / (this->near_z - this->far_z);
 	return (ret);
+}*/
+
+void	renderer_set_orthogonal_projection(t_renderer *this)
+{
+	float	h;
+	float	w;
+
+	if (this == NULL || this->projection == NULL)
+		return ;
+	matrix_fill(this->projection, 0);
+	h = 1 / tan(3);
+	w = h / (this->screen_width / this->screen_height);
+	this->projection->values[0][0] = 2.0 / w;
+	this->projection->values[1][1] = 2.0 / h;
+	this->projection->values[2][2] = 1.0 / (this->near_z - this->far_z);
+	this->projection->values[2][3] = -1;
+	this->projection->values[3][2]
+		= this->near_z / (this->near_z - this->far_z);
 }
 
 t_matrix	*renderer_generate_view(t_renderer *this)

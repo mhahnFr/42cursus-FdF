@@ -18,7 +18,7 @@ CFLAGS	=	-Wall -Werror -Wextra -Ofast
 # Compiles everything.
 all: $(NAME)
 
-# Links the compiled files to the library. $(LIBFTA)
+# Links the compiled files to the library.
 $(NAME): $(OBJ)
 	$(AR) -rcs $(NAME) $(OBJ)
 
