@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
 
 #include "mlx.h"
@@ -9,6 +8,7 @@
 #include "model/vertex.h"
 #include "utils/math/vector.h"
 #include "utils/point.h"
+#include "utils/math/abs.h"
 
 void	renderer_draw(t_delegate *this)
 {

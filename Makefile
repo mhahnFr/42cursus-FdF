@@ -27,7 +27,7 @@ SRC		=	./delegate/app_delegate.c ./view/init.c ./model/generate.c \
 			./utils/math/matrix_destroy.c ./utils/math/vector_add_sub.c \
 			./utils/math/vector_division.c ./model/vertex_cast.c \
 			./utils/math/vector_multiplications.c ./model/generate_error.c \
-			./renderer/renderer_generate_matrices.c \
+			./renderer/renderer_generate_matrices.c ./utils/math/abs.c \
 			./renderer/renderer_rotations.c ./renderer/renderer_movements.c
 
 # The path to the home made libft.
