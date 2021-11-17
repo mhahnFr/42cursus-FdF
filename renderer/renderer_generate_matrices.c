@@ -63,35 +63,6 @@ void	renderer_set_view(t_renderer *this)
 	this->view->values[3][2] = -vector_scalar_product(&zaxis, this->camera->pos);
 }
 
-/*t_matrix	*renderer_generate_view(t_renderer *this)
-{
-	t_matrix	*ret;
-	t_vector	zaxis;
-	t_vector	yaxis;
-	t_vector	xaxis;
-
-	if (this == NULL)
-		return (NULL);
-	ret = matrix_new_filled(0, 4, 4);
-	if (ret == NULL)
-		return (NULL);
-	matrix_fill_neutral(ret);
-	renderer_generate_proj_vectors(this, &xaxis, &yaxis, &zaxis);
-	ret->values[0][0] = xaxis.x;
-	ret->values[1][0] = xaxis.y;
-	ret->values[2][0] = xaxis.z;
-	ret->values[3][0] = -vector_scalar_product(&xaxis, this->camera->pos);
-	ret->values[0][1] = yaxis.x;
-	ret->values[1][1] = yaxis.y;
-	ret->values[2][1] = yaxis.z;
-	ret->values[3][1] = -vector_scalar_product(&yaxis, this->camera->pos);
-	ret->values[0][2] = zaxis.x;
-	ret->values[1][2] = zaxis.y;
-	ret->values[2][2] = zaxis.z;
-	ret->values[3][2] = -vector_scalar_product(&zaxis, this->camera->pos);
-	return (ret);
-}*/
-
 void	renderer_generate_proj_vectors(
 			t_renderer *this,
 			t_vector *xaxis,

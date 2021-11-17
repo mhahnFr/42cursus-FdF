@@ -31,7 +31,6 @@ int	delegate_pre_render(t_delegate **this)
 	(*this)->renderer->model = matrix_new(NULL, 4, 4);
 	matrix_fill_neutral((*this)->renderer->model);
 	renderer_rotate_matrix_z((*this)->renderer->model, 180);
-//	(*this)->renderer->view = renderer_generate_view((*this)->renderer);
 	(*this)->renderer->view = matrix_new_filled(0, 4, 4);
 	renderer_set_view((*this)->renderer);
 	(*this)->renderer->near_z = 0.1;
