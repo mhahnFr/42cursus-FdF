@@ -15,10 +15,14 @@ void	renderer_draw(t_delegate *this)
 	t_point		cur;
 	t_point		tmp;
 	t_vertex3D	v_tmp;
+	size_t		i;
+	size_t		j;
 
-	for (size_t i = 0; i < this->model->vertex_count_length; i++)
+	i = 0;
+	while (i < this->model->vertex_count_length)
 	{
-		for (size_t j = 0; j < this->model->vertex_count[i]; j++)
+		j = 0;
+		while (j < this->model->vertex_count[i])
 		{
 			matrix_multiply_vertex3D(&v_tmp, this->renderer->mvp,
 				this->model->vertices[i][j]);
@@ -40,7 +44,9 @@ void	renderer_draw(t_delegate *this)
 				vertex3D_cast_point(&v_tmp, &tmp);
 				renderer_draw_line(cur, tmp, this->renderer->buffer);
 			}
+			j++;
 		}
+		i++;
 	}
 	mlx_put_image_to_window(this->mlx_ptr, this->windows->mlx_window,
 		this->renderer->buffer->mlx_img, 0, 0);
