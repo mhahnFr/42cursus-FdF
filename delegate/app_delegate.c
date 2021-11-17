@@ -38,6 +38,7 @@ void	delegate_main_window_key_touched(
 			t_window_event *w_event,
 			t_key_event *k_event)
 {
+	mlx_do_key_autorepeaton((*((t_delegate **) w_event->pay_load))->mlx_ptr);
 	if (k_event->key == ESC)
 		delegate_exit((t_delegate **) w_event->pay_load);
 	else if (k_event->key == H)
