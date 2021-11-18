@@ -32,6 +32,9 @@ void	model3D_create(
 	this->vertices = vertices;
 	this->vertex_count = vertices_count_ar;
 	this->vertex_count_length = vertices_count_length;
+	this->x_angle = 0;
+	this->y_angle = 0;
+	this->z_angle = 0;
 }
 
 void	model3D_destroy(t_model3D *this)

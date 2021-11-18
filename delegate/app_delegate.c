@@ -125,8 +125,62 @@ void	delegate_main_window_key_touched(
 		renderer_multiply_matrices(
 			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
+	else if (k_event->key == W)
+	{
+		(*((t_delegate **) w_event->pay_load))->model->x_angle += 0.1;
+		renderer_rotate_matrix_x(
+			(*((t_delegate **) w_event->pay_load))->renderer->model,
+			(*((t_delegate **) w_event->pay_load))->model->x_angle);
+		renderer_multiply_matrices(
+			(*((t_delegate **) w_event->pay_load))->renderer);
+	}
+	else if (k_event->key == S)
+	{
+		(*((t_delegate **) w_event->pay_load))->model->x_angle -= 0.1;
+		renderer_rotate_matrix_x(
+			(*((t_delegate **) w_event->pay_load))->renderer->model,
+			(*((t_delegate **) w_event->pay_load))->model->x_angle);
+		renderer_multiply_matrices(
+			(*((t_delegate **) w_event->pay_load))->renderer);
+	}
+	else if (k_event->key == A)
+	{
+		(*((t_delegate **) w_event->pay_load))->model->y_angle -= 0.1;
+		renderer_rotate_matrix_y(
+			(*((t_delegate **) w_event->pay_load))->renderer->model,
+			(*((t_delegate **) w_event->pay_load))->model->y_angle);
+		renderer_multiply_matrices(
+			(*((t_delegate **) w_event->pay_load))->renderer);
+	}
+	else if (k_event->key == D)
+	{
+		(*((t_delegate **) w_event->pay_load))->model->y_angle += 0.1;
+		renderer_rotate_matrix_y(
+			(*((t_delegate **) w_event->pay_load))->renderer->model,
+			(*((t_delegate **) w_event->pay_load))->model->y_angle);
+		renderer_multiply_matrices(
+			(*((t_delegate **) w_event->pay_load))->renderer);
+	}
+	else if (k_event->key == R)
+	{
+		(*((t_delegate **) w_event->pay_load))->model->z_angle += 0.1;
+		renderer_rotate_matrix_z(
+			(*((t_delegate **) w_event->pay_load))->renderer->model,
+			(*((t_delegate **) w_event->pay_load))->model->z_angle);
+		renderer_multiply_matrices(
+			(*((t_delegate **) w_event->pay_load))->renderer);
+	}
+	else if (k_event->key == F)
+	{
+		(*((t_delegate **) w_event->pay_load))->model->z_angle -= 0.1;
+		renderer_rotate_matrix_z(
+			(*((t_delegate **) w_event->pay_load))->renderer->model,
+			(*((t_delegate **) w_event->pay_load))->model->z_angle);
+		renderer_multiply_matrices(
+			(*((t_delegate **) w_event->pay_load))->renderer);
+	}
 	else if (k_event->key == RETURN)
-		printf("Camera position: %f %f %f\nView point: %f %f %f\n",
+		printf("Camera position: %f %f %f\nView point: %f %f %f\nAngles: %f %f %f\n",
 			(*((t_delegate **) w_event->pay_load))->renderer->camera->pos->x,
 			(*((t_delegate **) w_event->pay_load))->renderer->camera->pos->y,
 			(*((t_delegate **) w_event->pay_load))->renderer->camera->pos->z,
@@ -135,7 +189,10 @@ void	delegate_main_window_key_touched(
 			(*((t_delegate **) w_event->pay_load))->renderer->camera
 			->view_point->y,
 			(*((t_delegate **) w_event->pay_load))->renderer->camera
-			->view_point->z);
+			->view_point->z,
+			(*((t_delegate **) w_event->pay_load))->model->x_angle,
+			(*((t_delegate **) w_event->pay_load))->model->y_angle,
+			(*((t_delegate **) w_event->pay_load))->model->z_angle);
 	else
 		ft_printf("Key pressed on main window: %d\n", k_event->key);
 }

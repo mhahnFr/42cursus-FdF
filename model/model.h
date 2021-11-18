@@ -13,6 +13,9 @@ typedef struct s_model3D
 	t_vertex3D	***vertices;
 	size_t		*vertex_count;
 	size_t		vertex_count_length;
+	float		x_angle;
+	float		y_angle;
+	float		z_angle;
 }	t_model3D;
 
 /*
