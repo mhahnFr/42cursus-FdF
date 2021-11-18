@@ -115,7 +115,11 @@ t_arraylist	*generate_convert_vertices(t_arraylist *raw_vertices)
 			arraylist_append_unsafe(&i_list, tmp);
 			i++;
 		}
-		arraylist_append_unsafe(&ret, arraylist_new(i_list));
+		tmp = arraylist_new(i_list);
+		if (tmp == NULL)
+			return (generate_error_clear_double(&i_list,
+					(t_arraylist_remover) vertex3D_delete, &ret, NULL));
+		arraylist_append_unsafe(&ret, tmp);
 		raw_vertices = raw_vertices->next;
 	}
 	return (ret);
