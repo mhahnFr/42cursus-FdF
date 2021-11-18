@@ -1,4 +1,4 @@
 Zooming
 colours
 norm
-double checks
+Exit on close
