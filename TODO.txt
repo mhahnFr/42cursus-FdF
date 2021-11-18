@@ -1,3 +1,4 @@
 Zooming
 colours
 norm
+double checks
