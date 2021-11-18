@@ -46,7 +46,7 @@ void	delegate_main_window_key_touched(
 		if ((*((t_delegate **) w_event->pay_load))->renderer->text == NULL)
 			(*((t_delegate **) w_event->pay_load))->renderer->text
 				= "Rotate map: W A S D R F; move: ARROWS NUM_0 NUM_1;"
-				" projection: O P; move map: NUM_4 - 6 & 8; zoom: NUM_+"
+				" projection: O P; move map: NUM_4 - 9; zoom: NUM_+"
 				" & NUM_-; exit: ESC";
 		else
 			(*((t_delegate **) w_event->pay_load))->renderer->text = NULL;
@@ -182,6 +182,50 @@ void	delegate_main_window_key_touched(
 		renderer_rotate_matrix_z(
 			(*((t_delegate **) w_event->pay_load))->renderer->model,
 			(*((t_delegate **) w_event->pay_load))->model->z_angle);
+		renderer_multiply_matrices(
+			(*((t_delegate **) w_event->pay_load))->renderer);
+	}
+	else if (k_event->key == NUM_4)
+	{
+		(*((t_delegate **) w_event->pay_load))->model->mover->x -= 0.1;
+		renderer_move_matrix((*((t_delegate **) w_event->pay_load))->renderer
+			->model, (*((t_delegate **) w_event->pay_load))->model->mover);
+		renderer_multiply_matrices(
+			(*((t_delegate **) w_event->pay_load))->renderer);
+	}
+	else if (k_event->key == NUM_6)
+	{
+		(*((t_delegate **) w_event->pay_load))->model->mover->x += 0.1;
+		renderer_move_matrix((*((t_delegate **) w_event->pay_load))->renderer
+			->model, (*((t_delegate **) w_event->pay_load))->model->mover);
+		renderer_multiply_matrices(
+			(*((t_delegate **) w_event->pay_load))->renderer);
+	}
+	else if (k_event->key == NUM_5)
+	{		(*((t_delegate **) w_event->pay_load))->model->mover->y -= 0.1;
+		renderer_move_matrix((*((t_delegate **) w_event->pay_load))->renderer
+			->model, (*((t_delegate **) w_event->pay_load))->model->mover);
+		renderer_multiply_matrices(
+			(*((t_delegate **) w_event->pay_load))->renderer);
+	}
+	else if (k_event->key == NUM_8)
+	{		(*((t_delegate **) w_event->pay_load))->model->mover->y += 0.1;
+		renderer_move_matrix((*((t_delegate **) w_event->pay_load))->renderer
+			->model, (*((t_delegate **) w_event->pay_load))->model->mover);
+		renderer_multiply_matrices(
+			(*((t_delegate **) w_event->pay_load))->renderer);
+	}
+	else if (k_event->key == NUM_7)
+	{		(*((t_delegate **) w_event->pay_load))->model->mover->z -= 0.1;
+		renderer_move_matrix((*((t_delegate **) w_event->pay_load))->renderer
+			->model, (*((t_delegate **) w_event->pay_load))->model->mover);
+		renderer_multiply_matrices(
+			(*((t_delegate **) w_event->pay_load))->renderer);
+	}
+	else if (k_event->key == NUM_9)
+	{		(*((t_delegate **) w_event->pay_load))->model->mover->z += 0.1;
+		renderer_move_matrix((*((t_delegate **) w_event->pay_load))->renderer
+			->model, (*((t_delegate **) w_event->pay_load))->model->mover);
 		renderer_multiply_matrices(
 			(*((t_delegate **) w_event->pay_load))->renderer);
 	}

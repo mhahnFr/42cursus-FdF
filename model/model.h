@@ -3,6 +3,8 @@
 
 # include "vertex.h"
 
+typedef struct s_vector	t_vector;
+
 /*
  * Represents a whole three dimensional model. Consists of a two dimensional
  * array with vertices and an array with the corresponding lengths. The length
@@ -16,6 +18,7 @@ typedef struct s_model3D
 	float		x_angle;
 	float		y_angle;
 	float		z_angle;
+	t_vector	*mover;
 }	t_model3D;
 
 /*

@@ -1,6 +1,7 @@
 #include <stdlib.h>
 
 #include "model.h"
+#include "utils/math/vector.h"
 
 t_model3D	*model3D_new(
 				size_t *vertices_count_ar,
@@ -35,6 +36,7 @@ void	model3D_create(
 	this->x_angle = 0;
 	this->y_angle = 0;
 	this->z_angle = 0;
+	this->mover = vector_new(0, 0, 0);
 }
 
 void	model3D_destroy(t_model3D *this)
@@ -55,6 +57,7 @@ void	model3D_destroy(t_model3D *this)
 		}
 		i++;
 	}
+	vector_destroy(this->mover);
 }
 
 void	model3D_delete(t_model3D *this)
@@ -79,5 +82,6 @@ void	model3D_delete(t_model3D *this)
 	}
 	free(this->vertices);
 	free(this->vertex_count);
+	vector_delete(this->mover);
 	free(this);
 }
