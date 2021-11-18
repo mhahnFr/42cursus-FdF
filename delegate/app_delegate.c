@@ -45,7 +45,9 @@ void	delegate_main_window_key_touched(
 	{
 		if ((*((t_delegate **) w_event->pay_load))->renderer->text == NULL)
 			(*((t_delegate **) w_event->pay_load))->renderer->text
-				= "Rotate map: WASD+RF, move: ARROWS+NUM_01, Projection: OP";
+				= "Rotate map: W A S D R F; move: ARROWS NUM_0 NUM_1;"
+				" projection: O P; move map: NUM_4 - 6 & 8; zoom: NUM_+"
+				" & NUM_-; exit: ESC";
 		else
 			(*((t_delegate **) w_event->pay_load))->renderer->text = NULL;
 	}
