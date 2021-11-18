@@ -36,7 +36,8 @@ void	renderer_draw(t_delegate *this)
 				vertex3D_cast_point(&v_tmp, &tmp);
 				renderer_draw_line(cur, tmp, this->renderer->buffer);
 			}
-			if (i < this->model->vertex_count_length - 1)
+			if (i < this->model->vertex_count_length - 1
+				&& j < this->model->vertex_count[i + 1])
 			{
 				matrix_multiply_vertex3D(&v_tmp, this->renderer->mvp,
 					this->model->vertices[i + 1][j]);
