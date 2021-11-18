@@ -41,10 +41,14 @@ void	delegate_main_window_key_touched(
 	mlx_do_key_autorepeaton((*((t_delegate **) w_event->pay_load))->mlx_ptr);
 	if (k_event->key == ESC)
 		delegate_exit((t_delegate **) w_event->pay_load);
-	else if (k_event->key == H)
-		(*((t_delegate **) w_event->pay_load))->renderer->text = "Hello World!";
-	else if (k_event->key == FOUR || k_event->key == NUM_4)
-		(*((t_delegate **) w_event->pay_load))->renderer->text = "42 Heilbronn";
+	else if (k_event->key == H || k_event->key == F1)
+	{
+		if ((*((t_delegate **) w_event->pay_load))->renderer->text == NULL)
+			(*((t_delegate **) w_event->pay_load))->renderer->text
+				= "Rotate map: WASD+RF, move: ARROWS+NUM_01, Projection: OP";
+		else
+			(*((t_delegate **) w_event->pay_load))->renderer->text = NULL;
+	}
 	else if (k_event->key == P)
 	{
 		renderer_set_perspective_projection(
@@ -180,7 +184,7 @@ void	delegate_main_window_key_touched(
 			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == RETURN)
-		printf("Camera position: %f %f %f\nView point: %f %f %f\nAngles: %f %f %f\n",
+		printf("Cam pos: %f %f %f\nView point: %f %f %f\nAngles: %f %f %f\n",
 			(*((t_delegate **) w_event->pay_load))->renderer->camera->pos->x,
 			(*((t_delegate **) w_event->pay_load))->renderer->camera->pos->y,
 			(*((t_delegate **) w_event->pay_load))->renderer->camera->pos->z,
