@@ -2,7 +2,8 @@
 # define POINT_H
 
 /*
- * Represents a two dimensional point. Consists of the X and the Y value.
+ * Represents a two dimensional point. Consists of the X and the Y value and
+ * the colour values.
  */
 typedef struct s_point {
 	long			x;
