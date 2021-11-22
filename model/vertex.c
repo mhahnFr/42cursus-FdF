@@ -21,6 +21,9 @@ void	vertex3D_create(t_vertex3D *this, double x, double y, double z)
 	this->y = y;
 	this->z = z;
 	this->w = 1;
+	this->r = 1;
+	this->g = 1;
+	this->b = 1;
 }
 
 void	vertex3D_destroy(t_vertex3D __attribute__((unused)) *this)

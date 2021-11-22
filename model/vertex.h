@@ -18,19 +18,22 @@ typedef struct s_vertex3D
 	float	y;
 	float	z;
 	float	w;
+	char	r;
+	char	g;
+	char	b;
 }	t_vertex3D;
 
 /*
  * Allocates a new vertex with the given coordinates. Returns the newly
  * allocated vertex, null in case of error.
  */
-t_vertex3D	*vertex3D_new(double x, double y, double z);
+t_vertex3D	*vertex3D_new(float x, float y, float z);
 
 /*
  * Initializes the content of the given vertex object using the given
  * parameters. Does nothing if no object is given.
  */
-void		vertex3D_create(t_vertex3D *this, double x, double y, double z);
+void		vertex3D_create(t_vertex3D *this, float x, float y, float z);
 
 /*
  * Allocates a new vertex containing the values of the given vertex. Returns
