@@ -20,6 +20,7 @@ int	onApplicationFinishedLaunching(t_model3D *model, void *view, t_cli *cli_obj)
 	}
 	this->windows = delegate_get_new_window(view, cli_obj->width,
 			cli_obj->height, cli_obj->file);
+	mlx_do_key_autorepeaton(view);
 	mlx_key_hook(this->windows->mlx_window,
 		(t_delegate_key_touched) delegate_key_touched, &this);
 	window_set_key_listener(
@@ -38,7 +39,6 @@ void	delegate_main_window_key_touched(
 			t_window_event *w_event,
 			t_key_event *k_event)
 {
-	mlx_do_key_autorepeaton((*((t_delegate **) w_event->pay_load))->mlx_ptr);
 	if (k_event->key == ESC)
 		delegate_exit((t_delegate **) w_event->pay_load);
 	else if (k_event->key == H || k_event->key == F1)
@@ -50,19 +50,16 @@ void	delegate_main_window_key_touched(
 				" & NUM_-; exit: ESC";
 		else
 			(*((t_delegate **) w_event->pay_load))->renderer->text = NULL;
+		return ;
 	}
 	else if (k_event->key == P)
 	{
 		renderer_set_perspective_projection(
 			(*((t_delegate **) w_event->pay_load))->renderer);
-		renderer_multiply_matrices(
-			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == O)
 	{
 		renderer_set_orthogonal_projection(
-			(*((t_delegate **) w_event->pay_load))->renderer);
-		renderer_multiply_matrices(
 			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == LEFT)
@@ -73,8 +70,6 @@ void	delegate_main_window_key_touched(
 			->renderer->camera->view_point->x += 1;
 		renderer_set_view(
 			(*((t_delegate **) w_event->pay_load))->renderer);
-		renderer_multiply_matrices(
-			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == RIGHT)
 	{
@@ -83,8 +78,6 @@ void	delegate_main_window_key_touched(
 		(*((t_delegate **) w_event->pay_load))
 			->renderer->camera->view_point->x -= 1;
 		renderer_set_view(
-			(*((t_delegate **) w_event->pay_load))->renderer);
-		renderer_multiply_matrices(
 			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == UP)
@@ -95,8 +88,6 @@ void	delegate_main_window_key_touched(
 			->renderer->camera->view_point->y -= 1;
 		renderer_set_view(
 			(*((t_delegate **) w_event->pay_load))->renderer);
-		renderer_multiply_matrices(
-			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == DOWN)
 	{
@@ -105,8 +96,6 @@ void	delegate_main_window_key_touched(
 		(*((t_delegate **) w_event->pay_load))
 			->renderer->camera->view_point->y += 1;
 		renderer_set_view(
-			(*((t_delegate **) w_event->pay_load))->renderer);
-		renderer_multiply_matrices(
 			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == NUM_1)
@@ -117,8 +106,6 @@ void	delegate_main_window_key_touched(
 			->renderer->camera->view_point->z -= 1;
 		renderer_set_view(
 			(*((t_delegate **) w_event->pay_load))->renderer);
-		renderer_multiply_matrices(
-			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == NUM_0)
 	{
@@ -128,8 +115,6 @@ void	delegate_main_window_key_touched(
 			->renderer->camera->view_point->z += 1;
 		renderer_set_view(
 			(*((t_delegate **) w_event->pay_load))->renderer);
-		renderer_multiply_matrices(
-			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == W)
 	{
@@ -137,8 +122,6 @@ void	delegate_main_window_key_touched(
 		renderer_rotate_matrix_x(
 			(*((t_delegate **) w_event->pay_load))->renderer->model,
 			(*((t_delegate **) w_event->pay_load))->model->x_angle);
-		renderer_multiply_matrices(
-			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == S)
 	{
@@ -146,8 +129,6 @@ void	delegate_main_window_key_touched(
 		renderer_rotate_matrix_x(
 			(*((t_delegate **) w_event->pay_load))->renderer->model,
 			(*((t_delegate **) w_event->pay_load))->model->x_angle);
-		renderer_multiply_matrices(
-			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == A)
 	{
@@ -155,8 +136,6 @@ void	delegate_main_window_key_touched(
 		renderer_rotate_matrix_y(
 			(*((t_delegate **) w_event->pay_load))->renderer->model,
 			(*((t_delegate **) w_event->pay_load))->model->y_angle);
-		renderer_multiply_matrices(
-			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == D)
 	{
@@ -164,8 +143,6 @@ void	delegate_main_window_key_touched(
 		renderer_rotate_matrix_y(
 			(*((t_delegate **) w_event->pay_load))->renderer->model,
 			(*((t_delegate **) w_event->pay_load))->model->y_angle);
-		renderer_multiply_matrices(
-			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == R)
 	{
@@ -173,8 +150,6 @@ void	delegate_main_window_key_touched(
 		renderer_rotate_matrix_z(
 			(*((t_delegate **) w_event->pay_load))->renderer->model,
 			(*((t_delegate **) w_event->pay_load))->model->z_angle);
-		renderer_multiply_matrices(
-			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == F)
 	{
@@ -182,66 +157,49 @@ void	delegate_main_window_key_touched(
 		renderer_rotate_matrix_z(
 			(*((t_delegate **) w_event->pay_load))->renderer->model,
 			(*((t_delegate **) w_event->pay_load))->model->z_angle);
-		renderer_multiply_matrices(
-			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == NUM_4)
 	{
 		(*((t_delegate **) w_event->pay_load))->model->mover->x -= 0.1;
 		renderer_move_matrix((*((t_delegate **) w_event->pay_load))->renderer
 			->model, (*((t_delegate **) w_event->pay_load))->model->mover);
-		renderer_multiply_matrices(
-			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == NUM_6)
 	{
 		(*((t_delegate **) w_event->pay_load))->model->mover->x += 0.1;
 		renderer_move_matrix((*((t_delegate **) w_event->pay_load))->renderer
 			->model, (*((t_delegate **) w_event->pay_load))->model->mover);
-		renderer_multiply_matrices(
-			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == NUM_5)
 	{
 		(*((t_delegate **) w_event->pay_load))->model->mover->y -= 0.1;
 		renderer_move_matrix((*((t_delegate **) w_event->pay_load))->renderer
 			->model, (*((t_delegate **) w_event->pay_load))->model->mover);
-		renderer_multiply_matrices(
-			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == NUM_8)
 	{
 		(*((t_delegate **) w_event->pay_load))->model->mover->y += 0.1;
 		renderer_move_matrix((*((t_delegate **) w_event->pay_load))->renderer
 			->model, (*((t_delegate **) w_event->pay_load))->model->mover);
-		renderer_multiply_matrices(
-			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == NUM_7)
 	{
 		(*((t_delegate **) w_event->pay_load))->model->mover->z -= 0.1;
 		renderer_move_matrix((*((t_delegate **) w_event->pay_load))->renderer
 			->model, (*((t_delegate **) w_event->pay_load))->model->mover);
-		renderer_multiply_matrices(
-			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == NUM_9)
 	{
 		(*((t_delegate **) w_event->pay_load))->model->mover->z += 0.1;
 		renderer_move_matrix((*((t_delegate **) w_event->pay_load))->renderer
 			->model, (*((t_delegate **) w_event->pay_load))->model->mover);
-		renderer_multiply_matrices(
-			(*((t_delegate **) w_event->pay_load))->renderer);
 	}
 	else if (k_event->key == NUM_PLUS)
-	{
 		ft_printf("TODO: zoom in\n");
-	}
 	else if (k_event->key == NUM_MINUS)
-	{
 		ft_printf("TODO: zoom out\n");
-	}
 	else if (k_event->key == RETURN)
+	{
 		printf("Cam pos: %f %f %f\nView point: %f %f %f\nAngles: %f %f %f\n",
 			(*((t_delegate **) w_event->pay_load))->renderer->camera->pos->x,
 			(*((t_delegate **) w_event->pay_load))->renderer->camera->pos->y,
@@ -255,8 +213,12 @@ void	delegate_main_window_key_touched(
 			(*((t_delegate **) w_event->pay_load))->model->x_angle,
 			(*((t_delegate **) w_event->pay_load))->model->y_angle,
 			(*((t_delegate **) w_event->pay_load))->model->z_angle);
+		return ;
+	}
 	else
-		ft_printf("Key pressed on main window: %d\n", k_event->key);
+		return ;
+	renderer_multiply_matrices(
+		(*((t_delegate **) w_event->pay_load))->renderer);
 }
 
 t_window	*delegate_get_new_window(
