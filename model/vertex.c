@@ -3,7 +3,7 @@
 #include "vertex.h"
 #include "utils/math/matrix.h"
 
-t_vertex3D	*vertex3D_new(double x, double y, double z)
+t_vertex3D	*vertex3D_new(float x, float y, float z)
 {
 	t_vertex3D	*ret;
 
@@ -13,7 +13,7 @@ t_vertex3D	*vertex3D_new(double x, double y, double z)
 	return (ret);
 }
 
-void	vertex3D_create(t_vertex3D *this, double x, double y, double z)
+void	vertex3D_create(t_vertex3D *this, float x, float y, float z)
 {
 	if (this == NULL)
 		return ;
