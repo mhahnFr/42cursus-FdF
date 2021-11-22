@@ -59,8 +59,17 @@ t_point		*vertex3D_cast_new_point(t_vertex3D *this);
  */
 void		vertex3D_cast_point(t_vertex3D *this, t_point *point);
 
+/*
+ * Allocates a new vector with the values of the given vertex. Returns either
+ * the newly allocated vector or null if either the allocation failed or no
+ * vertex is given.
+ */
 t_vector	*vertex3D_cast_new_vector(t_vertex3D *this);
 
+/*
+ * Copies the values of the given vertex into the given vector. Does nothing if
+ * at least one parameter is missing.
+ */
 void		vertex3D_cast_vector(t_vertex3D *this, t_vector *vector);
 
 /*
