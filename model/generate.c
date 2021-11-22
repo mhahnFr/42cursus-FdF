@@ -4,8 +4,9 @@
 
 #include "libft.h"
 #include "get_next_line.h"
-
 #include "ft_printf.h"
+
+#include "model.h"
 #include "vertex.h"
 #include "generate.h"
 #include "utils/arraylist.h"
@@ -106,9 +107,11 @@ t_arraylist	*generate_convert_vertices(t_arraylist *raw_vertices)
 		i_list = NULL;
 		while (((void **) raw_vertices->content)[i] != NULL)
 		{
-			tmp = arraylist_new(
+/*			tmp = arraylist_new(
 					vertex3D_new(i, raw_vertices->index,
-						ft_atoi(((char **) raw_vertices->content)[i])));
+						atoi(((char **) raw_vertices->content)[i])));*/
+			tmp = arraylist_new(generate_vertex(i, raw_vertices->index,
+					((char **) raw_vertices->content)[i]));
 			if (tmp == NULL || tmp->content == NULL)
 				return (generate_error_clear_double(&i_list,
 						(t_arraylist_remover) vertex3D_delete, &ret, NULL));

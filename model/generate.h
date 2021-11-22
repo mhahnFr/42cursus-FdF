@@ -1,9 +1,12 @@
 #ifndef GENERATE_H
 # define GENERATE_H
 
-# include "model.h"
 # include "utils/arraylist.h"
 # include "CLI/cli.h"
+
+typedef struct s_model3D	t_model3D;
+
+typedef struct s_vertex3D	t_vertex3D;
 
 /*
  * Reads the arguments that were given to this application. Creates a model
@@ -42,6 +45,20 @@ t_arraylist	*generate_convert_vertices(t_arraylist *raw_vertices);
  * allocated array or null if either the allocation failed or no list is given.
  */
 size_t		*generate_convert_and_count_contents(t_arraylist *list);
+
+/*
+ * Allocates a new vertex with the given data. Returns either the newly
+ * allocated vertex or null if either the allocation failed or the string is
+ * missing.
+ */
+t_vertex3D	*generate_vertex(size_t x, size_t y, char *raw_z);
+
+/*
+ * Converts the given string to an unsigned int. The string has to contain a
+ * hexadecimal number, with 0x as the first characters. Return zero in case of
+ * error.
+ */
+unsigned int	generate_color(char *string);
 
 /*
  * Clears the two given lists with the given remove functions. Displays an

@@ -8,29 +8,30 @@ CFLAGS	=	-Wall -Werror -Wextra -g
 OBJ		=	$(patsubst %.c,%.o,$(SRC))
 
 # The source files.
-SRC		=	./delegate/app_delegate.c ./view/init.c ./model/generate.c \
-			./CLI/cli.c ./model/model.c ./model/vertex.c ./utils/arraylist.c \
-			./main.c ./utils/arraylist_remove.c ./utils/arraylist_array.c \
-			./view/window.c ./view/event/key_listener.c \
-			./view/event/window_event.c ./view/event/key_event.c \
+SRC		=	./delegate/app_delegate.c ./view/init.c ./model/generate.c 		  \
+			./CLI/cli.c ./model/model.c ./model/vertex.c ./utils/arraylist.c  \
+			./main.c ./utils/arraylist_remove.c ./utils/arraylist_array.c 	  \
+			./view/window.c ./view/event/key_listener.c 					  \
+			./view/event/window_event.c ./view/event/key_event.c 			  \
 			./delegate/delegate.c ./renderer/renderer.c ./utils/math/matrix.c \
-			./CLI/cli_destroy.c ./view/window_destroy.c \
-			./view/event/key_event_destroy.c ./renderer/renderer_destroy.c \
-			./utils/math/matrix_new.c ./utils/math/matrix_calculations.c \
-			./utils/math/matrix_filler.c ./CLI/cli_error.c \
-			./utils/arraylist_size.c ./utils/arraylist_array_unsafe.c \
-			./model/vertex_copy.c ./utils/arraylist_get.c \
-			./utils/arraylist_insert.c ./utils/arraylist_reset_indices.c \
-			./renderer/renderer_camera.c ./renderer/renderer_draw.c \
-			./utils/math/vector.c ./utils/math/vector_delete.c \
-			./renderer/renderer_image.c ./utils/point.c \
-			./utils/math/matrix_destroy.c ./utils/math/vector_add_sub.c \
-			./utils/math/vector_division.c ./model/vertex_cast.c \
-			./utils/math/vector_multiplications.c ./model/generate_error.c \
-			./renderer/renderer_generate_matrices.c ./utils/math/abs.c \
-			./renderer/renderer_rotations.c ./renderer/renderer_movements.c \
-			./renderer/renderer_multiply_matrices.c \
-			./renderer/renderer_generate_point.c ./renderer/renderer_clear.c
+			./CLI/cli_destroy.c ./view/window_destroy.c 					  \
+			./view/event/key_event_destroy.c ./renderer/renderer_destroy.c	  \
+			./utils/math/matrix_new.c ./utils/math/matrix_calculations.c	  \
+			./utils/math/matrix_filler.c ./CLI/cli_error.c					  \
+			./utils/arraylist_size.c ./utils/arraylist_array_unsafe.c		  \
+			./model/vertex_copy.c ./utils/arraylist_get.c					  \
+			./utils/arraylist_insert.c ./utils/arraylist_reset_indices.c	  \
+			./renderer/renderer_camera.c ./renderer/renderer_draw.c			  \
+			./utils/math/vector.c ./utils/math/vector_delete.c				  \
+			./renderer/renderer_image.c ./utils/point.c						  \
+			./utils/math/matrix_destroy.c ./utils/math/vector_add_sub.c		  \
+			./utils/math/vector_division.c ./model/vertex_cast.c			  \
+			./utils/math/vector_multiplications.c ./model/generate_error.c	  \
+			./renderer/renderer_generate_matrices.c ./utils/math/abs.c		  \
+			./renderer/renderer_rotations.c ./renderer/renderer_movements.c	  \
+			./renderer/renderer_multiply_matrices.c ./model/generate_vertex.c \
+			./renderer/renderer_generate_point.c ./renderer/renderer_clear.c  \
+			./utils/hex_str_to_unsigned_int.c
 
 # The path to the home made libft.
 LFT_D	=	./libft
