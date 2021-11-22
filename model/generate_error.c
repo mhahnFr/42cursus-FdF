@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 #include "generate.h"
 
 inline t_arraylist	*generate_error_clear_double(
@@ -16,7 +14,6 @@ inline t_arraylist	*generate_error_clear(
 						t_arraylist **list,
 						t_arraylist_remover r)
 {
-	perror("FdF");
 	arraylist_clear(list, r);
 	return (NULL);
 }
