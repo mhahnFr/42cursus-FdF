@@ -15,15 +15,18 @@ t_vertex3D	*vertex3D_new(float x, float y, float z)
 
 void	vertex3D_create(t_vertex3D *this, float x, float y, float z)
 {
+	unsigned int	colour;
+
 	if (this == NULL)
 		return ;
 	this->x = x;
 	this->y = y;
 	this->z = z;
 	this->w = 1;
-	this->r = 1;
-	this->g = 1;
-	this->b = 1;
+	colour = 0x00FFFFFF;
+	this->r = colour >> 16;
+	this->g = colour >> 8;
+	this->b = colour >> 0;
 }
 
 void	vertex3D_destroy(t_vertex3D __attribute__((unused)) *this)

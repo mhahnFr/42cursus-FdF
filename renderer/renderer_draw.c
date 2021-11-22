@@ -98,6 +98,7 @@ void	renderer_draw_point(t_point *point, t_renderer_image *buf)
 	{
 		dst = buf->raw + (long) point->x * (buf->depth / 8) + (long) point->y
 			* buf->line_size;
-		*(unsigned int *) dst = 0x00FFFFFF;
+		*(unsigned int *) dst = (0 << 24) + (point->r << 16) + (point->g << 8)
+			+ (point->b << 0);
 	}
 }

@@ -34,6 +34,9 @@ void	vertex3D_cast_point(t_vertex3D *this, t_point *point)
 	if (this == NULL || point == NULL)
 		return ;
 	point_create(point, this->x, this->y);
+	point->r = this->r;
+	point->g = this->g;
+	point->b = this->b;
 }
 
 t_vector	*vertex3D_cast_new_vector(t_vertex3D *this)

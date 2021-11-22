@@ -62,4 +62,7 @@ void	matrix_multiply_vertex3D(
 		+ m->values[2][2] * v->z + m->values[2][3] * v->w;
 	result->w = m->values[3][0] * v->x + m->values[3][1] * v->y
 		+ m->values[3][2] * v->z + m->values[3][3] * v->w;
+	result->r = v->r;
+	result->g = v->g;
+	result->b = v->b;
 }

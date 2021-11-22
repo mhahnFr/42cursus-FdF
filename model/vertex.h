@@ -14,13 +14,13 @@ typedef struct s_vector	t_vector;
  */
 typedef struct s_vertex3D
 {
-	float	x;
-	float	y;
-	float	z;
-	float	w;
-	char	r;
-	char	g;
-	char	b;
+	float			x;
+	float			y;
+	float			z;
+	float			w;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
 }	t_vertex3D;
 
 /*

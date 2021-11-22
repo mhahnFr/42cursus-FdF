@@ -11,4 +11,7 @@ void	renderer_generate_point(
 	result->x = (1.0 + point->x) * this->buffer->width / 2.0;
 	result->y = (1.0 + point->y) * this->buffer->height / 2.0;
 	result->z = this->near_z + point->z * (this->far_z - this->near_z);
+	result->r = point->r;
+	result->g = point->g;
+	result->b = point->b;
 }
