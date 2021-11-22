@@ -5,8 +5,11 @@
  * Represents a two dimensional point. Consists of the X and the Y value.
  */
 typedef struct s_point {
-	long	x;
-	long	y;
+	long			x;
+	long			y;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
 }	t_point;
 
 /*

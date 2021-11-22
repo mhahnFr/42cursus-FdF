@@ -19,6 +19,9 @@ void	point_create(t_point *this, long x, long y)
 		return ;
 	this->x = x;
 	this->y = y;
+	this->r = 1;
+	this->g = 1;
+	this->b = 1;
 }
 
 void	point_destroy(t_point *this)
