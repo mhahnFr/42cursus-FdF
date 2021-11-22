@@ -1,8 +1,5 @@
 #include "mlx.h"
 
-#include "ft_printf.h"
-
-#include "main.h"
 #include "delegate/app_delegate.h"
 #include "view/init.h"
 #include "model/generate.h"
