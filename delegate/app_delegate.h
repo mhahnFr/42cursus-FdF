@@ -1,6 +1,8 @@
 #ifndef APP_DELEGATE_H
 # define APP_DELEGATE_H
 
+# include <stddef.h>
+
 # include "model/model.h"
 # include "view/window.h"
 # include "CLI/cli.h"
