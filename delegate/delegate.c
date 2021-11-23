@@ -20,12 +20,14 @@ void	delegate_create(
 			t_model3D *model,
 			t_cli *cli_obj)
 {
-	if (this != NULL)
-	{
-		this->mlx_ptr = mlx_ptr;
-		this->model = model;
-		this->cli_obj = cli_obj;
-	}
+	if (this == NULL)
+		return ;
+	this->mlx_ptr = mlx_ptr;
+	this->model = model;
+	this->cli_obj = cli_obj;
+	this->windows = NULL;
+	this->renderer = NULL;
+	this->move_camera = true;
 }
 
 void	delegate_destroy(t_delegate *this)

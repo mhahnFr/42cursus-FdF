@@ -1,0 +1,68 @@
+#include "app_delegate.h"
+#include "renderer/renderer.h"
+#include "view/event/key_codes.h"
+
+void	delegate_main_window_key_touched_arrows(
+			t_delegate *this,
+			t_key_codes key)
+{
+	if (this->move_camera)
+		delegate_move_camera(this, key);
+	else
+		delegate_move_model(this, key);
+	delegate_main_window_key_touched_WASD(this, key);
+}
+
+void	delegate_move_model(t_delegate *this, t_key_codes key)
+{
+	if (key == LEFT)
+		this->model->mover->x -= 0.1;
+	else if (key == RIGHT)
+		this->model->mover->x += 0.1;
+	else if (key == DOWN)
+		this->model->mover->y -= 0.1;
+	else if (key == UP)
+		this->model->mover->y += 0.1;
+	else if (key == NUM_0)
+		this->model->mover->z -= 0.1;
+	else if (key == NUM_1)
+		this->model->mover->z += 0.1;
+	renderer_move_matrix(this->renderer->model, this->model->mover);
+	renderer_multiply_matrices(this->renderer);
+}
+
+void	delegate_move_camera(t_delegate *this, t_key_codes key)
+{
+	if (key == LEFT)
+	{
+		this->renderer->camera->pos->x -= 1;
+		this->renderer->camera->view_point->x += 1;
+	}
+	else if (key == RIGHT)
+	{
+		this->renderer->camera->pos->x += 1;
+		this->renderer->camera->view_point->x -= 1;
+	}
+	else if (key == UP)
+	{
+		this->renderer->camera->pos->y += 1;
+		this->renderer->camera->view_point->y -= 1;
+	}
+	else if (key == DOWN)
+	{
+		this->renderer->camera->pos->y -= 1;
+		this->renderer->camera->view_point->y += 1;
+	}
+	else if (key == NUM_1)
+	{
+		this->renderer->camera->pos->z += 1;
+		this->renderer->camera->view_point->z -= 1;
+	}
+	else if (key == NUM_0)
+	{
+		this->renderer->camera->pos->z -= 1;
+		this->renderer->camera->view_point->z += 1;
+	}
+	renderer_set_view(this->renderer);
+	renderer_multiply_matrices(this->renderer);
+}

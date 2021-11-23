@@ -2,6 +2,7 @@
 # define APP_DELEGATE_H
 
 # include <stddef.h>
+# include <stdbool.h>
 
 # include "model/model.h"
 # include "view/window.h"
@@ -18,6 +19,7 @@ typedef struct s_delegate {
 	t_model3D	*model;
 	t_cli		*cli_obj;
 	t_renderer	*renderer;
+	bool		move_camera;
 }	t_delegate;
 
 /*
@@ -63,6 +65,61 @@ int			delegate_key_touched(int key, t_delegate **this);
 void		delegate_main_window_key_touched(
 				t_window_event *w_event,
 				t_key_event *k_event);
+
+/*
+ * Handles the keys for changing the projection type.
+ */
+void		delegate_main_window_key_touched_proj(
+				t_delegate *this,
+				t_key_codes key);
+
+/*
+ * Handles the events of pressed arrow keys.
+ */
+void		delegate_main_window_key_touched_arrows(
+				t_delegate *this,
+				t_key_codes key);
+
+/*
+ * Moves the model according to the pressed key.
+ */
+void		delegate_move_model(t_delegate *this, t_key_codes key);
+
+/*
+ * Moves the camera according to the pressed key.
+ */
+void		delegate_move_camera(t_delegate *this, t_key_codes key);
+
+/*
+ * Rotates the camera according to the pressed key.
+ */
+void		delegate_rotate_camera(t_delegate *this, t_key_codes key);
+
+/*
+ * Rotates the model according to the pressed key.
+ */
+void		delegate_rotate_model(t_delegate *this, t_key_codes key);
+
+/*
+ * Handles the events of a pressed W A S D key.
+ */
+void		delegate_main_window_key_touched_WASD(
+				t_delegate *this,
+				t_key_codes key);
+
+/*
+ * Handles the event of a pressed key for zooming.
+ */
+void		delegate_main_window_key_touched_zoom(
+				t_delegate *this,
+				t_key_codes key);
+
+/*
+ * Handles the key event of toggling between camera and model manipulation.
+ */
+void		delegate_main_window_key_touched_toggle(
+				t_delegate *this,
+				t_key_codes key);
 
 /*
  * Creates a new delegate object with the given MiniLibX connection pointer and

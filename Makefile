@@ -31,7 +31,8 @@ SRC		=	./delegate/app_delegate.c ./view/init.c ./model/generate.c 		  \
 			./renderer/renderer_rotations.c ./renderer/renderer_movements.c	  \
 			./renderer/renderer_multiply_matrices.c ./model/generate_vertex.c \
 			./renderer/renderer_generate_point.c ./renderer/renderer_clear.c  \
-			./utils/hex_str_to_unsigned_int.c
+			./utils/hex_str_to_unsigned_int.c ./delegate/delegate_key_arrows.c\
+			./delegate/delegate_key_misc.c ./delegate/delegate_key_wasd.c
 
 # The path to the home made libft.
 LFT_D	=	./libft
