@@ -83,16 +83,17 @@ INCL	=	-I$(MLX_D) -I$(LFT_D) -I$(FT_PF_D) -I$(GNL_D) -I.
 
 
 # Makes whatever is needed.
-.phony: all
 all: $(NAME)
 
+# Convenience rule to make the bonus part of the project, which is always
+# included.
+bonus: all
+
 # Runs a test file.
-.phony: run
 run: $(NAME)
 	./$(NAME) tester/files/42.fdf 1000 1000
 
 # Runs the norm checker on each registered source file.
-.phony: nor
 nor:
 	norminette $(SRC) $(patsubst %.c,%.h,$(SRC)) | grep :
 
@@ -105,27 +106,22 @@ $(NAME): $(MLX_P) $(LFT_P) $(FT_PF_P) $(GNL_P) $(OBJ)
 	$(CC) $(CFLAGS) $(INCL) -c -o $@ $<
 
 # Makes whatever is needed for the get_next_line library.
-.phony: $(GNL_P)
 $(GNL_P):
 	make -C $(GNL_D) $(GNL_A)
 
 # Makes whatever is needed for the ft_printf library.
-.phony: $(FT_PF_P)
 $(FT_PF_P):
 	make -C $(FT_PF_D) $(FT_PF_A)
 
 # Makes what is necessary for the libft.
-.phony: $(LFT_P)
 $(LFT_P):
 	make -C $(LFT_D) $(LFT_A)
 
 # Creates the minilibx library if needed.
-.phony: $(MLX_P)
 $(MLX_P):
 	make -C $(MLX_D) $(MLX_A) CFLAGS='$(MLX_F)'
 
 # Removes only the temporary files of the program, but not the library files.
-.phony: cleano
 cleano:
 	- $(RM) $(OBJ)
 	- $(RM) *~
@@ -133,27 +129,25 @@ cleano:
 
 # Removes only the files of the program, also the executable, but not the
 # library files.
-.phony: fcleano
 fcleano: cleano
 	- $(RM) $(NAME)
 
 # Removes all unnecessary files created by this makefile.
-.phony: clean
 clean: cleano
 	- make -C $(MLX_D) clean
 	- make -C $(LFT_D) clean
 	- make -C $(GNL_D) clean
 
 # Removes everything created by this makefile.
-.phony: fclean
 fclean: clean fcleano
 	- make -C $(LFT_D) fclean
 	- make -C $(GNL_D) fclean
 
 # Recompiles only the program files, not the librarys.
-.phony: reo
 reo: fcleano run
 
 # Recompiles the project.
-.phony: re
 re: fclean all
+
+# A list with always dirty rules.
+.PHONY: all bonus run nor $(GNL_P) $(FT_PF_P) $(LFT_P) $(MLX_P) cleano clean fcleano fclean reo re
