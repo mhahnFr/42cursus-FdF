@@ -31,6 +31,11 @@ typedef struct s_delegate {
 typedef int	(*t_delegate_key_touched)(int, void *);
 
 /*
+ * A function that terminates the application properly.
+ */
+typedef int	(*t_delegate_close)(void *);
+
+/*
  * The starting point of the delegate. It controls whatever happens in this
  * application. Takes a pointer to the model and a pointer to the view of the
  * application. Returns the exit status of the program. Therefore, this

@@ -30,6 +30,8 @@ int	onApplicationFinishedLaunching(t_model3D *model, void *view, t_cli *cli_obj)
 	if (this->renderer == NULL)
 		delegate_exit(&this);
 	delegate_pre_render(&this);
+	mlx_hook(this->windows->mlx_window, 17, 0L,
+		(t_delegate_close) delegate_exit, &this);
 	mlx_loop_hook(view, (t_render_frame) delegate_render_frame, &this);
 	mlx_loop(view);
 	return (0);
@@ -77,7 +79,6 @@ int	delegate_key_touched(int key, t_delegate **this)
 
 void	delegate_exit(t_delegate **this)
 {
-	// TODO Exit application when closing the window!!!
 	delegate_delete(this);
 	system("leaks fdf");
 	exit(0);
