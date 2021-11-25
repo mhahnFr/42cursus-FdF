@@ -1,5 +1,4 @@
 Zooming
 colours
-norm
 Exit on close
 map moving
