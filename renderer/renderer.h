@@ -34,6 +34,8 @@ typedef struct s_delegate	t_delegate;
 
 typedef struct s_point		t_point;
 
+typedef struct s_model3D	t_model3D;
+
 /*
  * Represents a function that renders a frame. It is called in a loop by the
  * MiniLibX library, which passes a void pointer as payload. Returns an int,
@@ -75,6 +77,18 @@ void		renderer_create(
  * as parameter a delegate object with all necessary informations.
  */
 void		renderer_draw(t_delegate *this);
+
+/*
+ * Draws all appopriate lines using the given renderer and the given model. The
+ * vertex with the given indices is the starting point, it will be transformed
+ * to a pixel on the screen, and a line to the point on its right and a line to
+ * the point underneath it will be drawn.
+ */
+void		renderer_draw_core(
+				t_renderer *this,
+				t_model3D *model,
+				size_t i,
+				size_t j);
 
 /*
  * Draws a line from the given point to the other one. They have to be screen

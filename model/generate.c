@@ -107,12 +107,9 @@ t_arraylist	*generate_convert_vertices(t_arraylist *raw_vertices)
 		i_list = NULL;
 		while (((void **) raw_vertices->content)[i] != NULL)
 		{
-			tmp = arraylist_new(generate_vertex(i, raw_vertices->index,
-						((char **) raw_vertices->content)[i]));
-			if (tmp == NULL || tmp->content == NULL)
+			if (!generate_append_new_vertex(raw_vertices, i, &i_list))
 				return (generate_error_clear_double(&i_list,
 						(t_arraylist_remover) vertex3D_delete, &ret, NULL));
-			arraylist_append_unsafe(&i_list, tmp);
 			i++;
 		}
 		tmp = arraylist_new(i_list);

@@ -12,9 +12,6 @@
 
 void	renderer_draw(t_delegate *this)
 {
-	t_point		cur;
-	t_point		tmp;
-	t_vertex3D	v_tmp;
 	size_t		i;
 	size_t		j;
 
@@ -24,27 +21,7 @@ void	renderer_draw(t_delegate *this)
 		j = 0;
 		while (j < this->model->vertex_count[i])
 		{
-			matrix_multiply_vertex3D(&v_tmp, this->renderer->mvp,
-				this->model->vertices[i][j]);
-			renderer_generate_point(this->renderer, &v_tmp, &v_tmp);
-			vertex3D_cast_point(&v_tmp, &cur);
-			if (j < this->model->vertex_count[i] - 1)
-			{
-				matrix_multiply_vertex3D(&v_tmp, this->renderer->mvp,
-					this->model->vertices[i][j + 1]);
-				renderer_generate_point(this->renderer, &v_tmp, &v_tmp);
-				vertex3D_cast_point(&v_tmp, &tmp);
-				renderer_draw_line(cur, tmp, this->renderer->buffer);
-			}
-			if (i < this->model->vertex_count_length - 1
-				&& j < this->model->vertex_count[i + 1])
-			{
-				matrix_multiply_vertex3D(&v_tmp, this->renderer->mvp,
-					this->model->vertices[i + 1][j]);
-				renderer_generate_point(this->renderer, &v_tmp, &v_tmp);
-				vertex3D_cast_point(&v_tmp, &tmp);
-				renderer_draw_line(cur, tmp, this->renderer->buffer);
-			}
+			renderer_draw_core(this->renderer, this->model, i, j);
 			j++;
 		}
 		i++;
@@ -79,6 +56,35 @@ void	renderer_draw_line(t_point one, t_point two, t_renderer_image *buf)
 			err += diff.x;
 			one.y += s.y;
 		}
+	}
+}
+
+void	renderer_draw_core(
+			t_renderer *this,
+			t_model3D *model,
+			size_t i,
+			size_t j)
+{
+	t_vertex3D	v_tmp;
+	t_point		cur;
+	t_point		tmp;
+
+	matrix_multiply_vertex3D(&v_tmp, this->mvp, model->vertices[i][j]);
+	renderer_generate_point(this, &v_tmp, &v_tmp);
+	vertex3D_cast_point(&v_tmp, &cur);
+	if (j < model->vertex_count[i] - 1)
+	{
+		matrix_multiply_vertex3D(&v_tmp, this->mvp, model->vertices[i][j + 1]);
+		renderer_generate_point(this, &v_tmp, &v_tmp);
+		vertex3D_cast_point(&v_tmp, &tmp);
+		renderer_draw_line(cur, tmp, this->buffer);
+	}
+	if (i < model->vertex_count_length - 1 && j < model->vertex_count[i + 1])
+	{
+		matrix_multiply_vertex3D(&v_tmp, this->mvp, model->vertices[i + 1][j]);
+		renderer_generate_point(this, &v_tmp, &v_tmp);
+		vertex3D_cast_point(&v_tmp, &tmp);
+		renderer_draw_line(cur, tmp, this->buffer);
 	}
 }
 

@@ -1,6 +1,8 @@
 #ifndef GENERATE_H
 # define GENERATE_H
 
+# include <stdbool.h>
+
 # include "utils/arraylist.h"
 # include "CLI/cli.h"
 
@@ -37,6 +39,11 @@ void			generate_del_chr_ar(char **array);
  * Hint: probably use an array, as that won't change!
  */
 t_arraylist		*generate_convert_vertices(t_arraylist *raw_vertices);
+
+bool			generate_append_new_vertex(
+					t_arraylist *raw_vertices,
+					size_t i,
+					t_arraylist **i_list);
 
 /*
  * Converts all arraylists inside of the given list to arrays and stores them
