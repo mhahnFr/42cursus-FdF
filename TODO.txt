@@ -1,4 +1,3 @@
 Zooming
 colours
-Exit on close
 map moving
