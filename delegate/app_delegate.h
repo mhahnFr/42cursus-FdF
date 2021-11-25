@@ -91,6 +91,11 @@ void		delegate_move_model(t_delegate *this, t_key_codes key);
 void		delegate_move_camera(t_delegate *this, t_key_codes key);
 
 /*
+ * Moves the camera according to the pressed key.
+ */
+void		delegate_move_camera_part2(t_delegate *this, t_key_codes key);
+
+/*
  * Rotates the camera according to the pressed key.
  */
 void		delegate_rotate_camera(t_delegate *this, t_key_codes key);
@@ -99,6 +104,11 @@ void		delegate_rotate_camera(t_delegate *this, t_key_codes key);
  * Rotates the model according to the pressed key.
  */
 void		delegate_rotate_model(t_delegate *this, t_key_codes key);
+
+/*
+ * Rotates the model according to the pressed key.
+ */
+void		delegate_rotate_model_part2(t_delegate *this, t_key_codes key);
 
 /*
  * Handles the events of a pressed W A S D key.

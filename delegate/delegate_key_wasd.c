@@ -38,7 +38,28 @@ void	delegate_rotate_model(t_delegate *this, t_key_codes key)
 		this->model->y_angle -= 0.1;
 		renderer_rotate_matrix_y(this->renderer->model, this->model->y_angle);
 	}
-	else if (key == D)
+	else
+	{
+		delegate_rotate_model_part2(this, key);
+		return ;
+	}
+	renderer_multiply_matrices(this->renderer);
+}
+
+void	delegate_main_window_key_touched_WASD(
+			t_delegate *this,
+			t_key_codes key)
+{
+	if (this->move_camera)
+		delegate_rotate_camera(this, key);
+	else
+		delegate_rotate_model(this, key);
+	delegate_main_window_key_touched_zoom(this, key);
+}
+
+void	delegate_rotate_model_part2(t_delegate *this, t_key_codes key)
+{
+	if (key == D)
 	{
 		this->model->y_angle += 0.1;
 		renderer_rotate_matrix_y(this->renderer->model, this->model->y_angle);
@@ -54,15 +75,4 @@ void	delegate_rotate_model(t_delegate *this, t_key_codes key)
 		renderer_rotate_matrix_z(this->renderer->model, this->model->z_angle);
 	}
 	renderer_multiply_matrices(this->renderer);
-}
-
-void	delegate_main_window_key_touched_WASD(
-			t_delegate *this,
-			t_key_codes key)
-{
-	if (this->move_camera)
-		delegate_rotate_camera(this, key);
-	else
-		delegate_rotate_model(this, key);
-	delegate_main_window_key_touched_zoom(this, key);
 }
