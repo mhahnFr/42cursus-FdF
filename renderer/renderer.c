@@ -77,4 +77,5 @@ void	renderer_create(
 	this->projection = NULL;
 	this->mvp = NULL;
 	this->buffer = NULL;
+	this->view_angle = 60;
 }

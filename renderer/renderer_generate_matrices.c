@@ -11,7 +11,7 @@ void	renderer_set_perspective_projection(t_renderer *this)
 	if (this == NULL || this->projection == NULL)
 		return ;
 	matrix_fill(this->projection, 0);
-	h = 1 / tan(30);
+	h = 1 / tan(this->view_angle / 2);
 	w = h / (this->screen_width / this->screen_height);
 	this->projection->values[0][0] = w;
 	this->projection->values[1][1] = h;
@@ -29,8 +29,8 @@ void	renderer_set_orthogonal_projection(t_renderer *this)
 	if (this == NULL || this->projection == NULL)
 		return ;
 	matrix_fill(this->projection, 0);
-	h = 1 / tan(3);
-	w = h / (this->screen_width / this->screen_height);
+	w = this->view_angle;
+	h = w / (this->screen_width / this->screen_height);
 	this->projection->values[0][0] = 2.0 / w;
 	this->projection->values[1][1] = 2.0 / h;
 	this->projection->values[2][2] = 1.0 / (this->near_z - this->far_z);

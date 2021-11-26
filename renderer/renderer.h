@@ -26,6 +26,7 @@ typedef struct s_renderer
 	size_t				screen_height;
 	float				near_z;
 	float				far_z;
+	float				view_angle;
 	t_renderer_camera	*camera;
 	t_renderer_image	*buffer;
 }	t_renderer;

@@ -27,9 +27,13 @@ void	delegate_main_window_key_touched_zoom(
 			t_key_codes key)
 {
 	if (key == NUM_PLUS)
-		ft_printf("TODO: Zoom in\n");
+	{
+		this->renderer->view_angle += 1;
+	}
 	else if (key == NUM_MINUS)
-		ft_printf("TODO: Zoom out\n");
+	{
+		this->renderer->view_angle -= 1;
+	}
 	else
 		delegate_main_window_key_touched_toggle(this, key);
 }
