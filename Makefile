@@ -151,4 +151,4 @@ reo: fcleano run
 re: fclean all
 
 # A list with always dirty rules.
-.PHONY: all bonus run nor $(GNL_P) $(FT_PF_P) $(LFT_P) $(MLX_P) cleano clean fcleano fclean reo re
+.PHONY: all bonus run nor cleano clean fcleano fclean reo re
