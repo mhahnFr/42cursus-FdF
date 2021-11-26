@@ -1,3 +1,4 @@
 Zooming
 colours
 map moving
+camera movement
