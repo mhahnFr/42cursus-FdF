@@ -28,6 +28,7 @@ void	delegate_create(
 	this->windows = NULL;
 	this->renderer = NULL;
 	this->move_camera = true;
+	this->perspective = false;
 }
 
 void	delegate_destroy(t_delegate *this)
