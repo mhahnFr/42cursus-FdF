@@ -26,7 +26,7 @@ int	onApplicationFinishedLaunching(t_model3D *model, void *view, t_cli *cli_obj)
 	window_set_key_listener(
 		this->windows, key_listener_new(delegate_main_window_key_touched));
 	this->renderer = renderer_new(renderer_camera_new(
-				vector_new(-100, -100, 100)), cli_obj->width, cli_obj->height);
+				vector_new(0, 0, 0)), cli_obj->width, cli_obj->height);
 	if (this->renderer == NULL)
 		delegate_exit(&this);
 	delegate_pre_render(&this);

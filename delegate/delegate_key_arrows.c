@@ -35,18 +35,18 @@ void	delegate_move_camera(t_delegate *this, t_key_codes key)
 {
 	if (key == LEFT)
 	{
-		this->renderer->camera->pos->x -= 1;
-		this->renderer->camera->view_point->x += 1;
+		this->renderer->camera->pos->x -= 0.1;
+		this->renderer->camera->view_point->x += 0.1;
 	}
 	else if (key == RIGHT)
 	{
-		this->renderer->camera->pos->x += 1;
-		this->renderer->camera->view_point->x -= 1;
+		this->renderer->camera->pos->x += 0.1;
+		this->renderer->camera->view_point->x -= 0.1;
 	}
 	else if (key == UP)
 	{
-		this->renderer->camera->pos->y += 1;
-		this->renderer->camera->view_point->y -= 1;
+		this->renderer->camera->pos->y += 0.1;
+		this->renderer->camera->view_point->y -= 0.1;
 	}
 	else
 	{
@@ -61,18 +61,18 @@ void	delegate_move_camera_part2(t_delegate *this, t_key_codes key)
 {
 	if (key == DOWN)
 	{
-		this->renderer->camera->pos->y -= 1;
-		this->renderer->camera->view_point->y += 1;
+		this->renderer->camera->pos->y -= 0.1;
+		this->renderer->camera->view_point->y += 0.1;
 	}
 	else if (key == NUM_1)
 	{
-		this->renderer->camera->pos->z += 1;
-		this->renderer->camera->view_point->z -= 1;
+		this->renderer->camera->pos->z += 0.1;
+		this->renderer->camera->view_point->z -= 0.1;
 	}
 	else if (key == NUM_0)
 	{
-		this->renderer->camera->pos->z -= 1;
-		this->renderer->camera->view_point->z += 1;
+		this->renderer->camera->pos->z -= 0.1;
+		this->renderer->camera->view_point->z += 0.1;
 	}
 	renderer_set_view(this->renderer);
 	renderer_multiply_matrices(this->renderer);
