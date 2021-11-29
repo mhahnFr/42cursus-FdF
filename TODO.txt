@@ -1,5 +1,5 @@
-Zooming
-colours
-map moving
-camera movement
+Zooming				-> Perspective missing
+colours				-> Interpolation missing
+map moving 			-> Z missing
+camera rotations
 fix intial image
