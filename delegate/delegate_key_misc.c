@@ -9,9 +9,7 @@ void	delegate_main_window_key_touched_proj(
 			t_key_codes key)
 {
 	if (key == P)
-		this->perspective = true;
-	else if (key == O)
-		this->perspective = false;
+		this->perspective = !this->perspective;
 	else
 	{
 		delegate_main_window_key_touched_arrows(this, key);

@@ -48,7 +48,7 @@ void	delegate_main_window_key_touched(
 		if ((*((t_delegate **) w_event->pay_load))->renderer->text == NULL)
 			(*((t_delegate **) w_event->pay_load))->renderer->text
 				= "Rotate: W A S D R F; move: ARROWS NUM_0 NUM_1;"
-				" projection: O P; zoom: NUM_+ & NUM_-;"
+				" toggle projection: P; zoom: NUM_+ & NUM_-;"
 				" toggle camera/model manipulation: SPACE; exit: ESC";
 		else
 			(*((t_delegate **) w_event->pay_load))->renderer->text = NULL;
