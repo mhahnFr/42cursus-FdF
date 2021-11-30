@@ -11,7 +11,7 @@ void	renderer_set_perspective_projection(t_renderer *this)
 	if (this == NULL || this->projection == NULL)
 		return ;
 	matrix_fill(this->projection, 0);
-	h = 1 / tan(this->view_angle / 2);
+	h = 1 / tan(30);
 	w = h / (this->screen_width / this->screen_height);
 	this->projection->values[0][0] = w;
 	this->projection->values[1][1] = h;
