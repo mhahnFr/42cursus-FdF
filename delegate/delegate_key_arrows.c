@@ -43,7 +43,7 @@ void	delegate_move_camera(t_delegate *this, t_key_codes key)
 		this->renderer->camera->pos->x += 0.1;
 		this->renderer->camera->view_point->x -= 0.1;
 	}
-	else if (key == UP)
+	else if (key == DOWN)
 	{
 		this->renderer->camera->pos->y += 0.1;
 		this->renderer->camera->view_point->y -= 0.1;
@@ -59,7 +59,7 @@ void	delegate_move_camera(t_delegate *this, t_key_codes key)
 
 void	delegate_move_camera_part2(t_delegate *this, t_key_codes key)
 {
-	if (key == DOWN)
+	if (key == UP)
 	{
 		this->renderer->camera->pos->y -= 0.1;
 		this->renderer->camera->view_point->y += 0.1;
