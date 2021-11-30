@@ -1,9 +1,13 @@
 #ifndef MODEL_H
 # define MODEL_H
 
+# include <stddef.h>
+
 # include "vertex.h"
 
 typedef struct s_vector	t_vector;
+
+typedef struct s_matrix	t_matrix;
 
 /*
  * Represents a whole three dimensional model. Consists of a two dimensional
@@ -19,6 +23,11 @@ typedef struct s_model3D
 	float		y_angle;
 	float		z_angle;
 	t_vector	*mover;
+	t_matrix	*movements;
+	t_matrix	*rotation_x;
+	t_matrix	*rotation_y;
+	t_matrix	*rotation_z;
+	t_matrix	*scale;
 }	t_model3D;
 
 /*
@@ -40,6 +49,8 @@ void		model3D_create(
 				size_t *vertices_count_ar,
 				size_t vertices_count_length,
 				t_vertex3D ***vertices);
+
+void		model3D_multiply_matrices(t_model3D *this, t_matrix *result);
 
 /*
  * Destroys the content of the given model object. Frees the array containing

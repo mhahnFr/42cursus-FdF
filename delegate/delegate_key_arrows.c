@@ -27,7 +27,8 @@ void	delegate_move_model(t_delegate *this, t_key_codes key)
 		this->model->mover->z -= 0.1;
 	else if (key == NUM_1)
 		this->model->mover->z += 0.1;
-	renderer_move_matrix(this->renderer->model, this->model->mover);
+	renderer_move_matrix(this->model->movements, this->model->mover);
+	model3D_multiply_matrices(this->model, this->renderer->model);
 	renderer_multiply_matrices(this->renderer);
 }
 

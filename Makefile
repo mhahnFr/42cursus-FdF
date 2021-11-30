@@ -33,7 +33,7 @@ SRC		=	./delegate/app_delegate.c ./view/init.c ./model/generate.c 		  \
 			./renderer/renderer_generate_point.c ./renderer/renderer_clear.c  \
 			./utils/hex_str_to_unsigned_int.c ./delegate/delegate_key_arrows.c\
 			./delegate/delegate_key_misc.c ./delegate/delegate_key_wasd.c	  \
-			./model/generate_append_new_vertex.c
+			./model/generate_append_new_vertex.c model/model_multiply.c
 
 # The path to the home made libft.
 LFT_D	=	./libft

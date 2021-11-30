@@ -2,6 +2,7 @@
 
 #include "model.h"
 #include "utils/math/vector.h"
+#include "utils/math/matrix.h"
 
 t_model3D	*model3D_new(
 				size_t *vertices_count_ar,
@@ -37,6 +38,16 @@ void	model3D_create(
 	this->y_angle = 0;
 	this->z_angle = 0;
 	this->mover = vector_new(0, 0, 0);
+	this->movements = matrix_new(NULL, 4, 4);
+	matrix_fill_neutral(this->movements);
+	this->rotation_x = matrix_new(NULL, 4, 4);
+	matrix_fill_neutral(this->rotation_x);
+	this->rotation_y = matrix_new(NULL, 4, 4);
+	matrix_fill_neutral(this->rotation_y);
+	this->rotation_z = matrix_new(NULL, 4, 4);
+	matrix_fill_neutral(this->rotation_z);
+	this->scale = matrix_new(NULL, 4, 4);
+	matrix_fill_neutral(this->scale);
 }
 
 void	model3D_destroy(t_model3D *this)
@@ -58,6 +69,11 @@ void	model3D_destroy(t_model3D *this)
 		i++;
 	}
 	vector_destroy(this->mover);
+	matrix_destroy(this->movements);
+	matrix_destroy(this->rotation_x);
+	matrix_destroy(this->rotation_y);
+	matrix_destroy(this->rotation_z);
+	matrix_destroy(this->scale);
 }
 
 void	model3D_delete(t_model3D *this)
@@ -74,14 +90,17 @@ void	model3D_delete(t_model3D *this)
 		j = 0;
 		while (j < this->vertex_count[i])
 		{
-			vertex3D_delete(this->vertices[i][j]);
-			j++;
+			vertex3D_delete(this->vertices[i][j++]);
 		}
-		free(this->vertices[i]);
-		i++;
+		free(this->vertices[i++]);
 	}
 	free(this->vertices);
 	free(this->vertex_count);
+	matrix_delete(this->movements);
+	matrix_delete(this->rotation_x);
+	matrix_delete(this->rotation_y);
+	matrix_delete(this->rotation_z);
+	matrix_delete(this->scale);
 	vector_delete(this->mover);
 	free(this);
 }
