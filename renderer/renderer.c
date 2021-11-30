@@ -27,8 +27,9 @@ int	delegate_pre_render(t_delegate **this)
 {
 	if (this == NULL || *this == NULL)
 		return (-1);
-	(*this)->renderer->camera->view_point = vector_new(1, 1, 0);
+	(*this)->renderer->camera->view_point = vector_new(0.4, 0.4, -0.3);
 	(*this)->renderer->model = matrix_new(NULL, 4, 4);
+	(*this)->renderer->view_angle = (*this)->model->vertex_count[0];
 	model3D_multiply_matrices((*this)->model, (*this)->renderer->model);
 	(*this)->renderer->view = matrix_new_filled(0, 4, 4);
 	renderer_set_view((*this)->renderer);
