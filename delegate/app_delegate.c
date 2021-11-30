@@ -15,8 +15,8 @@ int	onApplicationFinishedLaunching(t_model3D *model, void *view, t_cli *cli_obj)
 	this = delegate_new(view, model, cli_obj);
 	if (!cli_obj->size_set)
 	{
-		cli_obj->width = 200;
-		cli_obj->height = 50;
+		cli_obj->width = 800;
+		cli_obj->height = 600;
 	}
 	this->windows = delegate_get_new_window(view, cli_obj->width,
 			cli_obj->height, cli_obj->file);
@@ -26,7 +26,7 @@ int	onApplicationFinishedLaunching(t_model3D *model, void *view, t_cli *cli_obj)
 	window_set_key_listener(
 		this->windows, key_listener_new(delegate_main_window_key_touched));
 	this->renderer = renderer_new(renderer_camera_new(
-				vector_new(0, 0, 0)), cli_obj->width, cli_obj->height);
+				vector_new(0.6, 0.6, 0.3)), cli_obj->width, cli_obj->height);
 	if (this->renderer == NULL)
 		delegate_exit(&this);
 	delegate_pre_render(&this);
@@ -52,6 +52,10 @@ void	delegate_main_window_key_touched(
 				" toggle camera/model manipulation: SPACE; exit: ESC";
 		else
 			(*((t_delegate **) w_event->pay_load))->renderer->text = NULL;
+	}
+	else if (k_event->key == RETURN) {
+		t_delegate **this = w_event->pay_load;
+		printf("Cam pos: %f %f %f\nCam vAt: %f %f %f\n", (*this)->renderer->camera->pos->x, (*this)->renderer->camera->pos->y, (*this)->renderer->camera->pos->z, (*this)->renderer->camera->view_point->x, (*this)->renderer->camera->view_point->y, (*this)->renderer->camera->view_point->z);
 	}
 	else
 		delegate_main_window_key_touched_proj(
