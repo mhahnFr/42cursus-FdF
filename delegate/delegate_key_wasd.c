@@ -7,18 +7,20 @@
 void	delegate_rotate_camera(t_delegate *this, t_key_codes key)
 {
 	if (key == A)
-		ft_printf("TODO: Rotate camera\n");
+		this->model->scaler->x -= 0.1;
 	if (key == D)
-		ft_printf("TODO: Rotate camera\n");
+		this->model->scaler->x += 0.1;
 	if (key == S)
-		ft_printf("TODO: Rotate camera\n");
+		this->model->scaler->y -= 0.1;
 	if (key == W)
-		ft_printf("TODO: Rotate camera\n");
+		this->model->scaler->y += 0.1;
 	if (key == F)
-		ft_printf("TODO: Rotate camera\n");
+		this->model->scaler->z -= 0.1;
 	if (key == R)
-		ft_printf("TODO: Rotate camera\n");
-	this = NULL;
+		this->model->scaler->z += 0.1;
+	model3D_scale_matrix(this->model);
+	model3D_multiply_matrices(this->model, this->renderer->model);
+	renderer_multiply_matrices(this->renderer);
 }
 
 void	delegate_rotate_model(t_delegate *this, t_key_codes key)

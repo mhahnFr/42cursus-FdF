@@ -23,6 +23,7 @@ typedef struct s_model3D
 	float		y_angle;
 	float		z_angle;
 	t_vector	*mover;
+	t_vector	*scaler;
 	t_matrix	*movements;
 	t_matrix	*rotation_x;
 	t_matrix	*rotation_y;
@@ -55,6 +56,8 @@ void		model3D_create(
  * matrix. Does nothing if no matrix or no model is given.
  */
 void		model3D_multiply_matrices(t_model3D *this, t_matrix *result);
+
+void		model3D_scale_matrix(t_model3D *this);
 
 /*
  * Destroys the content of the given model object. Frees the array containing

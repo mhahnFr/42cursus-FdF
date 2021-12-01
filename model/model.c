@@ -48,6 +48,7 @@ void	model3D_create(
 	matrix_fill_neutral(this->rotation_z);
 	this->scale = matrix_new(NULL, 4, 4);
 	matrix_fill_neutral(this->scale);
+	this->scaler = vector_new(1, 1, 1);
 }
 
 void	model3D_destroy(t_model3D *this)
@@ -74,6 +75,7 @@ void	model3D_destroy(t_model3D *this)
 	matrix_destroy(this->rotation_y);
 	matrix_destroy(this->rotation_z);
 	matrix_destroy(this->scale);
+	vector_destroy(this->scaler);
 }
 
 void	model3D_delete(t_model3D *this)
@@ -89,9 +91,7 @@ void	model3D_delete(t_model3D *this)
 	{
 		j = 0;
 		while (j < this->vertex_count[i])
-		{
 			vertex3D_delete(this->vertices[i][j++]);
-		}
 		free(this->vertices[i++]);
 	}
 	free(this->vertices);
@@ -102,5 +102,6 @@ void	model3D_delete(t_model3D *this)
 	matrix_delete(this->rotation_z);
 	matrix_delete(this->scale);
 	vector_delete(this->mover);
+	vector_delete(this->scaler);
 	free(this);
 }
