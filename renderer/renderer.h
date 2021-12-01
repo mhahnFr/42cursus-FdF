@@ -27,6 +27,7 @@ typedef struct s_renderer
 	float				near_z;
 	float				far_z;
 	float				view_angle;
+	float				factor;
 	bool				perspective;
 	t_renderer_camera	*camera;
 	t_renderer_image	*buffer;

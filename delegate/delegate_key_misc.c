@@ -27,9 +27,19 @@ void	delegate_main_window_key_touched_zoom(
 			t_key_codes key)
 {
 	if (key == NUM_PLUS)
-		this->renderer->view_angle -= 1;
+	{
+		if (this->move_camera)
+			this->renderer->factor += 0.1;
+		else
+			this->renderer->view_angle -= 1;
+	}
 	else if (key == NUM_MINUS)
-		this->renderer->view_angle += 1;
+	{
+		if (this->move_camera)
+			this->renderer->factor -= 0.1;
+		else
+			this->renderer->view_angle += 1;
+	}
 	else
 	{
 		delegate_main_window_key_touched_toggle(this, key);

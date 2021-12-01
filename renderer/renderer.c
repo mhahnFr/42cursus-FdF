@@ -78,4 +78,5 @@ void	renderer_create(
 	this->buffer = NULL;
 	this->view_angle = 20;
 	this->perspective = false;
+	this->factor = 1;
 }
