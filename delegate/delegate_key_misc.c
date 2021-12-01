@@ -9,13 +9,13 @@ void	delegate_main_window_key_touched_proj(
 			t_key_codes key)
 {
 	if (key == P)
-		this->perspective = !this->perspective;
+		this->renderer->perspective = !this->renderer->perspective;
 	else
 	{
 		delegate_main_window_key_touched_arrows(this, key);
 		return ;
 	}
-	if (this->perspective)
+	if (this->renderer->perspective)
 		renderer_set_perspective_projection(this->renderer);
 	else
 		renderer_set_orthogonal_projection(this->renderer);
@@ -35,7 +35,7 @@ void	delegate_main_window_key_touched_zoom(
 		delegate_main_window_key_touched_toggle(this, key);
 		return ;
 	}
-	if (this->perspective)
+	if (this->renderer->perspective)
 		renderer_set_perspective_projection(this->renderer);
 	else
 		renderer_set_orthogonal_projection(this->renderer);

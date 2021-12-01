@@ -20,7 +20,6 @@ typedef struct s_delegate {
 	t_cli		*cli_obj;
 	t_renderer	*renderer;
 	bool		move_camera;
-	bool		perspective;
 }	t_delegate;
 
 /*
