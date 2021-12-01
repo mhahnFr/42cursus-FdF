@@ -53,10 +53,6 @@ void	delegate_main_window_key_touched(
 		else
 			(*((t_delegate **) w_event->pay_load))->renderer->text = NULL;
 	}
-	else if (k_event->key == RETURN) {
-		t_delegate **this = w_event->pay_load;
-		printf("Cam pos: %f %f %f\nCam vAt: %f %f %f\n", (*this)->renderer->camera->pos->x, (*this)->renderer->camera->pos->y, (*this)->renderer->camera->pos->z, (*this)->renderer->camera->view_point->x, (*this)->renderer->camera->view_point->y, (*this)->renderer->camera->view_point->z);
-	}
 	else
 		delegate_main_window_key_touched_proj(
 			*((t_delegate **) w_event->pay_load), k_event->key);
