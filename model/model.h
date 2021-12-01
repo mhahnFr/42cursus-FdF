@@ -57,6 +57,10 @@ void		model3D_create(
  */
 void		model3D_multiply_matrices(t_model3D *this, t_matrix *result);
 
+/*
+ * Scales the given model by the vector set in the model. Does nothing if no
+ * model is given.
+ */
 void		model3D_scale_matrix(t_model3D *this);
 
 /*
