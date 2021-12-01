@@ -29,14 +29,14 @@ void	delegate_main_window_key_touched_zoom(
 	if (key == NUM_PLUS)
 	{
 		if (this->move_camera)
-			this->renderer->factor += 0.1;
+			this->renderer->factor += 0.05;
 		else
 			this->renderer->view_angle -= 1;
 	}
 	else if (key == NUM_MINUS)
 	{
 		if (this->move_camera)
-			this->renderer->factor -= 0.1;
+			this->renderer->factor -= 0.05;
 		else
 			this->renderer->view_angle += 1;
 	}
