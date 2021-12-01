@@ -50,6 +50,10 @@ void		model3D_create(
 				size_t vertices_count_length,
 				t_vertex3D ***vertices);
 
+/*
+ * Multiplies the matrices of the given model. Stores the esult in the given
+ * matrix. Does nothing if no matrix or no model is given.
+ */
 void		model3D_multiply_matrices(t_model3D *this, t_matrix *result);
 
 /*
