@@ -118,9 +118,9 @@ int get_mouse_button(NSEventType eventtype)
   the_key = 1;
   while (((val >> (the_key-1)) & 0x01)==0)
     the_key ++;
-  if (flag > keyflag && event_funct[2] != NULL)
+  if (flag > (unsigned int) keyflag && event_funct[2] != NULL)
     event_funct[2](0xFF+the_key, event_param[2]);
-  if (flag < keyflag && event_funct[3] != NULL)
+  if (flag < (unsigned int) keyflag && event_funct[3] != NULL)
     event_funct[3](0xFF+the_key, event_param[3]);
   /*
   if (event_funct[2] != NULL)
@@ -361,7 +361,10 @@ int get_mouse_button(NSEventType eventtype)
       //      [ctx makeCurrentContext];
 
       [[self openGLContext] makeCurrentContext];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
       [[self openGLContext] setView:self];
+#pragma clang diagnostic pop
       [self prepareOpenGL];
 
       [self setNextKeyView:self];
