@@ -1,4 +1,3 @@
-Zooming				-> Perspective missing
 colours				-> Interpolation missing
 map moving 			-> Z missing
 fix perspective projection !!!
