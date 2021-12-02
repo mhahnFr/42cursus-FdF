@@ -14,7 +14,7 @@ void	point_copy_values(t_point *this, t_point *copy)
 
 t_point	*point_copy(t_point *this)
 {
-	t_point *ret;
+	t_point	*ret;
 
 	if (this == NULL)
 		return (NULL);
