@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <math.h>
 
 #include "mlx.h"
 
@@ -37,11 +38,30 @@ void	renderer_draw_line(t_point one, t_point two, t_renderer_image *buf)
 	long	err;
 	long	e2;
 
+	t_point start;
+	point_create(&start, one.x, one.y);
+	start.r = one.r;
+	start.g = one.g;
+	start.b = one.b;
 	point_create(&diff, labs(two.x - one.x), -labs(two.y - one.y));
 	point_create(&s, renderer_sp(one.x, two.x), renderer_sp(one.y, two.y));
 	err = diff.x + diff.y;
+	float id = (two.x - one.x) * (two.x - one.x);
+	id += (two.y - one.y) * (two.y - one.y);
+	id = sqrt(id);
+	int dr, dg, db;
+	dr = two.r - one.r;
+	dg = two.g - one.g;
+	db = two.b - one.b;
 	while (1)
 	{
+		float d = (one.x - start.x) * (one.x - start.x);
+		d += (one.y - start.y) * (one.y - start.y);
+		d = sqrt(d);
+		float percent = d / id;
+		one.r = start.r + (dr * percent);
+		one.g = start.g + (dg * percent);
+		one.b = start.b + (db * percent);
 		renderer_draw_point(&one, buf);
 		if (one.x == two.x && one.y == two.y)
 			break ;
