@@ -38,7 +38,7 @@ SRC		=	./delegate/app_delegate.c ./view/init.c ./model/generate.c 		  \
 			./renderer/renderer_draw_color.c
 
 # The path to the home made libft.
-LFT_D	=	./libft
+LFT_D	=	./libft/src
 
 # The base name of the libft.
 LFT_A	=	libft.a
