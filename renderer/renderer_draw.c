@@ -30,21 +30,23 @@ void	renderer_draw(t_delegate *this)
 		this->renderer->buffer->mlx_img, 0, 0);
 }
 
-void	renderer_draw_line(t_point one, t_point two, t_renderer_image *buf)
+void	renderer_draw_line(
+			t_point *start,
+			t_point one,
+			t_point two,
+			t_renderer_image *buf)
 {
 	t_point	diff;
 	t_point	s;
-	t_point	start;
 	long	err;
 	long	e2;
 
-	point_copy_values(&one, &start);
 	point_create(&diff, labs(two.x - one.x), -labs(two.y - one.y));
 	point_create(&s, renderer_sp(one.x, two.x), renderer_sp(one.y, two.y));
 	err = diff.x + diff.y;
 	while (1)
 	{
-		renderer_draw_coloured_point(&one, &start, &two, buf);
+		renderer_draw_coloured_point(&one, start, &two, buf);
 		if (one.x == two.x && one.y == two.y)
 			break ;
 		e2 = 2 * err;
@@ -79,14 +81,14 @@ void	renderer_draw_core(
 		matrix_multiply_vertex3D(&v_tmp, this->mvp, model->vertices[i][j + 1]);
 		renderer_generate_point(this, &v_tmp, &v_tmp);
 		vertex3D_cast_point(&v_tmp, &tmp);
-		renderer_draw_line(cur, tmp, this->buffer);
+		renderer_draw_line(&cur, cur, tmp, this->buffer);
 	}
 	if (i < model->vertex_count_length - 1 && j < model->vertex_count[i + 1])
 	{
 		matrix_multiply_vertex3D(&v_tmp, this->mvp, model->vertices[i + 1][j]);
 		renderer_generate_point(this, &v_tmp, &v_tmp);
 		vertex3D_cast_point(&v_tmp, &tmp);
-		renderer_draw_line(cur, tmp, this->buffer);
+		renderer_draw_line(&cur, cur, tmp, this->buffer);
 	}
 }
 

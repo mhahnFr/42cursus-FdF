@@ -13,7 +13,9 @@ void	renderer_draw_coloured_point(
 	float	fraction;
 
 	id = sqrt(pow(end->x - start->x, 2) + pow(end->y - start->y, 2));
-	fraction = sqrt(pow(current->x - start->x, 2) + pow(current->y - start->y, 2)) / id;
+	fraction
+		= sqrt(pow(current->x - start->x, 2)
+			+ pow(current->y - start->y, 2)) / id;
 	current->r = start->r + ((end->r - start->r) * fraction);
 	current->g = start->g + ((end->g - start->g) * fraction);
 	current->b = start->b + ((end->b - start->b) * fraction);
