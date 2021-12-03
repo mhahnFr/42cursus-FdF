@@ -202,6 +202,12 @@ void		renderer_multiply_matrices(t_renderer *this);
  */
 long		renderer_sp(long first, long second);
 
+void		renderer_draw_coloured_point(
+				t_point *current,
+				t_point *start,
+				t_point *end,
+				t_renderer_image *buf);
+
 /*
  * Destroys the content of the given renderer object and its contents. Does
  * nothing if no object is given.
