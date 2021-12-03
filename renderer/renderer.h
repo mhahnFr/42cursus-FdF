@@ -98,6 +98,7 @@ void		renderer_draw_core(
  * coordinates. Also takes the buffer image in which to draw the line.
  */
 void		renderer_draw_line(
+				t_point *start,
 				t_point first,
 				t_point second,
 				t_renderer_image *buf);
@@ -201,6 +202,12 @@ void		renderer_multiply_matrices(t_renderer *this);
  * Returns wether the first number is bigger (-1) or not (1).
  */
 long		renderer_sp(long first, long second);
+
+void		renderer_draw_coloured_point(
+				t_point *current,
+				t_point *start,
+				t_point *end,
+				t_renderer_image *buf);
 
 /*
  * Destroys the content of the given renderer object and its contents. Does
