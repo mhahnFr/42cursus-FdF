@@ -2,7 +2,7 @@
 NAME	=	fdf
 
 # The flags to compile with.
-CFLAGS	=	-Wall -Werror -Wextra -g
+CFLAGS	=	-Wall -Werror -Wextra -Ofast
 
 # The macro to get the object file names from the source file names.
 OBJ		=	$(patsubst %.c,%.o,$(SRC))
