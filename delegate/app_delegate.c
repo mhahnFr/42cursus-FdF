@@ -80,6 +80,5 @@ int	delegate_key_touched(int key, t_delegate **this)
 void	delegate_exit(t_delegate **this)
 {
 	delegate_delete(this);
-	system("leaks fdf");
 	exit(0);
 }
