@@ -59,7 +59,7 @@ MLX_P	=	$(MLX_D)/$(MLX_A)
 GNL_A	=	libgnl.a
 
 # The directory of the get_next_line library.
-GNL_D	=	./gnl
+GNL_D	=	./gnl/src
 
 # The full path to the get_next_line library.
 GNL_P	=	$(GNL_D)/$(GNL_A)
@@ -82,7 +82,7 @@ FT_PF_A	=	libftprintf.a
 FT_PF_P	=	$(FT_PF_D)/$(FT_PF_A)
 
 # The includes for all files.
-INCL	=	-I$(MLX_D) -I$(LFT_D) -I$(FT_PF_D) -I$(GNL_D) -I.
+INCL	=	-I$(MLX_D) -I$(LFT_D) -I$(FT_PF_D) -I$(GNL_D)/bonus -I.
 
 
 # Makes whatever is needed.
