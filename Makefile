@@ -139,11 +139,13 @@ fcleano: cleano
 clean: cleano
 	- make -C $(MLX_D) clean
 	- make -C $(LFT_D) clean
+	- make -C $(FT_PF_D) clean
 	- make -C $(GNL_D) clean
 
 # Removes everything created by this makefile.
 fclean: clean fcleano
 	- make -C $(LFT_D) fclean
+	- make -C $(FT_PF_D) fclean
 	- make -C $(GNL_D) fclean
 
 # Recompiles only the program files, not the librarys.
