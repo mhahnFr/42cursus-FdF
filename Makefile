@@ -65,7 +65,7 @@ GNL_D	=	./gnl/src
 GNL_P	=	$(GNL_D)/$(GNL_A)
 
 # The flags to link with.
-LFLAGS	=	-framework OpenGL -framework AppKit -lz -L$(MLX_D) -lmlx -L$(LFT_D) \
+LFLAGS	=	-framework OpenGL -framework AppKit -L$(MLX_D) -lmlx -L$(LFT_D) \
 			-lft -L$(FT_PF_D) -lftprintf -L$(GNL_D) -lgnl
 
 # The flags to use for compiling the minilibx.
