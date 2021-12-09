@@ -6,9 +6,9 @@ graphical application that displays three dimensional wireframes.
 TBA
 
 ## Usage
-To use this application, start it from a shell with a file to display as
-argument: ```fdf <path/to/file.fdf>```. You can also pass the width and height
-of the window.
+To use this application, start it from a shell with the file to display as
+argument: ```fdf <path/to/file>```. You can also pass the width and height
+of the window: ```fdf <path/to/file width height```.
 
 ### Final notes
 
