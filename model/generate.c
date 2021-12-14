@@ -73,23 +73,23 @@ t_arraylist	*generate_read_file(char *file_name)
 
 	r = NULL;
 	fd = open(file_name, O_RDONLY);
-	if (fd >= 0)
+	if (fd < 0)
+		return (NULL);
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
-		line = get_next_line(fd);
-		while (line != NULL)
+		tmp = arraylist_new((void *) ft_split(line, ' '));
+		if (tmp == NULL || tmp->content == NULL)
 		{
-			tmp = arraylist_new((void *) ft_split(line, ' '));
-			if (tmp == NULL || tmp->content == NULL)
-			{
-				perror("FdF");
-				arraylist_clear(&r, (t_arraylist_remover) generate_del_chr_ar);
-				return (NULL);
-			}
-			arraylist_append_unsafe(&r, tmp);
-			free(line);
-			line = get_next_line(fd);
+			perror("FdF");
+			arraylist_clear(&r, (t_arraylist_remover) generate_del_chr_ar);
+			return (NULL);
 		}
+		arraylist_append_unsafe(&r, tmp);
+		free(line);
+		line = get_next_line(fd);
 	}
+	close(fd);
 	return (r);
 }
 
