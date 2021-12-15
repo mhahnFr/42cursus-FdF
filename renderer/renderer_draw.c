@@ -63,6 +63,7 @@ void	renderer_draw_line(
 	}
 }
 
+#include <stdlib.h>
 void	renderer_draw_core(
 			t_renderer *this,
 			t_model3D *model,
@@ -74,11 +75,23 @@ void	renderer_draw_core(
 	t_point		tmp;
 
 	matrix_multiply_vertex3D(&v_tmp, this->mvp, model->vertices[i][j]);
+	if (!v_tmp.colour_set) {
+		int colour = rand();
+		v_tmp.r = colour >> 16;
+		v_tmp.g = colour >> 8;
+		v_tmp.b = colour >> 0;
+	}
 	renderer_generate_point(this, &v_tmp, &v_tmp);
 	vertex3D_cast_point(&v_tmp, &cur);
 	if (j < model->vertex_count[i] - 1)
 	{
 		matrix_multiply_vertex3D(&v_tmp, this->mvp, model->vertices[i][j + 1]);
+		if (!v_tmp.colour_set) {
+			int colour = rand();
+			v_tmp.r = colour >> 16;
+			v_tmp.g = colour >> 8;
+			v_tmp.b = colour >> 0;
+		}
 		renderer_generate_point(this, &v_tmp, &v_tmp);
 		vertex3D_cast_point(&v_tmp, &tmp);
 		renderer_draw_line(&cur, cur, tmp, this->buffer);
@@ -86,6 +99,12 @@ void	renderer_draw_core(
 	if (i < model->vertex_count_length - 1 && j < model->vertex_count[i + 1])
 	{
 		matrix_multiply_vertex3D(&v_tmp, this->mvp, model->vertices[i + 1][j]);
+		if (!v_tmp.colour_set) {
+			int colour = rand();
+			v_tmp.r = colour >> 16;
+			v_tmp.g = colour >> 8;
+			v_tmp.b = colour >> 0;
+		}
 		renderer_generate_point(this, &v_tmp, &v_tmp);
 		vertex3D_cast_point(&v_tmp, &tmp);
 		renderer_draw_line(&cur, cur, tmp, this->buffer);

@@ -24,6 +24,7 @@ t_vertex3D	*generate_vertex(size_t x, size_t y, char *raw_z)
 		ret->r = (raw_color >> 16) & 0xFF;
 		ret->g = (raw_color >> 8) & 0xFF;
 		ret->b = (raw_color >> 0) & 0xFF;
+		ret->colour_set = true;
 	}
 	return (ret);
 }
