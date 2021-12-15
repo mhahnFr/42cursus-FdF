@@ -21,6 +21,7 @@ typedef struct s_vertex3D
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
+	bool			colour_set;
 }	t_vertex3D;
 
 /*

@@ -27,6 +27,7 @@ void	vertex3D_create(t_vertex3D *this, float x, float y, float z)
 	this->r = colour >> 16;
 	this->g = colour >> 8;
 	this->b = colour >> 0;
+	this->colour_set = false;
 }
 
 void	vertex3D_destroy(t_vertex3D __attribute__((unused)) *this)

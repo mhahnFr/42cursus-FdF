@@ -65,4 +65,5 @@ void	matrix_multiply_vertex3D(
 	result->r = v->r;
 	result->g = v->g;
 	result->b = v->b;
+	result->colour_set = v->colour_set;
 }
