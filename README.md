@@ -1,6 +1,7 @@
 # Welcome to 42cursus-FdF!
-This repository contains a project of the [42 school]. The task is to create a
-graphical application that displays three dimensional wireframes.
+This repository contains a project of the
+[42 school](https://www.42heilbronn.de/learncoderepeat). The task is to create
+a graphical application that displays three dimensional wireframes.
 
 ## Approach
 In order to display three dimensional wireframes, the data has to be parsed.
@@ -36,8 +37,10 @@ combined matrix, with which each vertex is multiplied during the render loop.
 
 The render loop iterates over each vertex, calculates a corresponding screen
 coordinate and determines wether to draw a line to neighboring vertex. The line
-drawing is done using a simple [Bresenham's line algorithm] implementation, in
-that loop, the colours between the two intial points are interpolated.
+drawing is done using a simple
+[Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
+implementation, in that loop, the colours between the two intial points are
+interpolated.
 
 ## Usage
 To use this application, start it from a shell with the file to display as
@@ -69,6 +72,3 @@ coordinates. This repository however contains my solutions of the exercise, and
 will not be developed any further.
 
 © 2021 [mhahnFr](https://www.github.com/mhahnFr)
-
-[42 school]: (https://www.42heilbronn.de/learncoderepeat)
-[Bresenham's line algorithm]: (https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
