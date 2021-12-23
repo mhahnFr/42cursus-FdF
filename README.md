@@ -16,8 +16,28 @@ window and to draw into this window. Additionally, it provides some events,
 such as key events, which can be hooked.
 
 ### Parsing
+A usual file contains some lines with numbers separated by spaces. The numbers
+represent the ```Z```-coordinate and can be followd by a hexadecimal number,
+separated by a comma. The hexadecimal number represents the colour code of that
+vertex. The ```X```-coordinate is represented by the position in a line, the
+```Y```-coordinate is represented by the number of the line.
+
+Each line that is read from a given file is splitted by the whitespaces and
+stored. From that list containing the splitted lines the vertices are derived
+and stored in a two dimensional array.
 
 ### Rendering
+Prior to starting the render loop, the matrices to multiply each vertex with
+are calculated. There are matrices for the rotation, movement and scaling of
+the model, a matrix to transform the model into a camera coordinate system, and
+finally there is a projection matrix, which takes informations such as the
+screen dimensions into the calculations. All of them are multiplied into a
+combined matrix, with which each vertex is multiplied during the render loop.
+
+The render loop iterates over each vertex, calculates a corresponding screen
+coordinate and determines wether to draw a line to neighboring vertex. The line
+drawing is done using a simple [Bresenham's line algorithm] implementation, in
+that loop, the colours between the two intial points are interpolated.
 
 ## Usage
 To use this application, start it from a shell with the file to display as
@@ -51,3 +71,4 @@ will not be developed any further.
 © 2021 [mhahnFr](https://www.github.com/mhahnFr)
 
 [42 school]: (https://www.42heilbronn.de/learncoderepeat)
+[Bresenham's line algorithm]: (https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
