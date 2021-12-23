@@ -67,8 +67,10 @@ below, the display of the wireframe can be altered.
 - ```ESC``` quits the application.
 
 ### Final notes
-There is surely some room for further improvements, such as clipping invisible
-coordinates. This repository however contains my solutions of the exercise, and
-will not be developed any further.
+This application has been developed for *macOS*. The only tested platform, on
+which this project was developed, is *macOS 10.15.7*. There is surely some room
+forfurther improvements, such as clipping invisible coordinates. This
+repository however contains my solutions of the exercise, and will not be
+developed any further.
 
 © 2021 [mhahnFr](https://www.github.com/mhahnFr)
