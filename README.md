@@ -12,7 +12,7 @@ matrices are calculated in advance. Changing them, the camera, the model itself
 and the projection can be manipulated.
 
 The actual displaying of the wireframe is done using a library provided by the
-[42 school], the MiniLibX. In this project, the library is used to open a
+[42 school](https://www.42heilbronn.de/learncoderepeat), the MiniLibX. In this project, the library is used to open a
 window and to draw into this window. Additionally, it provides some events,
 such as key events, which can be hooked.
 
