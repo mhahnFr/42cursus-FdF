@@ -1,7 +1,7 @@
 # Welcome to 42cursus-FdF!
 This repository contains a project of the
-[42 school](https://www.42heilbronn.de/learncoderepeat). The task is to create
-a graphical application that displays three dimensional wireframes.
+[42 school]. The task is to create a graphical application that displays three
+dimensional wireframes.
 
 ## Approach
 In order to display three dimensional wireframes, the data has to be parsed.
@@ -12,7 +12,7 @@ matrices are calculated in advance. Changing them, the camera, the model itself
 and the projection can be manipulated.
 
 The actual displaying of the wireframe is done using a library provided by the
-[42 school](https://www.42heilbronn.de/learncoderepeat), the MiniLibX. In this project, the library is used to open a
+[42 school], the MiniLibX. In this project, the library is used to open a
 window and to draw into this window. Additionally, it provides some events,
 such as key events, which can be hooked.
 
@@ -73,4 +73,13 @@ forfurther improvements, such as clipping invisible coordinates. This
 repository however contains my solutions of the exercise, and will not be
 developed any further.
 
+> As all other C projects at the [42 school], the code has to written in accordance
+> with the [norm]:
+> - Only 25 lines per function,
+> - only 5 functions per file,
+> - usage of only the allowed external functions.
+
 © 2021 [mhahnFr](https://www.github.com/mhahnFr)
+
+[42 school]: (https://www.42heilbronn.de/learncoderepeat)
+[norm]: https://www.github.com/42School/norminette
