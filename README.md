@@ -3,6 +3,14 @@ This repository contains a project of the
 [42 school]. The task is to create a graphical application that displays three
 dimensional wireframes.
 
+### Screenshots
+<p>
+<img src="https://www.github.com/mhahnFr/42cursus-FdF/raw/main/screenshots/42.png" alt="42" width="400"/>
+<img src="https://www.github.com/mhahnFr/42cursus-FdF/raw/main/screenshots/julia.png" alt="julia" width="400"/>
+<img src="https://www.github.com/mhahnFr/42cursus-FdF/raw/main/screenshots/pylone.png" alt="pylone" width="400"/>
+<img src="https://www.github.com/mhahnFr/42cursus-FdF/raw/main/screenshots/pyramide.png" alt="pyramide" width="400"/>
+</p>
+
 ## Approach
 In order to display three dimensional wireframes, the data has to be parsed.
 After parsing such maps, the text based data has to be transformed to vertices,
