@@ -7,6 +7,8 @@ dimensional wireframes.
 <p>
 <img src="https://www.github.com/mhahnFr/42cursus-FdF/raw/main/screenshots/42.png" alt="42" width="400"/>
 <img src="https://www.github.com/mhahnFr/42cursus-FdF/raw/main/screenshots/julia.png" alt="julia" width="400"/>
+</p>
+<p>
 <img src="https://www.github.com/mhahnFr/42cursus-FdF/raw/main/screenshots/pylone.png" alt="pylone" width="400"/>
 <img src="https://www.github.com/mhahnFr/42cursus-FdF/raw/main/screenshots/pyramide.png" alt="pyramide" width="400"/>
 </p>
