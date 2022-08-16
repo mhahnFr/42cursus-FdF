@@ -51,7 +51,7 @@ screen dimensions into the calculations. All of them are multiplied into a
 combined matrix, with which each vertex is multiplied during the render loop.
 
 The render loop iterates over each vertex, calculates a corresponding screen
-coordinate and determines wether to draw a line to neighboring vertex. The line
+coordinate and determines whether to draw a line to neighboring vertex. The line
 drawing is done using a simple
 [Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
 implementation, in that loop, the colours between the two intial points are
@@ -84,7 +84,7 @@ below, the display of the wireframe can be altered.
 ### Final notes
 This application has been developed for *macOS*. The only tested platform, on
 which this project was developed, is *macOS 10.15.7*. There is surely some room
-forfurther improvements, such as clipping invisible coordinates. This
+for further improvements, such as clipping invisible coordinates. This
 repository however contains my solutions of the exercise, and will not be
 developed any further.
 
